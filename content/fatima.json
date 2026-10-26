@@ -1,0 +1,42 @@
+{
+  "id": "fatima",
+  "name": "Fatima",
+  "age": 31,
+  "setting": "Corporate Worker, Abuja",
+  "blurb": "A corporate professional navigating controlling pressure at home and microaggressions at work.",
+  "scenes": [
+    {
+      "id": "n1",
+      "beat": 1,
+      "interface": "phone",
+      "nodes": [
+        { "type": "narration", "text": "Morning commute in Abuja. Ngozi checks her phone before entering the office." },
+        { "type": "message", "from": "Sister", "text": "Good morning! Are we still talking on Sunday?", "delayMs": 400 },
+        {
+          "type": "choice",
+          "options": [
+            { "label": "Reply to sister now", "next": "n2" },
+            { "label": "Reply later, rush into meeting", "next": "n2" }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "n4",
+      "beat": 4,
+      "interface": "doors",
+      "nodes": [
+        { "type": "narration", "text": "Four doors she can knock on. Each response closes tighter." },
+        {
+          "type": "door",
+          "doors": [
+            { "id": "sister", "label": "Sister", "response": "helpless", "text": "I'm worried about you, but I'm too far away in Port Harcourt.", "pressure": "family" },
+            { "id": "hr", "label": "HR Department", "response": "dismissed", "text": "This is a personal domestic matter outside office jurisdiction.", "pressure": "work" },
+            { "id": "pastor", "label": "Pastor", "response": "redirected", "text": "Endure and pray. Marriage requires sacrifice from a woman.", "pressure": "church" },
+            { "id": "friend", "label": "Colleague / Friend", "response": "blamed", "text": "At least he provides well and cares. Don't provoke him.", "pressure": "friends" }
+          ]
+        }
+      ]
+    }
+  ]
+}
