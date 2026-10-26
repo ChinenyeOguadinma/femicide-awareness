@@ -6,9 +6,9 @@ import toluData from '@/content/tolu.json';
 import { CharacterData } from '@/types/story';
 
 const contentMap: Record<string, CharacterData> = {
-  ngozi: ngoziData as CharacterData,
+  ngozi: fatimaData as CharacterData,
   chioma: chiomaData as CharacterData,
-  amaka: amakaData as CharacterData,
+  amaka: lisaData as CharacterData,
   tolu: toluData as CharacterData,
 };
 
