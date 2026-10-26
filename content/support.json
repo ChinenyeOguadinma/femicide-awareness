@@ -1,0 +1,30 @@
+[
+  {
+    "name": "Mirabel Centre (Lagos)",
+    "description": "Sexual Assault Referral Centre providing free medical, psychosocial, and legal support.",
+    "phone": "[VERIFY +234 818 724 5751]",
+    "website": "https://mirabelcentre.org",
+    "verified": false
+  },
+  {
+    "name": "Women at Risk International Foundation (WARIF)",
+    "description": "24/7 crisis helpline and survivor advocacy in Nigeria.",
+    "phone": "[VERIFY +234 809 210 0009]",
+    "website": "https://warifng.org",
+    "verified": false
+  },
+  {
+    "name": "Stand to End Rape (STER)",
+    "description": "Advocacy and referral services for gender-based violence survivors.",
+    "phone": "[VERIFY +234 809 592 5951]",
+    "website": "https://standtoendrape.org",
+    "verified": false
+  },
+  {
+    "name": "FIDA Nigeria",
+    "description": "International Federation of Women Lawyers providing pro bono legal assistance.",
+    "phone": "[VERIFY +234 800 343 2000]",
+    "website": "https://fida.org.ng",
+    "verified": false
+  }
+]
