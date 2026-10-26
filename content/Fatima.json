@@ -1,63 +1,39 @@
 {
   "id": "fatima",
   "name": "Fatima",
-  "age": 20,
-  "setting": "University Campus, Ile-Ife",
-  "blurb": "A popular student experiencing escalating jealousy and stalking.",
+  "age": 38,
+  "setting": "Small Business Owner, Enugu",
+  "blurb": "A mother managing a retail shop while facing severe financial control and isolation at home.",
   "scenes": [
     {
-      "id": "c1",
+      "id": "a1",
       "beat": 1,
       "interface": "phone",
       "nodes": [
-        { "type": "narration", "text": "Chioma is studying in her hostel room." },
-        { "type": "message", "from": "Roommate", "text": "Dayo is waiting downstairs with food! He's so sweet.", "delayMs": 500 },
+        { "type": "narration", "text": "Early morning rush preparing the children for school and opening the shop." },
+        { "type": "message", "from": "Obinna (Husband)", "text": "Did you leave the shop keys where I told you? Send account update now.", "delayMs": 400 },
         {
           "type": "choice",
           "options": [
-            { "label": "Go downstairs", "next": "c2" },
-            { "label": "Finish studying first", "next": "c2" }
+            { "label": "Send immediate update", "next": "a4" },
+            { "label": "Focus on school run first", "next": "a4" }
           ]
         }
       ]
     },
     {
-      "id": "c4",
+      "id": "a4",
       "beat": 4,
       "interface": "doors",
       "nodes": [
-        { "type": "narration", "text": "Four places she turns to for assistance. None offer safety." },
+        { "type": "narration", "text": "The doors around her household are shut tight." },
         {
           "type": "door",
           "doors": [
-            {
-              "id": "roommate",
-              "label": "Roommate",
-              "response": "blamed",
-              "text": "Please don't ruin his future over a small issue.",
-              "pressure": "friends"
-            },
-            {
-              "id": "lecturer",
-              "label": "Lecturer",
-              "response": "redirected",
-              "text": "This sounds like a private issue to settle between yourselves.",
-              "pressure": "school"
-            },
-            {
-              "id": "security",
-              "label": "Campus Security",
-              "response": "dismissed",
-              "text": "Lovers quarrel. Go back to your hostel.",
-              "pressure": "school"
-            },
-            {
-              "id": "mother",
-              "label": "Mother",
-              "response": "promised-no-action",
-              "text": "Be patient, my dear. I will pray for both of you.",
-              "pressure": "family"
-            }
+            { "id": "sister", "label": "Sister", "response": "helpless", "text": "We don't have space in our compound for you and two children.", "pressure": "family" },
+            { "id": "mother_in_law", "label": "Mother-in-Law", "response": "blamed", "text": "Every marriage has trials. You must learn to endure quietly.", "pressure": "family" },
+            { "id": "church_elder", "label": "Church Elder", "response": "redirected", "text": "Go back home and settle peaceably with your husband in prayer.", "pressure": "church" },
+            { "id": "neighbor", "label": "Neighbor", "response": "dismissed", "text": "I heard noise, but it's best not to interfere in family matters.", "pressure": "friends" }
           ]
         }
       ]
