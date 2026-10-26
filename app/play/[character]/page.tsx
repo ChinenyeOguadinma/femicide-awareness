@@ -1,14 +1,14 @@
 import { notFound } from 'next/navigation';
-import fatimaData from '@/content/fatima.json';
 import chiomaData from '@/content/chioma.json';
+import fatimaData from '@/content/fatima.json';
 import lisaData from '@/content/lisa.json';
 import toluData from '@/content/tolu.json';
 import { CharacterData } from '@/types/story';
 
 const contentMap: Record<string, CharacterData> = {
-  ngozi: fatimaData as CharacterData,
   chioma: chiomaData as CharacterData,
-  amaka: lisaData as CharacterData,
+  fatima: fatimaData as CharacterData,
+  lisa: lisaData as CharacterData,
   tolu: toluData as CharacterData,
 };
 
