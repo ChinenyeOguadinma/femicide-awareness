@@ -1,0 +1,42 @@
+{
+  "id": "lisa",
+  "name": "Lisa",
+  "age": 38,
+  "setting": "Small Business Owner, Enugu",
+  "blurb": "A mother managing a retail shop while facing severe financial control and isolation at home.",
+  "scenes": [
+    {
+      "id": "a1",
+      "beat": 1,
+      "interface": "phone",
+      "nodes": [
+        { "type": "narration", "text": "Early morning rush preparing the children for school and opening the shop." },
+        { "type": "message", "from": "Obinna (Husband)", "text": "Did you leave the shop keys where I told you? Send account update now.", "delayMs": 400 },
+        {
+          "type": "choice",
+          "options": [
+            { "label": "Send immediate update", "next": "a4" },
+            { "label": "Focus on school run first", "next": "a4" }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "a4",
+      "beat": 4,
+      "interface": "doors",
+      "nodes": [
+        { "type": "narration", "text": "The doors around her household are shut tight." },
+        {
+          "type": "door",
+          "doors": [
+            { "id": "sister", "label": "Sister", "response": "helpless", "text": "We don't have space in our compound for you and two children.", "pressure": "family" },
+            { "id": "mother_in_law", "label": "Mother-in-Law", "response": "blamed", "text": "Every marriage has trials. You must learn to endure quietly.", "pressure": "family" },
+            { "id": "church_elder", "label": "Church Elder", "response": "redirected", "text": "Go back home and settle peaceably with your husband in prayer.", "pressure": "church" },
+            { "id": "neighbor", "label": "Neighbor", "response": "dismissed", "text": "I heard noise, but it's best not to interfere in family matters.", "pressure": "friends" }
+          ]
+        }
+      ]
+    }
+  ]
+}
