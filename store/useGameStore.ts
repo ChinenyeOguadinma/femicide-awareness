@@ -1,6 +1,6 @@
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
-import { CharacterId, PressureSource, DoorLogEntry } from '@/types/story';
+import type { CharacterId, PressureSource, DoorLogEntry } from '../story';
 
 interface GameState {
   warningAccepted: boolean;
@@ -9,7 +9,7 @@ interface GameState {
   doorsLog: DoorLogEntry[];
   muted: boolean;
   reduceComments: boolean;
-  
+
   acceptWarning: () => void;
   markCompleted: (id: CharacterId) => void;
   addPressure: (sources: Partial<Record<PressureSource, number>>) => void;
@@ -30,7 +30,7 @@ export const useGameStore = create<GameState>()(
       reduceComments: false,
 
       acceptWarning: () => set({ warningAccepted: true }),
-      
+
       markCompleted: (id) =>
         set((state) => ({
           completed: state.completed.includes(id) ? state.completed : [...state.completed, id],
@@ -54,7 +54,7 @@ export const useGameStore = create<GameState>()(
       resetRunPressure: () => set({ pressure: {} }),
 
       toggleMute: () => set((state) => ({ muted: !state.muted })),
-      
+
       toggleReduceComments: () => set((state) => ({ reduceComments: !state.reduceComments })),
     }),
     {
