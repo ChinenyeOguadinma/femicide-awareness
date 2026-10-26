@@ -1,9 +1,10 @@
 'use client';
 import Link from 'next/link';
 import { useGameStore } from '@/store/useGameStore';
+import { CharacterId } from '@/types/story';
 
 interface CharacterOption {
-  id: 'fatima' | 'chioma' | 'lisa' | 'tolu';
+  id: CharacterId;
   name: string;
   age: number;
   setting: string;
@@ -14,23 +15,23 @@ const characters: CharacterOption[] = [
   {
     id: 'chioma',
     name: 'Chioma',
-    age: 31,
-    setting: 'Corporate Worker, Abuja',
-    blurb: 'Navigating controlling pressure at home and microaggressions at work.',
-  },
-  {
-    id: 'fatima',
-    name: 'Fatima',
     age: 20,
     setting: 'University Student, Campus',
     blurb: 'Experiencing campus surveillance and escalating isolation.',
   },
   {
-    id: 'lisa',
-    name: 'Lisa',
+    id: 'fatima',
+    name: 'Fatima',
     age: 38,
     setting: 'Small Business Owner, Enugu',
     blurb: 'Managing a shop while facing financial control and isolation.',
+  },
+  {
+    id: 'lisa',
+    name: 'Lisa',
+    age: 31,
+    setting: 'Corporate Worker, Abuja',
+    blurb: 'Navigating controlling pressure at home and microaggressions at work.',
   },
   {
     id: 'tolu',
