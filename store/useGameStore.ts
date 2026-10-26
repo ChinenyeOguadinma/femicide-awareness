@@ -1,6 +1,6 @@
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
-import { CharacterId, PressureSource, DoorLogEntry } from '../types/story';
+import { CharacterId, PressureSource, DoorLogEntry } from '@/types/story';
 
 interface GameState {
   warningAccepted: boolean;
