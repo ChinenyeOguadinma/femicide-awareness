@@ -2,7 +2,7 @@ export type PressureSource = 'family' | 'work' | 'church' | 'police' | 'school' 
 
 export type ResponseType = 'dismissed' | 'blamed' | 'redirected' | 'promised-no-action' | 'helpless';
 
-export type CharacterId = 'ngozi' | 'chioma' | 'amaka' | 'tolu';
+export type CharacterId = 'chioma' | 'fatima' | 'lisa' | 'tolu';
 
 export type Beat = 1 | 2 | 3 | 4 | 5 | 'aftermath';
 
