@@ -1,0 +1,42 @@
+{
+  "id": "tolu",
+  "name": "Tolu",
+  "age": 19,
+  "setting": "Part-time Worker, Lagos",
+  "blurb": "A young woman dealing with digital stalking, institutional inaction, and victim-blaming.",
+  "scenes": [
+    {
+      "id": "t1",
+      "beat": 1,
+      "interface": "phone",
+      "nodes": [
+        { "type": "narration", "text": "Tolu receives notifications while finishing her shift." },
+        { "type": "message", "from": "Unknown Number", "text": "I saw you leaving work. Why didn't you wave back?", "delayMs": 300 },
+        {
+          "type": "choice",
+          "options": [
+            { "label": "Block number", "next": "t4" },
+            { "label": "Ignore and delete message", "next": "t4" }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "t4",
+      "beat": 4,
+      "interface": "doors",
+      "nodes": [
+        { "type": "narration", "text": "Seeking help online and offline yields no protection." },
+        {
+          "type": "door",
+          "doors": [
+            { "id": "police", "label": "Police Station Desk", "response": "dismissed", "text": "Has he physically harmed you yet? Come back if something happens.", "pressure": "police" },
+            { "id": "platform", "label": "Platform Support", "response": "helpless", "text": "Automated reply: Report reviewed. No violation of community standards found.", "pressure": "online" },
+            { "id": "friend", "label": "Friend", "response": "blamed", "text": "Just block him and stop posting your location so publicly.", "pressure": "friends" },
+            { "id": "family", "label": "Family Elder", "response": "redirected", "text": "Change your phone number and dress more conservatively.", "pressure": "family" }
+          ]
+        }
+      ]
+    }
+  ]
+}
