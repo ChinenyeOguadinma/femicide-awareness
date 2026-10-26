@@ -4,7 +4,12 @@ import { useGameStore } from '@/store/useGameStore';
 
 export default function PressureMeter() {
   const pressure = useGameStore((state) => state.pressure);
-  const totalPressure = Object.values(pressure).reduce((acc, val) => acc + (val || 0), 0);
+
+  const totalPressure = Object.values(pressure).reduce<number>(
+    (acc, val) => acc + (val ?? 0),
+    0
+  );
+
   const maxPressure = 100;
   const percentage = Math.min(Math.round((totalPressure / maxPressure) * 100), 100);
 
