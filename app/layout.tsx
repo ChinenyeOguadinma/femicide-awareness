@@ -13,42 +13,37 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className="dark">
-      <body className="bg-slate-950 text-slate-100 antialiased font-sans min-h-screen flex flex-col selection:bg-rose-600 selection:text-white">
-        
-        {/* Global Persistent Editorial Header */}
-        <header className="fixed top-0 left-0 right-0 z-50 glass-card border-b border-slate-800/80 px-4 sm:px-6 h-14 flex items-center justify-between">
-          <div className="flex items-center gap-3">
-            <Link href="/" className="flex items-center gap-2 group">
-              <span className="w-2.5 h-2.5 bg-rose-600 rounded-sm group-hover:scale-125 transition transform" />
-              <span className="text-xs font-mono uppercase tracking-widest text-slate-200 font-bold">
-                Dataphyte <span className="text-rose-500 font-normal">Interactives</span>
+    <html lang="en">
+      <body className="min-h-screen bg-[var(--bg)] text-[var(--ink)] antialiased">
+        <header className="sticky top-0 z-50 border-b border-[var(--line)] bg-[rgba(245,242,235,0.82)] backdrop-blur-md">
+          <div className="mx-auto flex max-w-6xl items-center justify-between px-5 py-4 sm:px-8 lg:px-10">
+            <Link href="/" className="flex items-center gap-3">
+              <span className="h-3 w-3 rounded-[4px] bg-[var(--brand-red)]" />
+              <span className="text-[10px] font-black uppercase tracking-[0.24em] text-[var(--ink)]">
+                Dataphyte
               </span>
             </Link>
-          </div>
 
-          <nav className="flex items-center gap-4 sm:gap-6 text-xs font-medium">
-            <Link href="/choose" className="text-slate-300 hover:text-rose-400 transition hidden sm:inline-block">
-              Stories
-            </Link>
-            <Link href="/data-story" className="text-slate-300 hover:text-rose-400 transition hidden sm:inline-block">
-              Data Story
-            </Link>
-            <Link
-              href="/support"
-              className="px-3 py-1.5 rounded-lg bg-rose-950/80 border border-rose-800 text-rose-300 hover:bg-rose-900 transition shadow-sm"
-            >
-              Emergency Help
-            </Link>
-          </nav>
+            <nav className="flex items-center gap-5 text-[10px] font-semibold uppercase tracking-[0.18em] text-[var(--muted)] sm:gap-7">
+              <Link href="/choose" className="transition hover:text-[var(--ink)]">
+                Stories
+              </Link>
+              <Link href="/data-story" className="transition hover:text-[var(--ink)]">
+                Data Story
+              </Link>
+              <Link
+                href="/support"
+                className="rounded-full border border-[var(--line)] bg-white px-3 py-1.5 text-[var(--brand-red)] transition hover:border-[rgba(198,55,45,0.25)] hover:bg-[rgba(198,55,45,0.04)]"
+              >
+                Support
+              </Link>
+            </nav>
+          </div>
         </header>
 
-        {/* Main Content Container with Top Padding for Sticky Header */}
-        <div className="flex-1 pt-14 flex flex-col">
-          {children}
-        </div>
-
+        <div className="min-h-screen">{children}</div>
       </body>
     </html>
   );
 }
+
