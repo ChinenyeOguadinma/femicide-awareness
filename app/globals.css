@@ -3,13 +3,38 @@
 @tailwind utilities;
 
 :root {
-  --foreground-rgb: 255, 255, 255;
-  --background-start-rgb: 2, 6, 23;
-  --background-end-rgb: 2, 6, 23;
+  --brand-red: #c6372d;
+  --brand-red-deep: #8f2d26;
+  --bg: #f5f2eb;
+  --bg-deep: #ece5db;
+  --panel: #fffdf9;
+  --panel-strong: #f0ece6;
+  --ink: #171611;
+  --muted: #5f5850;
+  --line: rgba(23, 22, 17, 0.12);
+  --shadow-soft: 0 18px 40px rgba(17, 17, 17, 0.06);
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  color: rgb(var(--foreground-rgb));
-  background: rgb(var(--background-start-rgb));
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  color: var(--ink);
+  background: linear-gradient(180deg, var(--bg) 0%, var(--bg-deep) 100%);
+  font-family: 'Inter', 'Segoe UI', sans-serif;
 }
+
+* {
+  box-sizing: border-box;
+}
+
+a {
+  text-decoration: none;
+}
+
+::selection {
+  background: rgba(198, 55, 45, 0.18);
+  color: var(--ink);
+}
+
