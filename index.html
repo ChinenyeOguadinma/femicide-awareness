@@ -274,8 +274,8 @@
         initialPressure: { school: 15, friends: 10 }
       },
       {
-        id: 'ngozi',
-        name: 'Ngozi',
+        id: 'fatima',
+        name: 'Fatima',
         age: 31,
         occupation: 'Corporate Financial Analyst',
         location: 'Maitama, Abuja',
@@ -284,8 +284,8 @@
         initialPressure: { work: 20, family: 10 }
       },
       {
-        id: 'amaka',
-        name: 'Amaka',
+        id: 'cynthia',
+        name: 'Cynthia',
         age: 38,
         occupation: 'Small Business Owner & Mother',
         location: 'Surulere, Lagos',
@@ -384,21 +384,21 @@
           ]
         }
       ],
-      ngozi: [
+      fatima: [
         {
-          id: 'n1',
+          id: 'f1',
           beat: 1,
           beatTitle: 'Beat 1: Ordinary Life',
           interface: 'phone',
-          headerTitle: 'WhatsApp · Amara (Sister)',
+          headerTitle: 'WhatsApp · Amina (Sister)',
           nodes: [
-            { type: 'message', from: 'Amara', text: 'Ife, morning! Did Tope approve your flight for the Lagos summit?', delayms: 700 },
+            { type: 'message', from: 'Amina', text: 'Fatima, morning! Did Kabir approve your flight for the Lagos summit?', delayms: 700 },
             { type: 'message', from: 'her', text: 'He is still objecting. Claims corporate wives shouldn’t travel alone.', delayms: 1000 },
             { type: 'choice', options: [{ label: 'Focus on work duties', next_idx: 2 }, { label: 'Confide your concerns', next_idx: 2 }] }
           ]
         },
         {
-          id: 'n4',
+          id: 'f4',
           beat: 4,
           beatTitle: 'Beat 4: Closed Doors',
           interface: 'doors',
@@ -409,7 +409,7 @@
           ]
         },
         {
-          id: 'n5',
+          id: 'f5',
           beat: 5,
           beatTitle: 'Beat 5: Cut-Away',
           interface: 'police',
@@ -420,32 +420,32 @@
           ]
         },
         {
-          id: 'n6',
+          id: 'f6',
           beat: 6,
           beatTitle: 'Beat 6: Public Reaction',
           interface: 'feed',
           headerTitle: 'Corporate & Media Feed',
           nodes: [
-            { type: 'post', author: 'Abuja Daily News', text: 'TRAGEDY: Top corporate financial executive Ngozi found deceased in Maitama residence.', likes: 8900 },
+            { type: 'post', author: 'Abuja Daily News', text: 'TRAGEDY: Top corporate financial executive Fatima found deceased in Maitama residence.', likes: 8900 },
             { type: 'comment', text: 'She reported to HR three times! Why are workplace harassment policies silent on domestic threats?', stance: 'support' }
           ]
         }
       ],
-      amaka: [
+      cynthia: [
         {
-          id: 'a1',
+          id: 'cy1',
           beat: 1,
           beatTitle: 'Beat 1: Surulere Store',
           interface: 'phone',
           headerTitle: 'WhatsApp · Mama Nkechi',
           nodes: [
-            { type: 'message', from: 'Mama Nkechi', text: 'Lisa sister, please remember the community meeting today.', delayms: 600 },
+            { type: 'message', from: 'Mama Nkechi', text: 'Cynthia my sister, please remember the community meeting today.', delayms: 600 },
             { type: 'message', from: 'her', text: 'I will attend once the store opens.', delayms: 1000 },
             { type: 'choice', options: [{ label: 'Confirm attendance', next_idx: 2 }, { label: 'Say you might be late', next_idx: 2 }] }
           ]
         },
         {
-          id: 'a4',
+          id: 'cy4',
           beat: 4,
           beatTitle: 'Beat 4: Closed Doors',
           interface: 'doors',
@@ -456,7 +456,7 @@
           ]
         },
         {
-          id: 'a5',
+          id: 'cy5',
           beat: 5,
           beatTitle: 'Beat 5: Cut-Away',
           interface: 'police',
@@ -466,7 +466,7 @@
           ]
         },
         {
-          id: 'a6',
+          id: 'cy6',
           beat: 6,
           beatTitle: 'Beat 6: The Aftermath',
           interface: 'feed',
@@ -728,14 +728,13 @@
             </nav>
           </header>
 
-          {/* MAIN CONTAINER: SPLIT-SCREEN EDITORIAL LAYOUT */}
+          {/* MAIN CONTAINER */}
           <main className="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-8 py-6">
             
-            {/* ==================== HOME PAGE (SPLIT SCREEN) ==================== */}
+            {/* ==================== HOME PAGE ==================== */}
             {currentRoute === 'home' && (
               <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center min-h-[75vh]">
                 
-                {/* Left Editorial Column */}
                 <div className="lg:col-span-6 space-y-6">
                   <div className="inline-flex items-center space-x-2 px-3.5 py-1.5 rounded-full bg-dp-lightBlue text-dp-blue text-xs font-bold border border-dp-border">
                     <Shield className="w-3.5 h-3.5" />
@@ -784,7 +783,6 @@
                   </div>
                 </div>
 
-                {/* Right Interactive / Image Column */}
                 <div className="lg:col-span-6">
                   <div className="bg-white border border-dp-border rounded-3xl p-6 sm:p-8 shadow-sm space-y-6">
                     <div className="relative rounded-2xl overflow-hidden border border-dp-border aspect-4/3 bg-slate-100">
@@ -1312,7 +1310,7 @@
               </div>
             )}
 
-            {/* ==================== CASE FINALE (UPDATED AS REQUESTED) ==================== */}
+            {/* ==================== CASE FINALE ==================== */}
             {currentRoute === 'finale' && (
               <div className="max-w-xl mx-auto bg-white border border-dp-border rounded-3xl p-6 sm:p-10 shadow-xl text-center space-y-6 my-4">
                 <div className="inline-flex p-4 rounded-2xl bg-dp-lightBlue text-dp-blue">
