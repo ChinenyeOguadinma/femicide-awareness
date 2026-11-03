@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Femicide Awareness Interactive </title>
+  <title>Dataphyte | Femicide Awareness Interactive & Exhibition</title>
   
   <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
@@ -15,24 +15,56 @@
   <!-- Babel Compiler for JSX -->
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
 
+  <!-- Google Fonts: Montserrat (Dataphyte Headings) & Inter (Body) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@600;700;800;900&display=swap" rel="stylesheet">
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            heading: ['Montserrat', 'sans-serif'],
+          },
+          colors: {
+            dp: {
+              navy: '#0B1B3D',      /* Primary Dataphyte Deep Navy */
+              blue: '#1E3A8A',      /* Brand Accent Blue */
+              lightBlue: '#3B82F6', /* Bright Blue */
+              amber: '#F59E0B',     /* Dataphyte Gold / Amber Accent */
+              amberDark: '#D97706',
+              dark: '#050C1A',      /* Dark background */
+              card: '#0F2347',      /* Elevated card container */
+              border: '#1E325C',    /* Border contrast */
+              crimson: '#E11D48',   /* Femicide highlight red */
+              slate: '#94A3B8'
+            }
+          }
+        }
+      }
+    }
+  </script>
+
   <style>
     /* Custom scrollbar styling */
     .custom-scrollbar::-webkit-scrollbar {
-      width: 4px;
+      width: 5px;
     }
     .custom-scrollbar::-webkit-scrollbar-track {
-      background: rgba(15, 23, 42, 0.6);
+      background: #050C1A;
     }
     .custom-scrollbar::-webkit-scrollbar-thumb {
-      background: rgba(51, 65, 85, 0.8);
+      background: #1E325C;
       border-radius: 9999px;
     }
     .custom-scrollbar::-webkit-scrollbar-thumb:hover {
-      background: rgba(245, 158, 11, 0.8);
+      background: #F59E0B;
     }
   </style>
 </head>
-<body class="bg-slate-950 text-slate-100 font-sans antialiased selection:bg-rose-500 selection:text-white">
+<body class="bg-dp-dark text-slate-100 font-sans antialiased selection:bg-dp-crimson selection:text-white">
   <div id="root"></div>
 
   <script type="text/babel">
@@ -156,6 +188,50 @@
       </svg>
     );
 
+    const Image = ({ className = "w-4 h-4" }) => (
+      <svg className={className} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+        <path strokeLinecap="round" strokeLinejoin="round" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+      </svg>
+    );
+
+    const HomeIcon = ({ className = "w-4 h-4" }) => (
+      <svg className={className} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+        <path strokeLinecap="round" strokeLinejoin="round" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+      </svg>
+    );
+
+    // --- EXHIBITION DATA ---
+    const EXHIBITION_ITEMS = [
+      {
+        id: 1,
+        title: "Silent Shadows: Memorial Wall",
+        category: "Exhibition Visual",
+        image: "https://images.unsplash.com/photo-1544717305-2782549b5136?auto=format&fit=crop&w=800&q=80",
+        caption: "Visualizing the unseen numbers: Interactive installation honoring lost lives through systemic data projection."
+      },
+      {
+        id: 2,
+        title: "The Doors That Closed",
+        category: "Art Installation",
+        image: "https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?auto=format&fit=crop&w=800&q=80",
+        caption: "Physical representation of institutional barriers—doors stamped with actual police logs and societal responses."
+      },
+      {
+        id: 3,
+        title: "Voices & Transcripts",
+        category: "Auditory Archive",
+        image: "https://images.unsplash.com/photo-1590602847861-f357a9332bbc?auto=format&fit=crop&w=800&q=80",
+        caption: "Sound installation playing verified distress call transcripts, highlighting police station reactions across 5 states."
+      },
+      {
+        id: 4,
+        title: "Data Visualization: The Escalation Ladder",
+        category: "Infographic Art",
+        image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=80",
+        caption: "A 10-meter timeline depicting how non-physical coercion, stalking, and digital threats predictably precede physical violence."
+      }
+    ];
+
     // --- DATA ---
     const CHARACTERS = [
       {
@@ -166,7 +242,7 @@
         location: 'Unilag Hostel, Lagos',
         blurb: 'Popular student whose partner controls her social circle under the guise of deep love.',
         avatarColor: 'from-amber-500 to-rose-600',
-        avatarBg: 'bg-amber-950/40 border-amber-500/40',
+        avatarBg: 'bg-dp-card border-dp-border',
         initialPressure: { school: 15, friends: 10 }
       },
       {
@@ -177,7 +253,7 @@
         location: 'Maitama, Abuja',
         blurb: 'Senior analyst dealing with an overly controlling partner and workplace harassment.',
         avatarColor: 'from-blue-600 to-indigo-700',
-        avatarBg: 'bg-indigo-950/40 border-indigo-500/40',
+        avatarBg: 'bg-dp-card border-dp-border',
         initialPressure: { work: 20, family: 10 }
       },
       {
@@ -188,7 +264,7 @@
         location: 'Surulere, Lagos',
         blurb: 'Devoted mother of two running a small provision store while managing severe financial abuse.',
         avatarColor: 'from-emerald-600 to-teal-700',
-        avatarBg: 'bg-emerald-950/40 border-emerald-500/40',
+        avatarBg: 'bg-dp-card border-dp-border',
         initialPressure: { family: 25, church: 15 }
       },
       {
@@ -199,7 +275,7 @@
         location: 'Ikeja, Lagos',
         blurb: 'Young woman targeted by an obsessive stalker after politely declining his romantic advances.',
         avatarColor: 'from-purple-600 to-pink-700',
-        avatarBg: 'bg-purple-950/40 border-purple-500/40',
+        avatarBg: 'bg-dp-card border-dp-border',
         initialPressure: { online: 20, police: 10 }
       }
     ];
@@ -513,8 +589,8 @@
 
     // --- MAIN APP COMPONENT ---
     function App() {
-      const [currentRoute, setCurrentRoute] = useState('landing'); 
-      const [warningAccepted, setWarningAccepted] = useState(false);
+      const [currentRoute, setCurrentRoute] = useState('home'); // 'home', 'choose', 'play', 'finale', 'exhibition', 'data-story'
+      const [disclaimerOpen, setDisclaimerOpen] = useState(false);
       const [selectedCharacter, setSelectedCharacter] = useState(CHARACTERS[0]);
       
       const [currentBeatIdx, setCurrentBeatIdx] = useState(0);
@@ -534,7 +610,6 @@
         if (saved) {
           try {
             const parsed = JSON.parse(saved);
-            if (parsed.warningAccepted) setWarningAccepted(true);
             if (parsed.completedCharacters) setCompletedCharacters(parsed.completedCharacters);
           } catch (e) {
             console.error('Error loading saved state:', e);
@@ -544,15 +619,8 @@
 
       const saveProgress = (newCompleted) => {
         localStorage.setItem('femicide_awareness_state', JSON.stringify({
-          warningAccepted: true,
           completedCharacters: newCompleted
         }));
-      };
-
-      const handleAcceptWarning = () => {
-        setWarningAccepted(true);
-        setCurrentRoute('choose');
-        saveProgress(completedCharacters);
       };
 
       const startCharacterStory = (char) => {
@@ -611,103 +679,250 @@
       };
 
       return (
-        <div className="min-h-screen bg-slate-950 text-slate-100 flex flex-col font-sans select-none overflow-x-hidden antialiased">
-          {/* Safety Bar */}
-          {currentRoute !== 'landing' && (
-            <header className="sticky top-0 z-50 bg-slate-900/90 backdrop-blur-md border-b border-slate-800 px-4 py-2.5 flex items-center justify-between text-xs sm:text-sm">
-              <div className="flex items-center space-x-2">
-                <button 
-                  onClick={() => setCurrentRoute('choose')}
-                  className="flex items-center space-x-1 text-slate-400 hover:text-amber-400 transition-colors font-medium"
-                >
-                  <ArrowLeft className="w-4 h-4" />
-                  <span>Exit / Pause</span>
-                </button>
-                <span className="text-slate-700">|</span>
-                <span className="text-slate-400 truncate max-w-[120px] sm:max-w-none">
-                  Playing as <strong className="text-amber-400 font-semibold">{selectedCharacter.name}</strong>
-                </span>
-              </div>
+        <div className="min-h-screen bg-dp-dark text-slate-100 flex flex-col font-sans select-none overflow-x-hidden antialiased">
+          
+          {/* Dataphyte Brand Navigation Header */}
+          <header className="sticky top-0 z-40 bg-dp-navy/95 backdrop-blur-md border-b border-dp-border px-4 py-3 flex items-center justify-between">
+            <div className="flex items-center space-x-3">
+              <button 
+                onClick={() => setCurrentRoute('home')}
+                className="flex items-center space-x-2 text-white font-heading font-extrabold text-lg tracking-tight hover:opacity-90 transition"
+              >
+                <span className="bg-dp-amber text-dp-dark px-2 py-0.5 rounded font-black text-xs">DATA</span>
+                <span className="text-white">PHYTE</span>
+              </button>
+              <span className="hidden sm:inline text-dp-slate text-xs">|</span>
+              <span className="hidden sm:inline text-xs text-dp-slate font-medium">Femicide Reporting & Interactive</span>
+            </div>
 
-              <div className="flex items-center space-x-2 sm:space-x-3">
-                <button 
-                  onClick={() => setMuted(!muted)}
-                  className="p-1.5 rounded-full bg-slate-800 text-slate-300 hover:bg-slate-700 transition"
-                >
-                  {muted ? <VolumeX className="w-4 h-4" /> : <Volume2 className="w-4 h-4 text-emerald-400" />}
-                </button>
+            {/* Navigation links */}
+            <nav className="flex items-center space-x-2 sm:space-x-4 text-xs font-semibold">
+              <button
+                onClick={() => setCurrentRoute('home')}
+                className={`px-2.5 py-1.5 rounded-lg transition flex items-center space-x-1 ${
+                  currentRoute === 'home' ? 'bg-dp-blue text-white' : 'text-slate-300 hover:text-white'
+                }`}
+              >
+                <HomeIcon className="w-3.5 h-3.5" />
+                <span className="hidden sm:inline">Home</span>
+              </button>
 
-                <button
-                  onClick={() => setSupportModalOpen(true)}
-                  className="px-3 py-1.5 rounded-full bg-rose-600/20 border border-rose-500/40 text-rose-300 hover:bg-rose-600 hover:text-white font-medium transition-all flex items-center space-x-1.5 shadow-sm"
-                >
-                  <Shield className="w-3.5 h-3.5" />
-                  <span>Get Support</span>
-                </button>
-              </div>
-            </header>
-          )}
+              <button
+                onClick={() => setCurrentRoute('choose')}
+                className={`px-2.5 py-1.5 rounded-lg transition ${
+                  currentRoute === 'choose' || currentRoute === 'play' ? 'bg-dp-blue text-white' : 'text-slate-300 hover:text-white'
+                }`}
+              >
+                Interactive
+              </button>
 
-          {/* Main Stage */}
-          <main className="flex-1 flex flex-col items-center justify-center relative w-full max-w-md mx-auto sm:max-w-xl md:max-w-4xl p-2 sm:p-4">
+              <button
+                onClick={() => setCurrentRoute('exhibition')}
+                className={`px-2.5 py-1.5 rounded-lg transition flex items-center space-x-1 ${
+                  currentRoute === 'exhibition' ? 'bg-dp-blue text-white' : 'text-slate-300 hover:text-white'
+                }`}
+              >
+                <Image className="w-3.5 h-3.5" />
+                <span>Exhibition</span>
+              </button>
+
+              {/* Disclaimer Popup Trigger Button */}
+              <button
+                onClick={() => setDisclaimerOpen(true)}
+                className="px-2.5 py-1.5 rounded-lg bg-dp-amber/20 border border-dp-amber/40 text-dp-amber hover:bg-dp-amber hover:text-dp-dark font-bold transition flex items-center space-x-1"
+              >
+                <ShieldAlert className="w-3.5 h-3.5" />
+                <span className="hidden md:inline">Disclaimer</span>
+              </button>
+
+              <button
+                onClick={() => setSupportModalOpen(true)}
+                className="px-3 py-1.5 rounded-lg bg-dp-crimson hover:bg-rose-700 text-white font-bold transition flex items-center space-x-1 shadow-md"
+              >
+                <PhoneCall className="w-3.5 h-3.5" />
+                <span className="hidden sm:inline">Helplines</span>
+              </button>
+            </nav>
+          </header>
+
+          {/* Main Content Area */}
+          <main className="flex-1 flex flex-col items-center justify-center relative w-full max-w-6xl mx-auto p-4 sm:p-6">
             
-            {/* Landing Warning Gate */}
-            {currentRoute === 'landing' && (
-              <div className="w-full max-w-lg bg-slate-900/90 border border-slate-800 rounded-3xl p-6 sm:p-8 shadow-2xl backdrop-blur-md text-center space-y-6 my-auto">
-                <div className="inline-flex p-3 rounded-2xl bg-rose-500/10 border border-rose-500/30 text-rose-500 mb-2">
-                  <AlertTriangle className="w-10 h-10 animate-pulse" />
-                </div>
+            {/* ==================== PAGE 1: HOME PAGE ==================== */}
+            {currentRoute === 'home' && (
+              <div className="w-full space-y-10 py-6">
+                
+                {/* Hero Banner */}
+                <div className="relative rounded-3xl bg-gradient-to-r from-dp-navy via-dp-card to-dp-dark border border-dp-border p-8 sm:p-12 overflow-hidden shadow-2xl">
+                  <div className="absolute top-0 right-0 -mt-10 -mr-10 w-96 h-96 bg-dp-blue/20 rounded-full blur-3xl pointer-events-none"></div>
+                  
+                  <div className="relative z-10 max-w-2xl space-y-6">
+                    <div className="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-dp-amber/10 border border-dp-amber/30 text-dp-amber text-xs font-bold uppercase tracking-widest">
+                      <Shield className="w-3.5 h-3.5" />
+                      <span>Dataphyte Special Investigation</span>
+                    </div>
 
-                <div className="space-y-2">
-                  <h1 className="text-2xl sm:text-3xl font-extrabold tracking-tight bg-gradient-to-r from-rose-400 via-amber-300 to-amber-500 bg-clip-text text-transparent">
-                    Femicide Awareness Interactive
-                  </h1>
-                  <p className="text-xs uppercase tracking-widest text-slate-400 font-semibold">
-                    The story of all the women and girls we lost
-                  </p>
-                </div>
+                    <h1 className="text-3xl sm:text-5xl font-heading font-black text-white leading-tight">
+                      Counting the Uncounted: <span className="text-dp-amber">Femicide in Nigeria</span>
+                    </h1>
 
-                <div className="bg-slate-950/80 border border-slate-800/80 rounded-2xl p-4 text-left space-y-3 text-xs sm:text-sm text-slate-300 leading-relaxed">
-                  <div className="flex items-center space-x-2 text-rose-400 font-semibold">
-                    <ShieldAlert className="w-4 h-4" />
-                    <span>Sensitive Content Warning</span>
+                    <p className="text-sm sm:text-base text-slate-300 leading-relaxed font-normal">
+                      Gender-based violence claims thousands of lives yearly, yet institutional gaps, unrecorded police reports, and social stigma leave victims without protection. Explore our interactive simulation, data findings, and visual memorial exhibition.
+                    </p>
+
+                    <div className="flex flex-wrap gap-4 pt-2">
+                      <button
+                        onClick={() => setCurrentRoute('choose')}
+                        className="px-6 py-3.5 rounded-xl bg-dp-amber hover:bg-dp-amberDark text-dp-dark font-heading font-bold text-sm tracking-wide shadow-lg transition-all transform active:scale-95 flex items-center space-x-2"
+                      >
+                        <span>Launch Interactive Experience</span>
+                        <ChevronRight className="w-4 h-4" />
+                      </button>
+
+                      <button
+                        onClick={() => setCurrentRoute('exhibition')}
+                        className="px-6 py-3.5 rounded-xl bg-dp-card border border-dp-border hover:border-dp-amber text-slate-200 font-heading font-semibold text-sm transition-all flex items-center space-x-2"
+                      >
+                        <Image className="w-4 h-4 text-dp-amber" />
+                        <span>View Photo Exhibition</span>
+                      </button>
+                    </div>
                   </div>
-                  <p>
-                    This web experience depicts the final months of four Nigerian women based on real patterns of gender-based violence, stalking, domestic abuse, and systemic non-response.
-                  </p>
-                  <ul className="list-disc list-inside space-y-1 text-slate-400 text-xs">
-                    <li>Contains depictions of psychological control & threat.</li>
-                    <li><strong>No graphic violence, injury, gore, or physical harm is shown.</strong> All stories cut away prior to violence.</li>
-                    <li>You cannot save the characters. The choices reveal societal barriers around them.</li>
-                    <li>You can pause or exit at any moment.</li>
-                  </ul>
                 </div>
 
-                <button
-                  onClick={handleAcceptWarning}
-                  className="w-full py-4 rounded-2xl bg-gradient-to-r from-rose-600 to-amber-600 hover:from-rose-500 hover:to-amber-500 text-white font-bold text-sm tracking-wide shadow-lg shadow-rose-950/50 transition-all transform active:scale-95 flex items-center justify-center space-x-2"
-                >
-                  <span>I Understand & Wish to Proceed</span>
-                  <ChevronRight className="w-4 h-4" />
-                </button>
+                {/* Feature Cards Grid */}
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                  
+                  <div 
+                    onClick={() => setCurrentRoute('choose')}
+                    className="bg-dp-card border border-dp-border rounded-2xl p-6 space-y-4 hover:border-dp-amber cursor-pointer transition group shadow-lg"
+                  >
+                    <div className="w-12 h-12 rounded-xl bg-dp-blue/30 border border-dp-blue flex items-center justify-center text-dp-amber group-hover:scale-110 transition-transform">
+                      <BookOpen className="w-6 h-6" />
+                    </div>
+                    <h3 className="text-lg font-heading font-bold text-white group-hover:text-dp-amber transition-colors">
+                      Interactive Narratives
+                    </h3>
+                    <p className="text-xs text-slate-300 leading-relaxed">
+                      Follow four realistic scenarios illustrating how systemic doors close on women before crisis occurs.
+                    </p>
+                    <span className="text-xs font-bold text-dp-amber flex items-center space-x-1 pt-2">
+                      <span>Start Stories</span>
+                      <ChevronRight className="w-3.5 h-3.5" />
+                    </span>
+                  </div>
 
-                <div className="text-[11px] text-slate-400 flex items-center justify-center space-x-4">
-                  <span>Mobile-First Experience</span>
-                  <span>•</span>
-                  <span>Anonymous & Private</span>
+                  <div 
+                    onClick={() => setCurrentRoute('exhibition')}
+                    className="bg-dp-card border border-dp-border rounded-2xl p-6 space-y-4 hover:border-dp-amber cursor-pointer transition group shadow-lg"
+                  >
+                    <div className="w-12 h-12 rounded-xl bg-dp-blue/30 border border-dp-blue flex items-center justify-center text-dp-amber group-hover:scale-110 transition-transform">
+                      <Image className="w-6 h-6" />
+                    </div>
+                    <h3 className="text-lg font-heading font-bold text-white group-hover:text-dp-amber transition-colors">
+                      Exhibition & Media Gallery
+                    </h3>
+                    <p className="text-xs text-slate-300 leading-relaxed">
+                      Curated visual memorial featuring installations, police logs, transcripts, and data timelines.
+                    </p>
+                    <span className="text-xs font-bold text-dp-amber flex items-center space-x-1 pt-2">
+                      <span>Explore Gallery</span>
+                      <ChevronRight className="w-3.5 h-3.5" />
+                    </span>
+                  </div>
+
+                  <div 
+                    onClick={() => setCurrentRoute('data-story')}
+                    className="bg-dp-card border border-dp-border rounded-2xl p-6 space-y-4 hover:border-dp-amber cursor-pointer transition group shadow-lg"
+                  >
+                    <div className="w-12 h-12 rounded-xl bg-dp-blue/30 border border-dp-blue flex items-center justify-center text-dp-amber group-hover:scale-110 transition-transform">
+                      <Scale className="w-6 h-6" />
+                    </div>
+                    <h3 className="text-lg font-heading font-bold text-white group-hover:text-dp-amber transition-colors">
+                      Data & Policy Analysis
+                    </h3>
+                    <p className="text-xs text-slate-300 leading-relaxed">
+                      Dataphyte's empirical metrics on the VAPP Act, state adoption gaps, and law enforcement prosecution rates.
+                    </p>
+                    <span className="text-xs font-bold text-dp-amber flex items-center space-x-1 pt-2">
+                      <span>Read Findings</span>
+                      <ChevronRight className="w-3.5 h-3.5" />
+                    </span>
+                  </div>
+
                 </div>
+
               </div>
             )}
 
-            {/* Character Selection */}
+            {/* ==================== PAGE 2: EXHIBITION & PICTURES ==================== */}
+            {currentRoute === 'exhibition' && (
+              <div className="w-full space-y-8 py-4">
+                
+                <div className="text-center space-y-3 border-b border-dp-border pb-6">
+                  <span className="text-xs font-mono text-dp-amber uppercase tracking-widest font-bold">
+                    Dataphyte Memorial Gallery
+                  </span>
+                  <h2 className="text-3xl sm:text-4xl font-heading font-black text-white">
+                    Femicide Awareness Exhibition
+                  </h2>
+                  <p className="text-xs sm:text-sm text-slate-300 max-w-xl mx-auto">
+                    A visual narrative documenting the human impact, structural silence, and research evidence behind gender-based violence in Nigeria.
+                  </p>
+                </div>
+
+                {/* Gallery Grid */}
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  {EXHIBITION_ITEMS.map((item) => (
+                    <div 
+                      key={item.id}
+                      className="bg-dp-card border border-dp-border rounded-2xl overflow-hidden shadow-xl hover:border-dp-amber transition group"
+                    >
+                      <div className="relative h-64 overflow-hidden bg-dp-dark">
+                        <img 
+                          src={item.image} 
+                          alt={item.title} 
+                          className="w-full h-full object-cover group-hover:scale-105 transition duration-500 opacity-90 group-hover:opacity-100"
+                        />
+                        <div className="absolute top-3 left-3 bg-dp-navy/90 border border-dp-border px-3 py-1 rounded-full text-[10px] font-bold text-dp-amber uppercase tracking-wider">
+                          {item.category}
+                        </div>
+                      </div>
+                      
+                      <div className="p-5 space-y-2">
+                        <h3 className="text-lg font-heading font-bold text-white group-hover:text-dp-amber transition-colors">
+                          {item.title}
+                        </h3>
+                        <p className="text-xs text-slate-300 leading-relaxed">
+                          {item.caption}
+                        </p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+
+                <div className="text-center pt-6">
+                  <button
+                    onClick={() => setCurrentRoute('choose')}
+                    className="px-6 py-3 rounded-xl bg-dp-amber text-dp-dark font-heading font-bold text-xs sm:text-sm shadow-lg hover:bg-dp-amberDark transition inline-flex items-center space-x-2"
+                  >
+                    <span>Proceed to Interactive Scenarios</span>
+                    <ChevronRight className="w-4 h-4" />
+                  </button>
+                </div>
+
+              </div>
+            )}
+
+            {/* ==================== PAGE 3: CHARACTER SELECTION ==================== */}
             {currentRoute === 'choose' && (
               <div className="w-full space-y-6 py-4">
                 <div className="text-center space-y-2">
-                  <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-slate-100">
-                    Choose a Narrative
+                  <h2 className="text-2xl sm:text-3xl font-heading font-bold tracking-tight text-white">
+                    Select a Case Narrative
                   </h2>
-                  <p className="text-xs sm:text-sm text-slate-400 max-w-md mx-auto">
-                    Select a woman's journey to experience the systemic barriers and subtle warning signs present in urban Nigerian settings.
+                  <p className="text-xs sm:text-sm text-slate-300 max-w-md mx-auto">
+                    Choose a story to observe how systemic barriers and non-responsive institutions limit choices for women across different social demographics.
                   </p>
                 </div>
 
@@ -718,7 +933,7 @@
                       <div
                         key={char.id}
                         onClick={() => startCharacterStory(char)}
-                        className={`group relative rounded-2xl border p-5 cursor-pointer transition-all duration-300 hover:scale-[1.02] flex flex-col justify-between ${char.avatarBg} ${isDone ? 'border-emerald-500/50 bg-emerald-950/20' : 'border-slate-800 hover:border-amber-500/50'}`}
+                        className={`group relative rounded-2xl border p-5 cursor-pointer transition-all duration-300 hover:scale-[1.02] flex flex-col justify-between ${char.avatarBg} ${isDone ? 'border-emerald-500/50 bg-emerald-950/20' : 'hover:border-dp-amber'}`}
                       >
                         {isDone && (
                           <span className="absolute top-3 right-3 bg-emerald-500/20 text-emerald-400 border border-emerald-500/40 text-[10px] font-bold px-2 py-0.5 rounded-full flex items-center space-x-1">
@@ -729,18 +944,18 @@
 
                         <div className="space-y-3">
                           <div className="flex items-center space-x-3">
-                            <div className={`w-12 h-12 rounded-full bg-gradient-to-br ${char.avatarColor} flex items-center justify-center text-white font-bold text-lg shadow-md`}>
+                            <div className={`w-12 h-12 rounded-full bg-gradient-to-br ${char.avatarColor} flex items-center justify-center text-white font-bold text-lg shadow-md font-heading`}>
                               {char.name[0]}
                             </div>
                             <div>
-                              <h3 className="text-lg font-bold text-white group-hover:text-amber-400 transition-colors">
+                              <h3 className="text-lg font-heading font-bold text-white group-hover:text-dp-amber transition-colors">
                                 {char.name}, {char.age}
                               </h3>
                               <p className="text-xs text-slate-400 font-medium">{char.occupation}</p>
                             </div>
                           </div>
 
-                          <div className="flex items-center space-x-1 text-[11px] text-amber-400/90 font-medium">
+                          <div className="flex items-center space-x-1 text-[11px] text-dp-amber font-medium">
                             <MapPin className="w-3 h-3" />
                             <span>{char.location}</span>
                           </div>
@@ -750,7 +965,7 @@
                           </p>
                         </div>
 
-                        <div className="mt-4 pt-3 border-t border-slate-800/80 flex items-center justify-between text-xs font-semibold text-slate-400 group-hover:text-white">
+                        <div className="mt-4 pt-3 border-t border-dp-border flex items-center justify-between text-xs font-semibold text-slate-400 group-hover:text-white">
                           <span>Begin Storyline</span>
                           <ChevronRight className="w-4 h-4 transform group-hover:translate-x-1 transition-transform" />
                         </div>
@@ -758,83 +973,70 @@
                     );
                   })}
                 </div>
-
-                {completedCharacters.length > 0 && (
-                  <div className="pt-4 text-center">
-                    <button
-                      onClick={() => setCurrentRoute('data-story')}
-                      className="px-5 py-2.5 rounded-xl bg-slate-900 border border-slate-700 hover:border-amber-500 text-xs sm:text-sm font-semibold text-amber-400 transition-all inline-flex items-center space-x-2"
-                    >
-                      <BookOpen className="w-4 h-4" />
-                      <span>Jump Directly to Femicide Data Story</span>
-                    </button>
-                  </div>
-                )}
               </div>
             )}
 
-            {/* Story Player Engine */}
+            {/* ==================== PAGE 4: STORY PLAYER ==================== */}
             {currentRoute === 'play' && (
               <div className="w-full flex flex-col items-center space-y-4 py-2">
                 
                 {/* Pressure HUD */}
-                <div className="w-full max-w-sm sm:max-w-md bg-slate-900/90 border border-slate-800 rounded-2xl p-3 shadow-lg flex items-center justify-between">
+                <div className="w-full max-w-sm sm:max-w-md bg-dp-card border border-dp-border rounded-2xl p-3 shadow-lg flex items-center justify-between">
                   <div className="flex items-center space-x-2">
-                    <AlertCircle className="w-4 h-4 text-rose-500" />
-                    <span className="text-xs font-semibold text-slate-300">Systemic Pressure</span>
+                    <AlertCircle className="w-4 h-4 text-dp-crimson" />
+                    <span className="text-xs font-semibold text-slate-200">Systemic Isolation Level</span>
                   </div>
                   <div className="flex items-center space-x-3">
-                    <div className="w-32 sm:w-44 bg-slate-950 h-2.5 rounded-full overflow-hidden border border-slate-800">
+                    <div className="w-32 sm:w-44 bg-dp-dark h-2.5 rounded-full overflow-hidden border border-dp-border">
                       <div 
-                        className="bg-gradient-to-r from-amber-500 via-rose-500 to-rose-700 h-full transition-all duration-500" 
+                        className="bg-gradient-to-r from-dp-amber via-dp-crimson to-rose-700 h-full transition-all duration-500" 
                         style={{ width: `${Math.min(100, (calculateTotalPressure() / 80) * 100)}%` }}
                       />
                     </div>
-                    <span className="text-xs font-mono font-bold text-rose-400">
+                    <span className="text-xs font-mono font-bold text-dp-crimson">
                       {calculateTotalPressure()} pt
                     </span>
                   </div>
                 </div>
 
-                {/* Smartphone Device Simulator Frame */}
-                <div className="w-full max-w-sm sm:max-w-md bg-slate-950 border border-slate-800 rounded-[2.5rem] p-3 shadow-2xl relative overflow-hidden flex flex-col min-h-[580px] sm:min-h-[640px]">
+                {/* Device Frame */}
+                <div className="w-full max-w-sm sm:max-w-md bg-dp-dark border border-dp-border rounded-[2.5rem] p-3 shadow-2xl relative overflow-hidden flex flex-col min-h-[580px] sm:min-h-[640px]">
                   
                   {/* Top Status */}
-                  <div className="w-full px-4 pt-1 pb-2 flex items-center justify-between text-[11px] font-mono text-slate-400 border-b border-slate-800/60 mb-2">
+                  <div className="w-full px-4 pt-1 pb-2 flex items-center justify-between text-[11px] font-mono text-slate-400 border-b border-dp-border mb-2">
                     <span>09:41</span>
-                    <div className="w-16 h-3 bg-slate-900 rounded-full mx-auto border border-slate-800"></div>
+                    <div className="w-16 h-3 bg-dp-card rounded-full mx-auto border border-dp-border"></div>
                     <div className="flex items-center space-x-1.5">
                       <span>5G</span>
                       <div className="w-4 h-2 bg-slate-400 rounded-sm"></div>
                     </div>
                   </div>
 
-                  {/* Header */}
-                  <div className="bg-slate-900/80 rounded-xl p-2.5 mb-3 flex items-center justify-between border border-slate-800">
+                  {/* Scene Header */}
+                  <div className="bg-dp-navy/90 rounded-xl p-2.5 mb-3 flex items-center justify-between border border-dp-border">
                     <div className="flex items-center space-x-2">
-                      <div className={`w-8 h-8 rounded-full bg-gradient-to-br ${selectedCharacter.avatarColor} flex items-center justify-center text-white font-bold text-xs`}>
+                      <div className={`w-8 h-8 rounded-full bg-gradient-to-br ${selectedCharacter.avatarColor} flex items-center justify-center text-white font-bold text-xs font-heading`}>
                         {selectedCharacter.name[0]}
                       </div>
                       <div>
                         <h4 className="text-xs font-bold text-slate-100">{currentScene.headerTitle || selectedCharacter.name}</h4>
-                        <p className="text-[10px] text-amber-400/90 font-medium">{currentScene.beatTitle}</p>
+                        <p className="text-[10px] text-dp-amber font-medium">{currentScene.beatTitle}</p>
                       </div>
                     </div>
-                    <span className="text-[10px] bg-slate-800 text-slate-400 px-2 py-0.5 rounded-full font-mono">
+                    <span className="text-[10px] bg-dp-card text-slate-300 px-2 py-0.5 rounded-full font-mono border border-dp-border">
                       Beat {currentBeatIdx + 1}/6
                     </span>
                   </div>
 
-                  {/* Dynamic Interfaces */}
+                  {/* Interfaces */}
                   <div className="flex-1 overflow-y-auto space-y-3 px-1 custom-scrollbar">
                     
-                    {/* Chat Simulation */}
                     {currentScene.interface === 'phone' && (
                       <div className="space-y-3">
                         {currentScene.nodes.slice(0, currentNodeIdx + 1).map((node, idx) => {
                           if (node.type === 'narration') {
                             return (
-                              <div key={idx} className="bg-slate-900/60 border border-slate-800/80 rounded-xl p-3 text-center my-2">
+                              <div key={idx} className="bg-dp-card/60 border border-dp-border rounded-xl p-3 text-center my-2">
                                 <p className="text-xs text-slate-300 italic leading-relaxed">{node.text}</p>
                               </div>
                             );
@@ -846,13 +1048,13 @@
                                 {!isHer && <span className="text-[10px] text-slate-400 px-1 font-semibold">{node.from}</span>}
                                 <div className={`max-w-[82%] rounded-2xl px-3.5 py-2.5 text-xs shadow-md ${
                                   isHer 
-                                    ? 'bg-emerald-900/70 border border-emerald-700/40 text-emerald-100 rounded-br-none' 
-                                    : 'bg-slate-900 border border-slate-800 text-slate-200 rounded-bl-none'
+                                    ? 'bg-dp-blue border border-blue-600/40 text-white rounded-br-none' 
+                                    : 'bg-dp-card border border-dp-border text-slate-200 rounded-bl-none'
                                 }`}>
                                   <p className="leading-relaxed">{node.text}</p>
-                                  <div className="flex items-center justify-end space-x-1 text-[9px] text-slate-400 mt-1">
+                                  <div className="flex items-center justify-end space-x-1 text-[9px] text-slate-300 mt-1">
                                     <span>09:42</span>
-                                    {isHer && <CheckCheck className="w-3 h-3 text-emerald-400" />}
+                                    {isHer && <CheckCheck className="w-3 h-3 text-dp-amber" />}
                                   </div>
                                 </div>
                               </div>
@@ -860,8 +1062,8 @@
                           }
                           if (node.type === 'choice') {
                             return (
-                              <div key={idx} className="bg-slate-900/90 border border-amber-500/30 rounded-2xl p-3 my-3 space-y-2">
-                                <span className="text-[10px] font-bold text-amber-400 tracking-wider uppercase block">
+                              <div key={idx} className="bg-dp-card border border-dp-amber/40 rounded-2xl p-3 my-3 space-y-2">
+                                <span className="text-[10px] font-bold text-dp-amber tracking-wider uppercase block">
                                   Select Response
                                 </span>
                                 <div className="space-y-2">
@@ -877,12 +1079,12 @@
                                         }}
                                         className={`w-full text-left p-2.5 rounded-xl text-xs transition-all ${
                                           isGreyedOut 
-                                            ? 'bg-slate-950 text-slate-600 border border-slate-900 cursor-not-allowed line-through' 
-                                            : 'bg-amber-500/10 border border-amber-500/30 text-amber-200 hover:bg-amber-500/20 active:scale-98'
+                                            ? 'bg-dp-dark text-slate-600 border border-slate-800 cursor-not-allowed line-through' 
+                                            : 'bg-dp-amber/10 border border-dp-amber/30 text-amber-200 hover:bg-dp-amber/20 active:scale-98'
                                         }`}
                                       >
                                         {opt.label}
-                                        {isGreyedOut && <span className="block text-[9px] text-rose-500 font-semibold no-underline">Choice blocked due to high pressure</span>}
+                                        {isGreyedOut && <span className="block text-[9px] text-dp-crimson font-semibold no-underline">Choice blocked due to systemic isolation</span>}
                                       </button>
                                     );
                                   })}
@@ -895,11 +1097,10 @@
                       </div>
                     )}
 
-                    {/* Doors Map */}
                     {currentScene.interface === 'doors' && (
                       <div className="space-y-3">
-                        <div className="bg-slate-900/80 border border-slate-800 rounded-xl p-3 text-xs text-slate-300">
-                          <p className="font-semibold text-amber-400 mb-1">Systemic Refusal Map</p>
+                        <div className="bg-dp-card border border-dp-border rounded-xl p-3 text-xs text-slate-300">
+                          <p className="font-semibold text-dp-amber mb-1">Systemic Refusal Map</p>
                           <p>Select doors to reach out to. Observe how support networks consistently shift responsibility back onto the woman.</p>
                         </div>
 
@@ -912,20 +1113,20 @@
                                 onClick={() => handleDoorClick(door)}
                                 className={`p-3 rounded-xl border transition-all cursor-pointer ${
                                   isLogged 
-                                    ? 'bg-slate-900/40 border-rose-900/40 opacity-75' 
-                                    : 'bg-slate-900 border-slate-800 hover:border-amber-500/50'
+                                    ? 'bg-dp-card/40 border-dp-crimson/40 opacity-75' 
+                                    : 'bg-dp-card border-dp-border hover:border-dp-amber'
                                 }`}
                               >
                                 <div className="flex items-center justify-between mb-1">
                                   <span className="text-xs font-bold text-slate-200">{door.label}</span>
                                   <span className={`text-[10px] uppercase font-bold px-2 py-0.5 rounded ${
-                                    isLogged ? 'bg-rose-950 text-rose-400 border border-rose-800/50' : 'bg-slate-800 text-slate-400'
+                                    isLogged ? 'bg-dp-crimson/20 text-dp-crimson border border-dp-crimson/40' : 'bg-dp-dark text-slate-400'
                                   }`}>
                                     {isLogged ? door.response : 'Unopened'}
                                   </span>
                                 </div>
                                 {isLogged && (
-                                  <p className="text-xs text-rose-200/90 italic mt-2 border-t border-slate-800 pt-2">
+                                  <p className="text-xs text-slate-300 italic mt-2 border-t border-dp-border pt-2">
                                     "{door.text}"
                                   </p>
                                 )}
@@ -936,7 +1137,6 @@
                       </div>
                     )}
 
-                    {/* Police Station & Cut-away */}
                     {currentScene.interface === 'police' && (
                       <div className="space-y-3">
                         {currentScene.nodes.slice(0, currentNodeIdx + 1).map((node, idx) => {
@@ -945,10 +1145,10 @@
                             return (
                               <div key={idx} className={`p-3 rounded-xl border text-xs leading-relaxed ${
                                 isOfficer 
-                                  ? 'bg-slate-900 border-rose-950 text-slate-200' 
-                                  : 'bg-amber-950/20 border-amber-900/30 text-amber-100'
+                                  ? 'bg-dp-card border-dp-border text-slate-200' 
+                                  : 'bg-dp-navy border border-dp-blue text-slate-100'
                               }`}>
-                                <span className="font-bold block text-[10px] text-slate-400 uppercase tracking-wider mb-1">
+                                <span className="font-bold block text-[10px] text-dp-amber uppercase tracking-wider mb-1">
                                   {node.speaker}
                                 </span>
                                 <p>"{node.text}"</p>
@@ -957,8 +1157,8 @@
                           }
                           if (node.type === 'cutaway') {
                             return (
-                              <div key={idx} className="bg-black border border-slate-900 rounded-2xl p-6 text-center my-4 space-y-3">
-                                <span className="text-xs font-mono text-rose-500 tracking-widest uppercase block">[ CUT AWAY ]</span>
+                              <div key={idx} className="bg-black border border-dp-border rounded-2xl p-6 text-center my-4 space-y-3">
+                                <span className="text-xs font-mono text-dp-crimson tracking-widest uppercase block">[ CUT AWAY ]</span>
                                 <p className="text-sm text-slate-200 font-serif italic leading-relaxed">
                                   "{node.text}"
                                 </p>
@@ -977,27 +1177,26 @@
                       </div>
                     )}
 
-                    {/* Aftermath Social Feed */}
                     {currentScene.interface === 'feed' && (
                       <div className="space-y-3">
-                        <div className="flex items-center justify-between bg-slate-900/90 p-2 rounded-lg border border-slate-800 text-[11px]">
+                        <div className="flex items-center justify-between bg-dp-card p-2 rounded-lg border border-dp-border text-[11px]">
                           <span className="text-slate-400 font-medium">Public Reactions</span>
                           <button
                             onClick={() => setReduceBlameComments(!reduceBlameComments)}
-                            className="text-amber-400 font-semibold hover:underline flex items-center space-x-1"
+                            className="text-dp-amber font-semibold hover:underline flex items-center space-x-1"
                           >
                             {reduceBlameComments ? <EyeOff className="w-3.5 h-3.5" /> : <Eye className="w-3.5 h-3.5" />}
-                            <span>{reduceBlameComments ? 'Show All Comments' : 'Filter Victim Blaming'}</span>
+                            <span>{reduceBlameComments ? 'Show All' : 'Filter Victim Blaming'}</span>
                           </button>
                         </div>
 
                         {currentScene.nodes.map((node, idx) => {
                           if (node.type === 'post') {
                             return (
-                              <div key={idx} className="bg-slate-900 border border-slate-800 rounded-xl p-3.5 space-y-2">
+                              <div key={idx} className="bg-dp-card border border-dp-border rounded-xl p-3.5 space-y-2">
                                 <div className="flex items-center space-x-2">
-                                  <div className="w-7 h-7 rounded-full bg-rose-600 flex items-center justify-center text-white font-bold text-xs">
-                                    N
+                                  <div className="w-7 h-7 rounded-full bg-dp-amber text-dp-dark flex items-center justify-center font-bold text-xs font-heading">
+                                    D
                                   </div>
                                   <div>
                                     <h5 className="text-xs font-bold text-slate-100">{node.author}</h5>
@@ -1005,16 +1204,6 @@
                                   </div>
                                 </div>
                                 <p className="text-xs text-slate-200 leading-relaxed">{node.text}</p>
-                                <div className="flex items-center space-x-4 text-[11px] text-slate-400 pt-1 border-t border-slate-800/60">
-                                  <span className="flex items-center space-x-1">
-                                    <Heart className="w-3.5 h-3.5 text-rose-500" />
-                                    <span>{node.likes.toLocaleString()}</span>
-                                  </span>
-                                  <span className="flex items-center space-x-1">
-                                    <MessageSquare className="w-3.5 h-3.5" />
-                                    <span>Comments</span>
-                                  </span>
-                                </div>
                               </div>
                             );
                           }
@@ -1024,19 +1213,9 @@
                             return (
                               <div key={idx} className={`p-2.5 rounded-lg border text-xs space-y-1 ${
                                 node.stance === 'blame' 
-                                  ? 'bg-rose-950/20 border-rose-900/30 text-rose-200/80' 
-                                  : node.stance === 'counter'
-                                  ? 'bg-amber-950/20 border-amber-900/30 text-amber-200'
-                                  : 'bg-slate-900 border-slate-800 text-slate-300'
+                                  ? 'bg-dp-crimson/10 border-dp-crimson/30 text-rose-200' 
+                                  : 'bg-dp-card border-dp-border text-slate-300'
                               }`}>
-                                <div className="flex items-center justify-between text-[10px]">
-                                  <span className="font-bold text-slate-400">Anonymous User</span>
-                                  <span className={`px-1.5 py-0.5 rounded text-[9px] font-semibold ${
-                                    node.stance === 'blame' ? 'bg-rose-900/40 text-rose-400' : 'bg-slate-800 text-slate-400'
-                                  }`}>
-                                    {node.stance}
-                                  </span>
-                                </div>
                                 <p className="leading-snug">{node.text}</p>
                               </div>
                             );
@@ -1049,18 +1228,18 @@
                     <div ref={chatBottomRef} />
                   </div>
 
-                  {/* Proceed Action Button */}
-                  <div className="pt-3 border-t border-slate-800/80 mt-2">
+                  {/* Next Step Control */}
+                  <div className="pt-3 border-t border-dp-border mt-2">
                     <button
                       onClick={handleNextNode}
-                      className="w-full py-3 rounded-xl bg-gradient-to-r from-amber-500 to-rose-600 hover:from-amber-400 hover:to-rose-500 text-white text-xs font-bold tracking-wide shadow-md transition-all flex items-center justify-center space-x-1.5"
+                      className="w-full py-3 rounded-xl bg-dp-amber hover:bg-dp-amberDark text-dp-dark text-xs font-heading font-bold tracking-wide shadow-md transition-all flex items-center justify-center space-x-1.5"
                     >
                       <span>
                         {currentNodeIdx < currentScene.nodes.length - 1 
                           ? 'Continue Reading' 
                           : currentBeatIdx < activeScenes.length - 1 
                           ? 'Proceed to Next Beat' 
-                          : 'View Story Finale'}
+                          : 'View Case Finale'}
                       </span>
                       <ChevronRight className="w-4 h-4" />
                     </button>
@@ -1070,115 +1249,112 @@
               </div>
             )}
 
-            {/* Story Finale */}
+            {/* ==================== PAGE 5: FINALE ==================== */}
             {currentRoute === 'finale' && (
-              <div className="w-full max-w-lg bg-slate-900/90 border border-slate-800 rounded-3xl p-6 sm:p-8 shadow-2xl backdrop-blur-md text-center space-y-6 my-auto">
-                <div className="inline-flex p-3 rounded-2xl bg-amber-500/10 border border-amber-500/30 text-amber-400">
+              <div className="w-full max-w-lg bg-dp-card border border-dp-border rounded-3xl p-6 sm:p-8 shadow-2xl text-center space-y-6 my-auto">
+                <div className="inline-flex p-3 rounded-2xl bg-dp-amber/10 border border-dp-amber/30 text-dp-amber">
                   <Scale className="w-10 h-10" />
                 </div>
 
                 <div className="space-y-3">
-                  <h2 className="text-2xl font-bold text-white">
-                    {selectedCharacter.name} is not the only one.
+                  <h2 className="text-2xl font-heading font-bold text-white">
+                    {selectedCharacter.name}'s Story is Not an Isolated Case.
                   </h2>
                   <p className="text-xs sm:text-sm text-slate-300 leading-relaxed max-w-md mx-auto">
-                    She was killed not because of a private mistake, but because systemic doors closed on her at every turn. Gender-based violence in Nigeria is fueled by systemic silence and institutional non-response.
+                    She was killed not due to a single failure, but because institutional doors closed on her at every turn. Gender violence is sustained when systemic systems refuse early intervention.
                   </p>
                 </div>
 
-                <div className="bg-slate-950 border border-slate-800 rounded-2xl p-4 text-left space-y-2 text-xs">
-                  <span className="text-amber-400 font-bold uppercase tracking-wider block text-[10px]">
-                    Systemic Audit for {selectedCharacter.name}
+                <div className="bg-dp-dark border border-dp-border rounded-2xl p-4 text-left space-y-2 text-xs">
+                  <span className="text-dp-amber font-bold uppercase tracking-wider block text-[10px]">
+                    Systemic Summary for {selectedCharacter.name}
                   </span>
                   <div className="flex justify-between text-slate-300">
-                    <span>Total Accumulated Pressure:</span>
-                    <strong className="text-rose-400 font-mono">{calculateTotalPressure()} points</strong>
+                    <span>Total Systemic Pressure:</span>
+                    <strong className="text-dp-crimson font-mono">{calculateTotalPressure()} points</strong>
                   </div>
                   <div className="flex justify-between text-slate-300">
-                    <span>Support Doors Attempted:</span>
-                    <strong className="text-amber-400">{doorsLog.length} doors</strong>
+                    <span>Support Entities Attempted:</span>
+                    <strong className="text-dp-amber">{doorsLog.length} doors</strong>
                   </div>
                 </div>
 
                 <div className="space-y-3 pt-2">
                   <button
                     onClick={() => setCurrentRoute('data-story')}
-                    className="w-full py-3.5 rounded-xl bg-gradient-to-r from-rose-600 to-amber-600 hover:from-rose-500 hover:to-amber-500 text-white font-bold text-xs sm:text-sm tracking-wide shadow-lg transition-all flex items-center justify-center space-x-2"
+                    className="w-full py-3.5 rounded-xl bg-dp-amber hover:bg-dp-amberDark text-dp-dark font-heading font-bold text-xs sm:text-sm tracking-wide shadow-lg transition-all flex items-center justify-center space-x-2"
                   >
                     <BookOpen className="w-4 h-4" />
-                    <span>Explore the Femicide Data Story</span>
+                    <span>View Dataphyte Research & Data</span>
                   </button>
 
                   <button
                     onClick={() => setCurrentRoute('choose')}
-                    className="w-full py-3 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 font-semibold text-xs transition-all flex items-center justify-center space-x-2"
+                    className="w-full py-3 rounded-xl bg-dp-navy hover:bg-dp-blue text-white font-semibold text-xs transition-all flex items-center justify-center space-x-2"
                   >
                     <RotateCcw className="w-4 h-4" />
-                    <span>Play as Another Character</span>
+                    <span>Select Another Case Narrative</span>
                   </button>
                 </div>
               </div>
             )}
 
-            {/* Data Story */}
+            {/* ==================== PAGE 6: DATA & POLICY ==================== */}
             {currentRoute === 'data-story' && (
               <div className="w-full space-y-8 py-6">
-                <div className="text-center space-y-3 border-b border-slate-800 pb-6">
-                  <span className="text-xs font-mono text-rose-500 tracking-widest uppercase font-bold">
-                    National Data Breakdown
+                <div className="text-center space-y-3 border-b border-dp-border pb-6">
+                  <span className="text-xs font-mono text-dp-amber tracking-widest uppercase font-bold">
+                    Dataphyte Research Brief
                   </span>
-                  <h2 className="text-3xl font-extrabold text-white">
-                    Femicide in Nigeria: Beyond the Numbers
+                  <h2 className="text-3xl font-heading font-black text-white">
+                    Femicide in Nigeria: Data Findings
                   </h2>
-                  <p className="text-xs sm:text-sm text-slate-400 max-w-xl mx-auto">
-                    A data-driven view examining systemic breakdowns, law vs. practice, and verified national response channels.
+                  <p className="text-xs sm:text-sm text-slate-300 max-w-xl mx-auto">
+                    Data analysis on state adoption of the VAPP Act, reporting barriers, and law enforcement prosecution trends.
                   </p>
                 </div>
 
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-                  <div className="bg-slate-900 border border-slate-800 rounded-2xl p-4 text-center space-y-1">
-                    <span className="text-3xl font-extrabold text-rose-500 font-mono">72%+</span>
-                    <p className="text-xs text-slate-300 font-semibold">Perpetrators Known to Victim</p>
-                    <span className="text-[10px] text-slate-400 block pt-1">Intimate partners, family members, or acquaintances</span>
+                  <div className="bg-dp-card border border-dp-border rounded-2xl p-5 text-center space-y-1">
+                    <span className="text-3xl font-extrabold text-dp-crimson font-mono">72%+</span>
+                    <p className="text-xs text-slate-200 font-semibold">Perpetrators Known to Victim</p>
+                    <span className="text-[10px] text-slate-400 block pt-1">Intimate partners or family members</span>
                   </div>
-                  <div className="bg-slate-900 border border-slate-800 rounded-2xl p-4 text-center space-y-1">
-                    <span className="text-3xl font-extrabold text-amber-500 font-mono">35 / 36</span>
-                    <p className="text-xs text-slate-300 font-semibold">States Adopted VAPP Act</p>
-                    <span className="text-[10px] text-slate-400 block pt-1">Yet enforcement mechanisms remain vastly underfunded</span>
+                  <div className="bg-dp-card border border-dp-border rounded-2xl p-5 text-center space-y-1">
+                    <span className="text-3xl font-extrabold text-dp-amber font-mono">35 / 36</span>
+                    <p className="text-xs text-slate-200 font-semibold">States Adopted VAPP Act</p>
+                    <span className="text-[10px] text-slate-400 block pt-1">Implementation desks remain severely unfunded</span>
                   </div>
-                  <div className="bg-slate-900 border border-slate-800 rounded-2xl p-4 text-center space-y-1">
-                    <span className="text-3xl font-extrabold text-indigo-400 font-mono">&lt; 8%</span>
-                    <p className="text-xs text-slate-300 font-semibold">Formal Police Prosecutions</p>
-                    <span className="text-[10px] text-slate-400 block pt-1">Most cases settled informally or turned away</span>
+                  <div className="bg-dp-card border border-dp-border rounded-2xl p-5 text-center space-y-1">
+                    <span className="text-3xl font-extrabold text-dp-lightBlue font-mono">&lt; 8%</span>
+                    <p className="text-xs text-slate-200 font-semibold">Police Prosecution Rate</p>
+                    <span className="text-[10px] text-slate-400 block pt-1">Most domestic reports turned away at desk level</span>
                   </div>
                 </div>
 
-                <div className="bg-slate-900 border border-slate-800 rounded-2xl p-5 space-y-4">
-                  <h3 className="text-lg font-bold text-slate-100 flex items-center space-x-2">
-                    <Shield className="w-5 h-5 text-amber-400" />
-                    <span>The VAPP Act: Law vs. Reality</span>
+                <div className="bg-dp-card border border-dp-border rounded-2xl p-6 space-y-4">
+                  <h3 className="text-lg font-heading font-bold text-white flex items-center space-x-2">
+                    <Shield className="w-5 h-5 text-dp-amber" />
+                    <span>Key Policy Takeaways</span>
                   </h3>
-                  <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
-                    The Violence Against Persons (Prohibition) Act of 2015 provides a comprehensive legal framework prohibiting domestic violence, stalking, and harassment. However, critical gaps persist:
-                  </p>
-                  <ul className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs text-slate-400">
-                    <li className="bg-slate-950 p-3 rounded-xl border border-slate-800">
-                      <strong className="text-rose-400 block mb-1">Lack of Specialized Desks</strong>
-                      Most local police stations lack dedicated, trained gender officers.
+                  <ul className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs text-slate-300">
+                    <li className="bg-dp-dark p-4 rounded-xl border border-dp-border">
+                      <strong className="text-dp-amber block mb-1">Police Desk Training Gap</strong>
+                      Desk officers routinely treat non-physical threats and stalking as private domestic matters, leaving high-risk cases unchecked.
                     </li>
-                    <li className="bg-slate-950 p-3 rounded-xl border border-slate-800">
-                      <strong className="text-amber-400 block mb-1">Social Stigma & Out-of-Court Pressure</strong>
-                      Family elders frequently pressure victims to settle violent threats internally.
+                    <li className="bg-dp-dark p-4 rounded-xl border border-dp-border">
+                      <strong className="text-dp-amber block mb-1">Digital Cyberstalking Enforcement</strong>
+                      Cybercrime law enforcement lacks active inter-agency protocols to handle WhatsApp and social media stalking prior to physical harm.
                     </li>
                   </ul>
                 </div>
 
-                <div className="text-center space-y-4 pt-4 border-t border-slate-800">
+                <div className="text-center pt-4 border-t border-dp-border">
                   <button
                     onClick={() => setSupportModalOpen(true)}
-                    className="px-6 py-3.5 rounded-xl bg-gradient-to-r from-rose-600 to-amber-600 text-white font-bold text-xs sm:text-sm shadow-xl hover:opacity-95 transition"
+                    className="px-6 py-3.5 rounded-xl bg-dp-amber text-dp-dark font-heading font-bold text-xs sm:text-sm shadow-xl hover:bg-dp-amberDark transition"
                   >
-                    Access Verified Emergency Support Directories
+                    Access Emergency Helpline Directory
                   </button>
                 </div>
               </div>
@@ -1186,36 +1362,76 @@
 
           </main>
 
-          {/* Support Modal */}
+          {/* ==================== DISCLAIMER POPUP MODAL ==================== */}
+          {disclaimerOpen && (
+            <div className="fixed inset-0 z-50 bg-black/80 backdrop-blur-md flex items-center justify-center p-4">
+              <div className="w-full max-w-lg bg-dp-card border border-dp-border rounded-3xl p-6 sm:p-8 space-y-5 shadow-2xl relative">
+                <button
+                  onClick={() => setDisclaimerOpen(false)}
+                  className="absolute top-4 right-4 p-2 rounded-full bg-dp-dark text-slate-400 hover:text-white"
+                >
+                  <X className="w-5 h-5" />
+                </button>
+
+                <div className="flex items-center space-x-3 text-dp-amber">
+                  <AlertTriangle className="w-8 h-8" />
+                  <div>
+                    <h3 className="text-xl font-heading font-bold text-white">Project Disclaimer</h3>
+                    <p className="text-xs text-slate-400">Dataphyte Femicide Awareness Series</p>
+                  </div>
+                </div>
+
+                <div className="bg-dp-dark border border-dp-border rounded-2xl p-4 text-xs sm:text-sm text-slate-300 space-y-3 leading-relaxed">
+                  <p>
+                    <strong>Sensitive Content Notice:</strong> This interactive journalistic tool models real patterns of intimate partner control, stalking, and institutional failure in urban Nigeria.
+                  </p>
+                  <ul className="list-disc list-inside space-y-1 text-slate-400 text-xs">
+                    <li><strong>No physical violence or graphic injury is depicted.</strong> Stories cut away prior to violence.</li>
+                    <li>All story personas are fictionalized composite characters created from verified legal records and human rights documentation.</li>
+                    <li>This experience is intended for research, advocacy, and educational policy awareness.</li>
+                  </ul>
+                </div>
+
+                <button
+                  onClick={() => setDisclaimerOpen(false)}
+                  className="w-full py-3.5 rounded-xl bg-dp-amber hover:bg-dp-amberDark text-dp-dark font-heading font-bold text-xs sm:text-sm transition shadow-lg"
+                >
+                  Acknowledge & Close Disclaimer
+                </button>
+              </div>
+            </div>
+          )}
+
+          {/* ==================== SUPPORT & HELPLINES MODAL ==================== */}
           {supportModalOpen && (
-            <div className="fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-md flex items-center justify-center p-4">
-              <div className="w-full max-w-lg bg-slate-900 border border-slate-800 rounded-3xl p-6 space-y-5 max-h-[85vh] overflow-y-auto shadow-2xl relative">
+            <div className="fixed inset-0 z-50 bg-black/80 backdrop-blur-md flex items-center justify-center p-4">
+              <div className="w-full max-w-lg bg-dp-card border border-dp-border rounded-3xl p-6 space-y-5 max-h-[85vh] overflow-y-auto shadow-2xl relative">
                 <button
                   onClick={() => setSupportModalOpen(false)}
-                  className="absolute top-4 right-4 p-2 rounded-full bg-slate-800 text-slate-400 hover:text-white"
+                  className="absolute top-4 right-4 p-2 rounded-full bg-dp-dark text-slate-400 hover:text-white"
                 >
                   <X className="w-5 h-5" />
                 </button>
 
                 <div className="space-y-1">
-                  <div className="flex items-center space-x-2 text-rose-500 font-bold text-lg">
+                  <div className="flex items-center space-x-2 text-dp-crimson font-heading font-bold text-lg">
                     <Shield className="w-5 h-5" />
-                    <span>Verified Support Resources (Nigeria)</span>
+                    <span>Verified Crisis Directories (Nigeria)</span>
                   </div>
                   <p className="text-xs text-slate-400">
-                    If you or someone you know is experiencing violence, stalking, or domestic abuse, reach out immediately to these verified services:
+                    If you or someone you know requires legal, medical, or psychological support:
                   </p>
                 </div>
 
                 <div className="space-y-3">
                   {VERIFIED_RESOURCES.map((res, i) => (
-                    <div key={i} className="bg-slate-950 border border-slate-800 rounded-2xl p-4 space-y-2 text-xs">
+                    <div key={i} className="bg-dp-dark border border-dp-border rounded-2xl p-4 space-y-2 text-xs">
                       <div className="flex items-center justify-between">
-                        <h5 className="font-bold text-amber-400">{res.name}</h5>
-                        <span className="text-[10px] text-slate-500 font-mono">{res.location}</span>
+                        <h5 className="font-bold text-dp-amber">{res.name}</h5>
+                        <span className="text-[10px] text-slate-400 font-mono">{res.location}</span>
                       </div>
                       <p className="text-slate-300">{res.services}</p>
-                      <div className="flex items-center justify-between pt-2 border-t border-slate-900 text-[11px]">
+                      <div className="flex items-center justify-between pt-2 border-t border-dp-border text-[11px]">
                         <a href={`tel:${res.phone}`} className="text-emerald-400 font-mono font-bold flex items-center space-x-1">
                           <PhoneCall className="w-3.5 h-3.5" />
                           <span>{res.phone}</span>
@@ -1225,24 +1441,20 @@
                     </div>
                   ))}
                 </div>
-
-                <div className="p-3 rounded-xl bg-amber-500/10 border border-amber-500/20 text-amber-300 text-[11px] leading-relaxed">
-                  <strong>Disclaimer:</strong> All names and story details in this interactive experience are fictionalized composite characters built from documented patterns. All statistics and organization details are sourced from verified public human rights records.
-                </div>
               </div>
             </div>
           )}
 
           {/* Footer */}
-          <footer className="w-full border-t border-slate-900 py-4 text-center text-[11px] text-slate-400 space-y-1">
-            <p>Femicide Awareness Interactive Storyboard • A dataphyte Project</p>
-            <p className="text-slate-400">Designed with respect and strictly non-violent narrative principles.</p>
+          <footer className="w-full border-t border-dp-border py-4 text-center text-[11px] text-slate-400 space-y-1">
+            <p className="font-heading font-bold text-slate-300">Dataphyte Media & Research Initiative</p>
+            <p>Data-driven reporting for governance, accountability, and safety.</p>
           </footer>
+
         </div>
       );
     }
 
-    // Render React App using React 18 createRoot
     const root = ReactDOM.createRoot(document.getElementById('root'));
     root.render(<App />);
   </script>
