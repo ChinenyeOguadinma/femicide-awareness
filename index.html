@@ -66,7 +66,8 @@
     const { useState, useEffect, useRef } = React;
 
     const LOGO_IMAGE_PATH = "dataphyte.png"; 
-    const HERO_WOMEN_IMAGE_PATH = "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=1200&q=80";
+    // Updated to represent Nigerian women on Unsplash
+    const HERO_WOMEN_IMAGE_PATH = "https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?auto=format&fit=crop&w=1200&q=80";
 
     // --- Inline Icons ---
     const Shield = ({ className = "w-4 h-4" }) => (
@@ -112,9 +113,9 @@
       </svg>
     );
 
-    const Image = ({ className = "w-4 h-4" }) => (
+    const FileText = ({ className = "w-4 h-4" }) => (
       <svg className={className} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
-        <path strokeLinecap="round" strokeLinejoin="round" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+        <path strokeLinecap="round" strokeLinejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
       </svg>
     );
 
@@ -197,38 +198,6 @@
         <path strokeLinecap="round" strokeLinejoin="round" d="M3 6l9-4 9 4M3 6v14a2 2 0 002 2h14a2 2 0 002-2V6M3 6l9 6 9-6" />
       </svg>
     );
-
-    // --- EXHIBITION DATA ---
-    const EXHIBITION_ITEMS = [
-      {
-        id: 1,
-        title: "Silent Voices: The Unheard Records",
-        category: "Memorial Wall",
-        image: "https://images.unsplash.com/photo-1544717305-2782549b5136?auto=format&fit=crop&w=800&q=80",
-        caption: "A photographic memorial mapping documented cases of gender-based violence across Nigerian urban centers."
-      },
-      {
-        id: 2,
-        title: "The Locked Doors",
-        category: "Physical Installation",
-        image: "https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?auto=format&fit=crop&w=800&q=80",
-        caption: "An installation depicting structural barriers—doors stamped with unwritten police station incident logs."
-      },
-      {
-        id: 3,
-        title: "Auditory Archives & Hotline Calls",
-        category: "Sound Installation",
-        image: "https://images.unsplash.com/photo-1590602847861-f357a9332bbc?auto=format&fit=crop&w=800&q=80",
-        caption: "Audio transcripts capturing real distress calls and initial police desk responses across Nigerian divisions."
-      },
-      {
-        id: 4,
-        title: "The Escalation Continuum",
-        category: "Data Visualization",
-        image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=80",
-        caption: "A high-density data wall mapping how non-physical coercion, digital stalking, and micro-controlling escalate."
-      }
-    ];
 
     // --- PODCAST EPISODES DATA ---
     const PODCAST_EPISODES = [
@@ -691,13 +660,13 @@
               </button>
 
               <button
-                onClick={() => setCurrentRoute('exhibition')}
+                onClick={() => setCurrentRoute('data-story')}
                 className={`px-3 py-2 rounded-lg transition flex items-center space-x-1.5 ${
-                  currentRoute === 'exhibition' ? 'bg-dp-lightBlue text-dp-blue font-bold' : 'text-dp-mutedText hover:text-dp-navy'
+                  currentRoute === 'data-story' ? 'bg-dp-lightBlue text-dp-blue font-bold' : 'text-dp-mutedText hover:text-dp-navy'
                 }`}
               >
-                <Image className="w-4 h-4" />
-                <span>Exhibition</span>
+                <FileText className="w-4 h-4" />
+                <span>Data Story</span>
               </button>
 
               <button
@@ -759,11 +728,11 @@
                     </button>
 
                     <button
-                      onClick={() => setCurrentRoute('podcast')}
+                      onClick={() => setCurrentRoute('data-story')}
                       className="px-6 py-4 rounded-xl bg-white border border-dp-border hover:border-dp-navy text-dp-navy font-heading font-semibold text-sm transition flex items-center space-x-2"
                     >
-                      <Mic className="w-4 h-4 text-dp-blue" />
-                      <span>Listen to Podcast Series</span>
+                      <FileText className="w-4 h-4 text-dp-blue" />
+                      <span>Read Data Story</span>
                     </button>
                   </div>
 
@@ -809,12 +778,12 @@
                       </button>
 
                       <button
-                        onClick={() => setCurrentRoute('exhibition')}
+                        onClick={() => setCurrentRoute('data-story')}
                         className="p-4 rounded-2xl bg-dp-lightBlue hover:bg-dp-navy hover:text-white transition text-left group border border-dp-border"
                       >
-                        <Image className="w-5 h-5 text-dp-blue group-hover:text-white mb-2" />
-                        <h4 className="font-heading font-bold text-sm text-dp-navy group-hover:text-white">Photo Gallery</h4>
-                        <p className="text-[11px] text-dp-mutedText group-hover:text-slate-200 mt-1">Memorial walls & archives</p>
+                        <FileText className="w-5 h-5 text-dp-blue group-hover:text-white mb-2" />
+                        <h4 className="font-heading font-bold text-sm text-dp-navy group-hover:text-white">Data Story</h4>
+                        <p className="text-[11px] text-dp-mutedText group-hover:text-slate-200 mt-1">Research & VAPP audit</p>
                       </button>
                     </div>
                   </div>
@@ -823,57 +792,65 @@
               </div>
             )}
 
-            {/* ==================== EXHIBITION GALLERY ==================== */}
-            {currentRoute === 'exhibition' && (
-              <div className="space-y-8 py-4">
-                <div className="text-center space-y-2 border-b border-dp-border pb-6">
+            {/* ==================== FEMICIDE DATA STORY / REPORT ==================== */}
+            {currentRoute === 'data-story' && (
+              <div className="max-w-4xl mx-auto space-y-8 py-4">
+                <div className="text-center space-y-3 border-b border-dp-border pb-6">
                   <span className="text-xs font-mono text-dp-blue uppercase tracking-widest font-bold">
-                    Dataphyte Gallery & Archives
+                    Dataphyte Special Investigation Report
                   </span>
-                  <h2 className="text-3xl font-heading font-extrabold text-dp-navy">
-                    Femicide Awareness Photo Exhibition
+                  <h2 className="text-3xl sm:text-4xl font-heading font-extrabold text-dp-navy">
+                    Femicide in Nigeria: Beyond the Numbers & Institutional Gaps
                   </h2>
                   <p className="text-xs sm:text-sm text-dp-mutedText max-w-xl mx-auto">
-                    A visual narrative documenting systemic barriers, official logs, public installations, and research evidence.
+                    A comprehensive empirical look into gender-based violence, statutory implementation hurdles, and police response metrics across Nigerian states.
                   </p>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                  {EXHIBITION_ITEMS.map((item) => (
-                    <div 
-                      key={item.id}
-                      className="bg-white border border-dp-border rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition group"
-                    >
-                      <div className="relative h-64 overflow-hidden bg-slate-100">
-                        <img 
-                          src={item.image} 
-                          alt={item.title} 
-                          className="w-full h-full object-cover group-hover:scale-105 transition duration-300"
-                        />
-                        <span className="absolute top-3 left-3 bg-dp-navy text-white text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded">
-                          {item.category}
-                        </span>
-                      </div>
-                      
-                      <div className="p-6 space-y-2">
-                        <h3 className="text-lg font-heading font-bold text-dp-navy">
-                          {item.title}
-                        </h3>
-                        <p className="text-xs text-dp-mutedText leading-relaxed">
-                          {item.caption}
-                        </p>
-                      </div>
-                    </div>
-                  ))}
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                  <div className="bg-slate-50 border border-dp-border rounded-2xl p-5 text-center space-y-1">
+                    <span className="text-3xl font-extrabold text-dp-crimson font-mono">72%+</span>
+                    <p className="text-xs text-dp-darkText font-semibold">Perpetrators Known to Victim</p>
+                    <span className="text-[10px] text-dp-mutedText block pt-1">Intimate partners, family members, or close acquaintances</span>
+                  </div>
+                  <div className="bg-slate-50 border border-dp-border rounded-2xl p-5 text-center space-y-1">
+                    <span className="text-3xl font-extrabold text-dp-blue font-mono">35 / 36</span>
+                    <p className="text-xs text-dp-darkText font-semibold">States Adopted VAPP Act</p>
+                    <span className="text-[10px] text-dp-mutedText block pt-1">Yet enforcement mechanisms remain critically underfunded</span>
+                  </div>
+                  <div className="bg-slate-50 border border-dp-border rounded-2xl p-5 text-center space-y-1">
+                    <span className="text-3xl font-extrabold text-dp-navy font-mono">&lt; 8%</span>
+                    <p className="text-xs text-dp-darkText font-semibold">Formal Police Prosecutions</p>
+                    <span className="text-[10px] text-dp-mutedText block pt-1">Most domestic threat cases are turned away or settled informally</span>
+                  </div>
                 </div>
 
-                <div className="text-center pt-4">
+                <div className="bg-white border border-dp-border rounded-3xl p-6 sm:p-8 space-y-6 shadow-sm">
+                  <h3 className="text-xl font-heading font-bold text-dp-navy flex items-center space-x-2">
+                    <Shield className="w-5 h-5 text-dp-blue" />
+                    <span>The VAPP Act: Statutory Promise vs. Operational Reality</span>
+                  </h3>
+                  <p className="text-xs sm:text-sm text-dp-mutedText leading-relaxed">
+                    The Violence Against Persons (Prohibition) Act of 2015 provides a comprehensive legal framework prohibiting domestic violence, emotional abuse, stalking, and harassment. However, investigative audits conducted by Dataphyte reveal deep systemic barriers:
+                  </p>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs text-dp-mutedText">
+                    <div className="bg-slate-50 p-4 rounded-2xl border border-dp-border space-y-1">
+                      <strong className="text-dp-crimson block font-heading font-bold text-sm mb-1">Lack of Specialized Desks</strong>
+                      <p>Local police stations across many urban and rural divisions lack dedicated, trauma-informed gender officers to receive and log distress claims.</p>
+                    </div>
+                    <div className="bg-slate-50 p-4 rounded-2xl border border-dp-border space-y-1">
+                      <strong className="text-dp-blue block font-heading font-bold text-sm mb-1">Out-of-Court Social Pressure</strong>
+                      <p>Family elders, religious leaders, and community boards frequently coerce victims into dropping formal complaints to protect family honor.</p>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="text-center space-y-4 pt-4 border-t border-dp-border">
                   <button
-                    onClick={() => setCurrentRoute('choose')}
-                    className="px-6 py-3.5 rounded-xl bg-dp-navy hover:bg-dp-blue text-white font-heading font-bold text-xs sm:text-sm transition inline-flex items-center space-x-2"
+                    onClick={() => setSupportModalOpen(true)}
+                    className="px-6 py-3.5 rounded-xl bg-dp-navy hover:bg-dp-blue text-white font-heading font-bold text-xs sm:text-sm shadow-md transition"
                   >
-                    <span>Proceed to WhatsApp Simulation</span>
-                    <ChevronRight className="w-4 h-4" />
+                    Access Verified Emergency Support Directories
                   </button>
                 </div>
               </div>
@@ -1342,19 +1319,11 @@
 
                 <div className="space-y-3 pt-2">
                   <button
-                    onClick={() => setCurrentRoute('podcast')}
+                    onClick={() => setCurrentRoute('data-story')}
                     className="w-full py-4 rounded-xl bg-dp-navy hover:bg-dp-blue text-white font-heading font-bold text-xs sm:text-sm shadow transition flex items-center justify-center space-x-2"
                   >
-                    <Mic className="w-4 h-4" />
-                    <span>Listen to Dataphyte Podcast Series</span>
-                  </button>
-
-                  <button
-                    onClick={() => setCurrentRoute('exhibition')}
-                    className="w-full py-3.5 rounded-xl bg-white border border-dp-border text-dp-navy font-heading font-semibold text-xs sm:text-sm hover:bg-slate-50 transition flex items-center justify-center space-x-2"
-                  >
-                    <Image className="w-4 h-4 text-dp-blue" />
-                    <span>View Photo Exhibition Gallery</span>
+                    <FileText className="w-4 h-4" />
+                    <span>Read Femicide Data Story & Report</span>
                   </button>
 
                   <button
