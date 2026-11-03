@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Jabali by Dataphyte | Femicide Awareness</title>
+  <title>Dataphyte | Femicide Awareness & Interactive Project</title>
   
   <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
@@ -15,10 +15,10 @@
   <!-- Babel Compiler for JSX -->
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
 
-  <!-- Google Fonts: Montserrat (Dataphyte Headings) & Inter (Body) -->
+  <!-- Google Fonts: Montserrat (Dataphyte Headings) & Inter (Body Text) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@600;700;800;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@600;700;800&display=swap" rel="stylesheet">
 
   <script>
     tailwind.config = {
@@ -30,16 +30,14 @@
           },
           colors: {
             dp: {
-              navy: '#0B1B3D',      /* Primary Dataphyte Deep Navy */
-              blue: '#1E3A8A',      /* Brand Accent Blue */
-              lightBlue: '#3B82F6', /* Bright Blue */
-              amber: '#F59E0B',     /* Dataphyte Gold / Amber Accent */
-              amberDark: '#D97706',
-              dark: '#050C1A',      /* Dark background */
-              card: '#0F2347',      /* Elevated card container */
-              border: '#1E325C',    /* Border contrast */
-              crimson: '#E11D48',   /* Femicide highlight red */
-              slate: '#94A3B8'
+              navy: '#0B1B3D',       /* Primary Dataphyte Navy */
+              blue: '#1D4ED8',       /* Accent Deep Blue */
+              sky: '#0284C7',        /* Soft Blue Accent */
+              crimson: '#991B1B',    /* Dark Rose/Red Accent for serious topics */
+              lightGray: '#F8FAFC',  /* Clean Card Fill */
+              border: '#E2E8F0',     /* Crisp Border Tone */
+              darkText: '#0F172A',   /* Deep Slate Body Text */
+              mutedText: '#64748B'   /* Subtitle Text */
             }
           }
         }
@@ -48,27 +46,35 @@
   </script>
 
   <style>
-    /* Custom scrollbar styling */
+    /* Clean custom scrollbar */
     .custom-scrollbar::-webkit-scrollbar {
-      width: 5px;
+      width: 6px;
     }
     .custom-scrollbar::-webkit-scrollbar-track {
-      background: #050C1A;
+      background: #F1F5F9;
     }
     .custom-scrollbar::-webkit-scrollbar-thumb {
-      background: #1E325C;
-      border-radius: 9999px;
+      background: #CBD5E1;
+      border-radius: 4px;
     }
     .custom-scrollbar::-webkit-scrollbar-thumb:hover {
-      background: #F59E0B;
+      background: #0B1B3D;
     }
   </style>
 </head>
-<body class="bg-dp-dark text-slate-100 font-sans antialiased selection:bg-dp-crimson selection:text-white">
+<body class="bg-white text-dp-darkText font-sans antialiased selection:bg-dp-navy selection:text-white">
   <div id="root"></div>
 
   <script type="text/babel">
     const { useState, useEffect, useRef } = React;
+
+    // --- LOGO PLACEHOLDER ---
+    // Change this variable to your image file path (e.g., "assets/images/dataphyte-logo.png")
+    const LOGO_IMAGE_PATH = ""; 
+
+    // --- IMAGE PLACEHOLDERS FOR HOME & EXHIBITION ---
+    // Replace with your local image paths (e.g., "assets/images/women-hero.jpg")
+    const HERO_WOMEN_IMAGE_PATH = "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=1000&q=80";
 
     // --- Inline SVG Icon Components ---
     const Shield = ({ className = "w-4 h-4" }) => (
@@ -95,59 +101,9 @@
       </svg>
     );
 
-    const RotateCcw = ({ className = "w-4 h-4" }) => (
-      <svg className={className} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
-        <path strokeLinecap="round" strokeLinejoin="round" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
-      </svg>
-    );
-
-    const Volume2 = ({ className = "w-4 h-4" }) => (
-      <svg className={className} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
-        <path strokeLinecap="round" strokeLinejoin="round" d="M15.536 8.464a5 5 0 010 7.072M18.364 5.636a9 9 0 010 12.728M11 5L6 9H2v6h4l5 4V5z" />
-      </svg>
-    );
-
-    const VolumeX = ({ className = "w-4 h-4" }) => (
-      <svg className={className} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
-        <path strokeLinecap="round" strokeLinejoin="round" d="M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z" />
-        <path strokeLinecap="round" strokeLinejoin="round" d="M17 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2" />
-      </svg>
-    );
-
-    const Eye = ({ className = "w-4 h-4" }) => (
-      <svg className={className} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
-        <path strokeLinecap="round" strokeLinejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-        <path strokeLinecap="round" strokeLinejoin="round" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
-      </svg>
-    );
-
-    const EyeOff = ({ className = "w-4 h-4" }) => (
-      <svg className={className} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
-        <path strokeLinecap="round" strokeLinejoin="round" d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.543-7a9.97 9.97 0 011.563-3.029m5.858-5.908a10.025 10.025 0 0110.122 3.937M12 9a3 3 0 00-3 3c0 .285.04.56.113.82M3 3l18 18" />
-      </svg>
-    );
-
     const ChevronRight = ({ className = "w-4 h-4" }) => (
       <svg className={className} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
         <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
-      </svg>
-    );
-
-    const MessageSquare = ({ className = "w-4 h-4" }) => (
-      <svg className={className} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
-        <path strokeLinecap="round" strokeLinejoin="round" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
-      </svg>
-    );
-
-    const BookOpen = ({ className = "w-4 h-4" }) => (
-      <svg className={className} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
-        <path strokeLinecap="round" strokeLinejoin="round" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
-      </svg>
-    );
-
-    const Heart = ({ className = "w-4 h-4" }) => (
-      <svg className={className} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
-        <path strokeLinecap="round" strokeLinejoin="round" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.684a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
       </svg>
     );
 
@@ -157,27 +113,9 @@
       </svg>
     );
 
-    const AlertCircle = ({ className = "w-4 h-4" }) => (
-      <svg className={className} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
-        <path strokeLinecap="round" strokeLinejoin="round" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-      </svg>
-    );
-
     const X = ({ className = "w-4 h-4" }) => (
       <svg className={className} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
         <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
-      </svg>
-    );
-
-    const Scale = ({ className = "w-4 h-4" }) => (
-      <svg className={className} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
-        <path strokeLinecap="round" strokeLinejoin="round" d="M3 6l9-4 9 4M3 6v14a2 2 0 002 2h14a2 2 0 002-2V6M3 6l9 6 9-6" />
-      </svg>
-    );
-
-    const ShieldAlert = ({ className = "w-4 h-4" }) => (
-      <svg className={className} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
-        <path strokeLinecap="round" strokeLinejoin="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
       </svg>
     );
 
@@ -200,39 +138,51 @@
       </svg>
     );
 
-    // --- EXHIBITION DATA ---
+    const BookOpen = ({ className = "w-4 h-4" }) => (
+      <svg className={className} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+        <path strokeLinecap="round" strokeLinejoin="round" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+      </svg>
+    );
+
+    const BarChart = ({ className = "w-4 h-4" }) => (
+      <svg className={className} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+        <path strokeLinecap="round" strokeLinejoin="round" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+      </svg>
+    );
+
+    // --- EXHIBITION ITEMS DATA ---
     const EXHIBITION_ITEMS = [
       {
         id: 1,
-        title: "Silent Shadows: Memorial Wall",
+        title: "Silent Voices Memorial Wall",
         category: "Exhibition Visual",
         image: "https://images.unsplash.com/photo-1544717305-2782549b5136?auto=format&fit=crop&w=800&q=80",
-        caption: "Visualizing the unseen numbers: Interactive installation honoring lost lives through systemic data projection."
+        caption: "Documenting systemic breakdowns: An archive honoring women lost to intimate partner violence across Nigerian states."
       },
       {
         id: 2,
-        title: "The Doors That Closed",
+        title: "Institutional Doors Closed",
         category: "Art Installation",
         image: "https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?auto=format&fit=crop&w=800&q=80",
-        caption: "Physical representation of institutional barriers—doors stamped with actual police logs and societal responses."
+        caption: "Visualizing structural barriers—doors stamped with unrecorded police logs and informal community dismissals."
       },
       {
         id: 3,
-        title: "Voices & Transcripts",
-        category: "Auditory Archive",
+        title: "Auditory Archives & Transcripts",
+        category: "Audio Archive",
         image: "https://images.unsplash.com/photo-1590602847861-f357a9332bbc?auto=format&fit=crop&w=800&q=80",
-        caption: "Sound installation playing verified distress call transcripts, highlighting police station reactions across 5 states."
+        caption: "Transcripts of verified distress calls demonstrating desk-level non-response in domestic violence cases."
       },
       {
         id: 4,
-        title: "Data Visualization: The Escalation Ladder",
-        category: "Infographic Art",
+        title: "Data Continuum: The Escalation Pathway",
+        category: "Research Graphic",
         image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=80",
-        caption: "A 10-meter timeline depicting how non-physical coercion, stalking, and digital threats predictably precede physical violence."
+        caption: "Empirical timeline illustrating how non-physical control and digital stalking precede physical violence."
       }
     ];
 
-    // --- DATA ---
+    // --- CHARACTERS DATA ---
     const CHARACTERS = [
       {
         id: 'chioma',
@@ -240,9 +190,8 @@
         age: 20,
         occupation: 'University Student',
         location: 'Unilag Hostel, Lagos',
-        blurb: 'Popular student whose partner controls her social circle under the guise of deep love.',
-        avatarColor: 'from-amber-500 to-rose-600',
-        avatarBg: 'bg-dp-card border-dp-border',
+        blurb: 'Popular student whose partner controls her social circle under the guise of deep affection.',
+        avatarColor: 'bg-dp-navy text-white',
         initialPressure: { school: 15, friends: 10 }
       },
       {
@@ -251,9 +200,8 @@
         age: 31,
         occupation: 'Corporate Analyst',
         location: 'Maitama, Abuja',
-        blurb: 'Senior analyst dealing with an overly controlling partner and workplace harassment.',
-        avatarColor: 'from-blue-600 to-indigo-700',
-        avatarBg: 'bg-dp-card border-dp-border',
+        blurb: 'Senior analyst managing an overly controlling partner and workplace pressure.',
+        avatarColor: 'bg-dp-blue text-white',
         initialPressure: { work: 20, family: 10 }
       },
       {
@@ -262,9 +210,8 @@
         age: 38,
         occupation: 'Shop Owner & Mother of 2',
         location: 'Surulere, Lagos',
-        blurb: 'Devoted mother of two running a small provision store while managing severe financial abuse.',
-        avatarColor: 'from-emerald-600 to-teal-700',
-        avatarBg: 'bg-dp-card border-dp-border',
+        blurb: 'Devoted mother running a small enterprise while facing severe domestic financial control.',
+        avatarColor: 'bg-slate-700 text-white',
         initialPressure: { family: 25, church: 15 }
       },
       {
@@ -273,9 +220,8 @@
         age: 19,
         occupation: 'Creative Freelancer',
         location: 'Ikeja, Lagos',
-        blurb: 'Young woman targeted by an obsessive stalker after politely declining his romantic advances.',
-        avatarColor: 'from-purple-600 to-pink-700',
-        avatarBg: 'bg-dp-card border-dp-border',
+        blurb: 'Young creator targeted by a persistent digital stalker after declining romantic advances.',
+        avatarColor: 'bg-dp-sky text-white',
         initialPressure: { online: 20, police: 10 }
       }
     ];
@@ -290,37 +236,23 @@
           headerTitle: 'Hostel Group Chat',
           nodes: [
             { type: 'narration', text: 'It is a warm Thursday evening in Unilag. Chioma is preparing for mid-semester exams while chatting with roomies.' },
-            { type: 'message', from: 'Kemi (Roomie)', text: 'Chioma babe! Dayo sent shawarma and drinks to the hostel gate for you again o! Guy is so caring 😍', delayms: 800 },
+            { type: 'message', from: 'Kemi (Roomie)', text: 'Chioma babe! Dayo sent shawarma and drinks to the hostel gate for you again o! Guy is so caring.', delayms: 800 },
             { type: 'message', from: 'her', text: 'Aw, Dayo... He said he was coming over himself though.', delayms: 1200 },
-            { type: 'message', from: 'Kemi (Roomie)', text: 'Shuo! You are enjoying o. Better hold him tight!', delayms: 1000 },
-            { 
-              type: 'choice', 
-              options: [
-                { label: 'Reply with excitement', next_idx: 4, pressure: { friends: 5 } },
-                { label: 'Focus on studying instead', next_idx: 4, pressure: { friends: 5 } }
-              ]
-            },
-            { type: 'narration', text: 'Everything feels normal, but small boundaries are already being tested.' }
+            { type: 'choice', options: [{ label: 'Reply with excitement', next_idx: 4 }, { label: 'Focus on studying instead', next_idx: 4 }] },
+            { type: 'narration', text: 'Everything feels normal, but small personal boundaries are already being tested.' }
           ]
         },
         {
           id: 'c2',
           beat: 2,
-          beatTitle: 'Beat 2: Early Signs of Control',
+          beatTitle: 'Beat 2: Early Control',
           interface: 'phone',
-          headerTitle: 'Dayo ❤️',
+          headerTitle: 'Dayo',
           nodes: [
-            { type: 'message', from: 'Dayo', text: 'Who was that guy holding your waist near the Faculty library today?', delayms: 600 },
-            { type: 'message', from: 'her', text: 'That was Tobi, my group project leader! We were just laughing about our assignment.', delayms: 1200 },
-            { type: 'message', from: 'Dayo', text: 'I don’t care. I don’t like how he looks at you. Delete his contact right now or don’t bother coming to my place weekend.', delayms: 1500 },
-            { 
-              type: 'choice', 
-              options: [
-                { label: 'Try to explain and reassure him', next_idx: 4, pressure: { friends: 10 } },
-                { label: 'Apologize and delete Tobi’s number', next_idx: 4, pressure: { friends: 15 } }
-              ]
-            },
-            { type: 'message', from: 'Dayo', text: 'Good girl. I only do this because I love you and want to protect you from these campus guys.', delayms: 1000 }
+            { type: 'message', from: 'Dayo', text: 'Who was that guy talking with you near the Faculty library today?', delayms: 600 },
+            { type: 'message', from: 'her', text: 'That was Tobi, my project leader! We were just discussing our presentation.', delayms: 1200 },
+            { type: 'message', from: 'Dayo', text: 'I don’t like it. Delete his contact right now.', delayms: 1500 },
+            { type: 'choice', options: [{ label: 'Try to explain and reassure him', next_idx: 4 }, { label: 'Apologize and delete the number', next_idx: 4 }] }
           ]
         },
         {
@@ -328,94 +260,38 @@
           beat: 3,
           beatTitle: 'Beat 3: Escalation',
           interface: 'phone',
-          headerTitle: 'Dayo ❤️',
+          headerTitle: 'Dayo',
           nodes: [
-            { type: 'narration', text: 'Three weeks later. Dayo showed up at the hostel unannounced and demanded to search her phone.' },
-            { type: 'message', from: 'Dayo', text: 'Why did you take 12 minutes to reply my message? Who were you on call with?!', delayms: 500 },
-            { type: 'message', from: 'her', text: 'My mother called me! Please Dayo, stop shouting, everyone in the hostel block can hear you...', delayms: 1000 },
-            { type: 'message', from: 'Dayo', text: 'If I catch you lying to me Chioma, you will see the real me. I bought you that phone, don’t forget!', delayms: 1200 },
-            { 
-              type: 'choice', 
-              options: [
-                { label: 'Lock yourself in your room', next_idx: 5, pressure: { friends: 15 } },
-                { label: 'Call your hostel rep for help', next_idx: 5, pressure: { school: 15 }, disabledAbove: 40 }
-              ]
-            },
-            { type: 'narration', text: 'Your choices are shrinking as fear replaces trust.' }
+            { type: 'narration', text: 'Three weeks later. Dayo shows up at the hostel unannounced demanding to check her phone.' },
+            { type: 'message', from: 'Dayo', text: 'Why did you take 10 minutes to reply? Who were you talking to?', delayms: 500 },
+            { type: 'message', from: 'her', text: 'My mother called me! Please Dayo, calm down...', delayms: 1000 },
+            { type: 'choice', options: [{ label: 'Lock your room door', next_idx: 4 }, { label: 'Contact hostel management', next_idx: 4 }] }
           ]
         },
         {
           id: 'c4',
           beat: 4,
-          beatTitle: 'Beat 4: Systemic Doors Closing',
+          beatTitle: 'Beat 4: Institutional Refusal',
           interface: 'doors',
-          headerTitle: 'Seeking Help',
+          headerTitle: 'Support Options',
           nodes: [
-            { type: 'narration', text: 'Chioma realizes this is no longer just "jealousy". She reaches out to four entities in her life.' },
-            { 
-              type: 'door', 
-              id: 'roommate', 
-              label: 'Roommate (Kemi)', 
-              response: 'blamed', 
-              text: 'Ah Chioma, Dayo loves you o! Small quarrel happens in every relationship. Don’t ruin his future over a small thing.', 
-              pressure: 'friends' 
-            },
-            { 
-              type: 'door', 
-              id: 'lecturer', 
-              label: 'Academic Staff Advisor', 
-              response: 'redirected', 
-              text: 'This sounds like a private lovers’ quarrel outside academic grounds. Please sort it out maturely between yourselves.', 
-              pressure: 'school' 
-            },
-            { 
-              type: 'door', 
-              id: 'security', 
-              label: 'Campus Security Desk', 
-              response: 'dismissed', 
-              text: 'Boyfriend and girlfriend fight? My daughter, go home and cook for him. We don’t interfere in relationship matters.', 
-              pressure: 'police' 
-            },
-            { 
-              type: 'door', 
-              id: 'mother', 
-              label: 'Her Mother', 
-              response: 'promised-no-action', 
-              text: 'Be patient my dear. Men can have hot temper. Pray about it, God will soften his heart.', 
-              pressure: 'family' 
-            }
+            { type: 'narration', text: 'Chioma attempts to seek advice from various support entities.' },
+            { type: 'door', id: 'roommate', label: 'Roommate (Kemi)', response: 'blamed', text: 'Dayo loves you! Small misunderstandings happen in every relationship.', pressure: 'friends' },
+            { type: 'door', id: 'lecturer', label: 'Academic Staff Advisor', response: 'redirected', text: 'This is a private personal matter outside academic jurisdiction.', pressure: 'school' },
+            { type: 'door', id: 'security', label: 'Campus Security Desk', response: 'dismissed', text: 'We do not interfere in relationship disputes between students.', pressure: 'police' }
           ]
         },
         {
           id: 'c5',
           beat: 5,
-          beatTitle: 'Beat 5: The Systemic Refusal & Cut-Away',
+          beatTitle: 'Beat 5: Cut-Away',
           interface: 'police',
-          headerTitle: 'Sabon-Gari Police Division',
+          headerTitle: 'Local Police Station',
           nodes: [
-            { type: 'narration', text: 'Desperate after Dayo blocked her entrance to class and threatened her life, Chioma walked into the local police station.' },
-            { type: 'dialogue', speaker: 'Desk Officer', text: 'Yes, welcome young woman. What is the issue?' },
-            { type: 'dialogue', speaker: 'Chioma', text: 'Officer, my ex-boyfriend is stalking me, threatening to hurt me if I don’t stay with him.' },
-            { type: 'dialogue', speaker: 'Desk Officer', text: 'Did he hit you today? Did he draw blood?' },
-            { type: 'dialogue', speaker: 'Chioma', text: 'No, but he said he will kill me if I end it!' },
-            { type: 'dialogue', speaker: 'Desk Officer', text: 'Listen, go back and settle with him. We cannot arrest a boy just for talking hot out of broken heart. Come back if something actually happens.' },
-            { type: 'narration', text: 'The police incident diary entry remains blank. Stamped: PENDING.' },
-            { type: 'cutaway', text: 'The next time anyone sees Chioma is in the morning news.' }
-          ]
-        },
-        {
-          id: 'c6',
-          beat: 6,
-          beatTitle: 'Beat 6: The Aftermath & Public Reaction',
-          interface: 'feed',
-          headerTitle: 'Naija Social Feed',
-          nodes: [
-            { type: 'post', author: 'Lagos Campus Buzz', text: 'BREAKING: 20-year-old Unilag student Chioma found dead near off-campus quarters. Suspect identified as former boyfriend currently at large.', likes: 14200 },
-            { type: 'comment', text: 'Rest in power queen. She reported this guy to security last week and nobody took action! The system failed her.', stance: 'support' },
-            { type: 'comment', text: 'What was she doing at his apartment by that time of night? Girls of nowadays will see red flags and still run after money.', stance: 'blame' },
-            { type: 'comment', text: 'Nothing she did or wore gives anyone the right to take her life! Stop victim blaming!', stance: 'counter' },
-            { type: 'comment', text: 'Why didn’t she just walk away? Nobody forced her to stay with him.', stance: 'blame' },
-            { type: 'comment', text: 'We must demand justice for Chioma! End femicide in Nigeria now!', stance: 'support' }
+            { type: 'dialogue', speaker: 'Desk Officer', text: 'Did he physically assault you today? Did he draw blood?' },
+            { type: 'dialogue', speaker: 'Chioma', text: 'No, but he threatened to harm me if I break up with him!' },
+            { type: 'dialogue', speaker: 'Desk Officer', text: 'Go home and resolve it amicably. We cannot detain someone for harsh words.' },
+            { type: 'cutaway', text: 'The next morning, Chioma’s case appears in regional news headlines.' }
           ]
         }
       ],
@@ -427,48 +303,32 @@
           interface: 'phone',
           headerTitle: 'Sister (Amara)',
           nodes: [
-            { type: 'narration', text: 'Ife is a high-performing senior analyst in Abuja. She is commuting to work early in the morning.' },
-            { type: 'message', from: 'Ola (Sister)', text: 'Ife, good morning! Hope Tope is fine? Did he approve your travel for the Lagos conference?', delayms: 700 },
-            { type: 'message', from: 'her', text: 'Morning Ola. He is still complaining about it. Says corporate wives shouldn’t travel alone.', delayms: 1000 },
-            { type: 'choice', options: [{ label: 'Change the topic to work', next_idx: 3 }, { label: 'Confide her worries', next_idx: 3 }] },
-            { type: 'narration', text: 'Her career success is constantly eclipsed by domestic monitoring.' }
+            { type: 'narration', text: 'Ife is commuting to work early morning in Maitama, Abuja.' },
+            { type: 'message', from: 'Amara', text: 'Ife, did your partner approve your flight for the Lagos summit?', delayms: 700 },
+            { type: 'message', from: 'her', text: 'He is still objecting. Claims career travel affects domestic duties.', delayms: 1000 },
+            { type: 'choice', options: [{ label: 'Focus on work duties', next_idx: 3 }, { label: 'Confide her concerns', next_idx: 3 }] }
           ]
         },
         {
           id: 'n4',
           beat: 4,
-          beatTitle: 'Beat 4: Systemic Doors Closing',
+          beatTitle: 'Beat 4: Seeking Safety',
           interface: 'doors',
-          headerTitle: 'Seeking Safe Haven',
+          headerTitle: 'Help Outlets',
           nodes: [
-            { type: 'narration', text: 'Tope installs a hidden tracker on her phone and threatens her career. Ife seeks professional and personal help.' },
-            { type: 'door', id: 'hr', label: 'Company HR Manager', response: 'redirected', text: 'Ife, you are a valuable employee, but domestic matters between husband and wife cannot enter corporate files.', pressure: 'work' },
-            { type: 'door', id: 'pastor', label: 'Senior Church Pastor', response: 'blamed', text: 'A wise woman builds her home with patience. Submit more to Emeka and fast for 7 days.', pressure: 'church' },
-            { type: 'door', id: 'friend', label: 'Close Colleague', response: 'helpless', text: 'Ah Ife, men in Abuja are like that. At least he is taking care of you and doesn’t drink outdoor.', pressure: 'friends' },
-            { type: 'door', id: 'sister', label: 'Her Sister (Amara)', response: 'promised-no-action', text: 'I wish you could come stay with me in Enugu, but our father will kill us if you leave your matrimonial house.', pressure: 'family' }
+            { type: 'door', id: 'hr', label: 'Company HR Department', response: 'redirected', text: 'Domestic disputes cannot be documented in corporate employee files.', pressure: 'work' },
+            { type: 'door', id: 'pastor', label: 'Religious Leader', response: 'blamed', text: 'Exercise patience and pray for your home.', pressure: 'church' }
           ]
         },
         {
           id: 'n5',
           beat: 5,
-          beatTitle: 'Beat 5: Cut-away',
+          beatTitle: 'Beat 5: Cut-Away',
           interface: 'police',
-          headerTitle: 'Abuja Central Command',
+          headerTitle: 'Abuja Police Command',
           nodes: [
-            { type: 'dialogue', speaker: 'Officer', text: 'Madam, Emeka is a respected senior man. Settle this domestic dispute at home.' },
-            { type: 'cutaway', text: 'The next time anyone sees Ife is in an official corporate condolence email.' }
-          ]
-        },
-        {
-          id: 'n6',
-          beat: 6,
-          beatTitle: 'Beat 6: Public Reaction',
-          interface: 'feed',
-          headerTitle: 'Corporate & Media Feed',
-          nodes: [
-            { type: 'post', author: 'Abuja Daily News', text: 'TRAGEDY: Top corporate financial executive Ife found deceased in Maitama residence.', likes: 8900 },
-            { type: 'comment', text: 'She reported to HR three times! Why are workplace harassment policies silent on domestic threats?', stance: 'support' },
-            { type: 'comment', text: 'Abuja women like flexing big career, then they disrespect their husbands at home. Sad end.', stance: 'blame' }
+            { type: 'dialogue', speaker: 'Officer', text: 'Settle domestic differences privately at home.' },
+            { type: 'cutaway', text: 'The story ends abruptly before an official corporate condolence notice.' }
           ]
         }
       ],
@@ -478,49 +338,33 @@
           beat: 1,
           beatTitle: 'Beat 1: Ordinary Life',
           interface: 'phone',
-          headerTitle: 'Mama Nkechi (Neighbour)',
+          headerTitle: 'Neighbor',
           nodes: [
-            { type: 'narration', text: 'Lisa runs a busy provisions store in Surulere while getting her two young children ready for school.' },
-            { type: 'message', from: 'Mama Nkechi', text: 'Lisa my sister, good morning. Please don’t forget to bring the rice sacks to church today.', delayms: 600 },
-            { type: 'message', from: 'her', text: 'Good morning! I will bring them as soon as Obinna leaves for his shop.', delayms: 1000 },
-            { type: 'narration', text: 'Behind her warm, resilient smile, her husband Obinna seizes every naira she earns.' }
+            { type: 'narration', text: 'Lisa prepares her provision shop in Surulere.' },
+            { type: 'message', from: 'Neighbor', text: 'Lisa, please remember the community meeting today.', delayms: 600 },
+            { type: 'message', from: 'her', text: 'I will attend once the store opens.', delayms: 1000 },
+            { type: 'narration', text: 'Behind her business, severe financial control limits her daily options.' }
           ]
         },
         {
           id: 'a4',
           beat: 4,
-          beatTitle: 'Beat 4: Systemic Doors Closing',
+          beatTitle: 'Beat 4: Institutional Refusal',
           interface: 'doors',
-          headerTitle: 'Reaching Out',
+          headerTitle: 'Community Outlets',
           nodes: [
-            { type: 'narration', text: 'Obinna’s financial and physical abuse escalates. Lisa tries to secure safety for herself and her children.' },
-            { type: 'door', id: 'inlaws', label: 'Mother-in-law', response: 'blamed', text: 'Every marriage has storm! My son is stressed because of economy. Learn how to talk to him softly.', pressure: 'family' },
-            { type: 'door', id: 'elder', label: 'Community Elder', response: 'promised-no-action', text: 'We will call Obinna and talk to him like a brother. Don’t destroy your children’s home by calling police.', pressure: 'church' },
-            { type: 'door', id: 'neighbour', label: 'Building Manager', response: 'dismissed', text: 'Madam Amaka, what happens inside your flat is private family business. Just keep the noise down at night.', pressure: 'friends' },
-            { type: 'door', id: 'sister', label: 'Her Sister', response: 'helpless', text: 'Lisa I want to take you in, but my husband’s 1-bedroom flat cannot fit four extra people. I am so sorry.', pressure: 'family' }
+            { type: 'door', id: 'inlaws', label: 'Extended Family', response: 'blamed', text: 'Be patient. Economic pressure affects everyone.', pressure: 'family' },
+            { type: 'door', id: 'elder', label: 'Community Elder', response: 'dismissed', text: 'Do not escalate household matters to the police.', pressure: 'church' }
           ]
         },
         {
           id: 'a5',
           beat: 5,
-          beatTitle: 'Beat 5: Cut-away',
+          beatTitle: 'Beat 5: Cut-Away',
           interface: 'police',
-          headerTitle: 'Surulere Police Division',
+          headerTitle: 'Surulere Station',
           nodes: [
-            { type: 'narration', text: 'She packs a small bag for her children, but Obinna locks the gates. She cannot solve the school pickup.' },
-            { type: 'cutaway', text: 'Cut to the school gate at 4:00 PM, where two young children wait patiently for a mother who will never arrive.' }
-          ]
-        },
-        {
-          id: 'a6',
-          beat: 6,
-          beatTitle: 'Beat 6: The Aftermath',
-          interface: 'feed',
-          headerTitle: 'Surulere Community Feed',
-          nodes: [
-            { type: 'post', author: 'Lagos Metro Watch', text: 'Tragic Incident in Surulere: Mother of two loses life in domestic violence dispute.', likes: 23100 },
-            { type: 'comment', text: 'She endured for 10 years because of society! Stop telling women to endure abuse for children!', stance: 'counter' },
-            { type: 'comment', text: 'Why didn’t she leave long ago? A mother should protect her kids first.', stance: 'blame' }
+            { type: 'cutaway', text: 'Cut to the school gate where her children wait after hours for a pickup.' }
           ]
         }
       ],
@@ -530,67 +374,50 @@
           beat: 1,
           beatTitle: 'Beat 1: Ordinary Life',
           interface: 'phone',
-          headerTitle: 'Tolu (19)',
+          headerTitle: 'Unknown Sender',
           nodes: [
-            { type: 'narration', text: 'Tolu is a vibrant 19-year-old creative graphics designer in Ikeja with an active social online presence.' },
-            { type: 'message', from: 'Unknown Number', text: 'I saw you at the coffee shop today in Ikeja. You looked beautiful in that yellow dress.', delayms: 700 },
-            { type: 'message', from: 'her', text: 'Who is this please? How did you get my private number?', delayms: 1000 },
-            { type: 'message', from: 'Unknown Number', text: 'I’m Kunle. I’m always watching over you, my angel.', delayms: 1200 },
-            { type: 'narration', text: 'What starts as unsolicited messages quickly turns into continuous surveillance.' }
+            { type: 'narration', text: 'Tolu is a 19-year-old digital creative based in Ikeja.' },
+            { type: 'message', from: 'Unknown', text: 'I saw you at the workspace today in Ikeja.', delayms: 700 },
+            { type: 'message', from: 'her', text: 'Who is this? How did you obtain my contact?', delayms: 1000 },
+            { type: 'narration', text: 'Unsolicited messages escalate into persistent surveillance.' }
           ]
         },
         {
           id: 't4',
           beat: 4,
-          beatTitle: 'Beat 4: Systemic Doors Closing',
+          beatTitle: 'Beat 4: Institutional Refusal',
           interface: 'doors',
-          headerTitle: 'Seeking Safety',
+          headerTitle: 'Reporting Channels',
           nodes: [
-            { type: 'narration', text: 'Kunle sends photos of Tolu’s apartment doorstep. Tolu desperately seeks protection from institutions.' },
-            { type: 'door', id: 'police_tolu', label: 'State Cybercrime Desk', response: 'dismissed', text: 'Stalking on WhatsApp? Just block the number or delete your Instagram page. We don’t handle online drama.', pressure: 'police' },
-            { type: 'door', id: 'family_tolu', label: 'Her Uncle', response: 'blamed', text: 'You post too many pictures on social media! Why won’t bad boys target you? Dress modestly and stay indoors.', pressure: 'family' },
-            { type: 'door', id: 'platform', label: 'Social Media Support Bot', response: 'redirected', text: 'Automated Response: Thank you for your report. We reviewed the account and found it does not violate community standards.', pressure: 'online' },
-            { type: 'door', id: 'friend_tolu', label: 'Circle of Friends', response: 'helpless', text: 'Tolu just block him! He is probably just bluffing and trying to scare you.', pressure: 'friends' }
+            { type: 'door', id: 'cyber', label: 'Cybercrime Unit', response: 'dismissed', text: 'Block the phone number online. We do not handle web messages.', pressure: 'police' },
+            { type: 'door', id: 'platform', label: 'Social Platform Support', response: 'redirected', text: 'Automated reply: No policy violation detected.', pressure: 'online' }
           ]
         },
         {
           id: 't5',
           beat: 5,
-          beatTitle: 'Beat 5: Cut-away',
+          beatTitle: 'Beat 5: Cut-Away',
           interface: 'police',
-          headerTitle: 'Ikeja Area Command',
+          headerTitle: 'Area Command',
           nodes: [
-            { type: 'narration', text: 'Tolu changes her daily route, but a mutual contact inadvertently mentions her location.' },
-            { type: 'cutaway', text: 'Cut to an empty rainy street in Ikeja where a phone screen lights up repeatedly on the asphalt.' }
-          ]
-        },
-        {
-          id: 't6',
-          beat: 6,
-          beatTitle: 'Beat 6: Public Reaction',
-          interface: 'feed',
-          headerTitle: 'Digital Space Feed',
-          nodes: [
-            { type: 'post', author: 'Tech & Youth Digest', text: '19-year-old creator Tolu killed after relentless stalking campaign. Cyberstalking laws questioned.', likes: 31200 },
-            { type: 'comment', text: 'The police ignored her cyberstalking reports for 2 months! When will digital harassment be taken seriously?', stance: 'support' },
-            { type: 'comment', text: 'She exposed her entire life online. What did she expect?', stance: 'blame' }
+            { type: 'cutaway', text: 'Cut to an unanswered phone screen lighting up on an empty street.' }
           ]
         }
       ]
     };
 
     const VERIFIED_RESOURCES = [
-      { name: 'WARIF (Women at Risk International Foundation)', phone: '+234 809 210 0009', location: 'Lagos, Nigeria', web: 'warifng.org', services: '24/7 Crisis Helpline, Medical & Legal Aid' },
-      { name: 'Mirabel Centre', phone: '+234 818 777 7000', location: 'Lagos University Teaching Hospital (LUTH)', web: 'mirabelcentre.org', services: 'Free Sexual Assault Referral & Psychological Support' },
-      { name: 'Stand to End Rape (STER) Initiative', phone: '+234 809 596 7000', location: 'National Coverage', web: 'standtoendrape.org', services: 'Advocacy, Legal Counsel & Psychological Therapy' },
-      { name: 'FIDA Nigeria (Federation of Women Lawyers)', phone: '+234 805 244 3300', location: 'Abuja & All 36 States', web: 'fida.org.ng', services: 'Free Legal Representation for Victims of Gender Violence' },
-      { name: 'NPF Gender Desk & Domestic Violence Unit', phone: '112 / +234 803 301 1933', location: 'Nigeria Police Headquarters', web: 'npf.gov.ng', services: 'Specialized Police Response Units' }
+      { name: 'WARIF (Women at Risk International Foundation)', phone: '+234 809 210 0009', location: 'Lagos, Nigeria', web: 'warifng.org', services: '24/7 Crisis Line, Medical & Legal Aid' },
+      { name: 'Mirabel Centre', phone: '+234 818 777 7000', location: 'LUTH, Lagos', web: 'mirabelcentre.org', services: 'Free Assault Referral & Counseling' },
+      { name: 'Stand to End Rape (STER) Initiative', phone: '+234 809 596 7000', location: 'National Coverage', web: 'standtoendrape.org', services: 'Advocacy & Legal Assistance' },
+      { name: 'FIDA Nigeria (Federation of Women Lawyers)', phone: '+234 805 244 3300', location: 'Abuja & Nationwide', web: 'fida.org.ng', services: 'Free Legal Representation' }
     ];
 
-    // --- MAIN APP COMPONENT ---
+    // --- MAIN REACT APP ---
     function App() {
       const [currentRoute, setCurrentRoute] = useState('home'); // 'home', 'choose', 'play', 'finale', 'exhibition', 'data-story'
       const [disclaimerOpen, setDisclaimerOpen] = useState(false);
+      const [supportModalOpen, setSupportModalOpen] = useState(false);
       const [selectedCharacter, setSelectedCharacter] = useState(CHARACTERS[0]);
       
       const [currentBeatIdx, setCurrentBeatIdx] = useState(0);
@@ -598,30 +425,6 @@
       const [pressure, setPressure] = useState({ family: 10, work: 0, church: 0, police: 5, school: 10, friends: 10, online: 0 });
       const [doorsLog, setDoorsLog] = useState([]);
       const [completedCharacters, setCompletedCharacters] = useState([]);
-      
-      const [muted, setMuted] = useState(true);
-      const [reduceBlameComments, setReduceBlameComments] = useState(false);
-      const [supportModalOpen, setSupportModalOpen] = useState(false);
-
-      const chatBottomRef = useRef(null);
-
-      useEffect(() => {
-        const saved = localStorage.getItem('femicide_awareness_state');
-        if (saved) {
-          try {
-            const parsed = JSON.parse(saved);
-            if (parsed.completedCharacters) setCompletedCharacters(parsed.completedCharacters);
-          } catch (e) {
-            console.error('Error loading saved state:', e);
-          }
-        }
-      }, []);
-
-      const saveProgress = (newCompleted) => {
-        localStorage.setItem('femicide_awareness_state', JSON.stringify({
-          completedCharacters: newCompleted
-        }));
-      };
 
       const startCharacterStory = (char) => {
         setSelectedCharacter(char);
@@ -653,14 +456,6 @@
         addPressure({ [door.pressure]: 15 });
       };
 
-      const markCharacterComplete = () => {
-        if (!completedCharacters.includes(selectedCharacter.id)) {
-          const updated = [...completedCharacters, selectedCharacter.id];
-          setCompletedCharacters(updated);
-          saveProgress(updated);
-        }
-      };
-
       const activeScenes = SCENES_DATA[selectedCharacter.id] || SCENES_DATA['chioma'];
       const currentScene = activeScenes[currentBeatIdx] || activeScenes[0];
 
@@ -672,45 +467,53 @@
             setCurrentBeatIdx(prev => prev + 1);
             setCurrentNodeIdx(0);
           } else {
-            markCharacterComplete();
+            if (!completedCharacters.includes(selectedCharacter.id)) {
+              setCompletedCharacters(prev => [...prev, selectedCharacter.id]);
+            }
             setCurrentRoute('finale');
           }
         }
       };
 
       return (
-        <div className="min-h-screen bg-dp-dark text-slate-100 flex flex-col font-sans select-none overflow-x-hidden antialiased">
+        <div className="min-h-screen bg-white text-dp-darkText flex flex-col font-sans antialiased">
           
-          {/* Dataphyte Brand Navigation Header */}
-          <header className="sticky top-0 z-40 bg-dp-navy/95 backdrop-blur-md border-b border-dp-border px-4 py-3 flex items-center justify-between">
+          {/* HEADER / NAVIGATION BAR */}
+          <header className="sticky top-0 z-40 bg-white border-b border-dp-border px-4 sm:px-8 py-3.5 flex items-center justify-between">
             <div className="flex items-center space-x-3">
               <button 
                 onClick={() => setCurrentRoute('home')}
-                className="flex items-center space-x-2 text-white font-heading font-extrabold text-lg tracking-tight hover:opacity-90 transition"
+                className="flex items-center space-x-2 text-dp-navy font-heading font-extrabold text-xl tracking-tight focus:outline-none"
               >
-                <span className="bg-dp-amber text-dp-dark px-2 py-0.5 rounded font-black text-xs">DATA</span>
-                <span className="text-white">PHYTE</span>
+                {LOGO_IMAGE_PATH ? (
+                  <img src={LOGO_IMAGE_PATH} alt="Dataphyte Logo" className="h-8 w-auto object-contain" />
+                ) : (
+                  <div className="flex items-center space-x-1">
+                    <span className="bg-dp-navy text-white px-2 py-1 rounded font-black text-xs tracking-wider">DATA</span>
+                    <span className="text-dp-navy font-extrabold text-lg">PHYTE</span>
+                  </div>
+                )}
               </button>
-              <span className="hidden sm:inline text-dp-slate text-xs">|</span>
-              <span className="hidden sm:inline text-xs text-dp-slate font-medium">Femicide Reporting & Interactive</span>
+              <span className="hidden md:inline text-dp-border">|</span>
+              <span className="hidden md:inline text-xs text-dp-mutedText font-medium">Reporting & Interactive Special</span>
             </div>
 
-            {/* Navigation links */}
-            <nav className="flex items-center space-x-2 sm:space-x-4 text-xs font-semibold">
+            {/* Navigation items */}
+            <nav className="flex items-center space-x-1 sm:space-x-3 text-xs font-semibold">
               <button
                 onClick={() => setCurrentRoute('home')}
-                className={`px-2.5 py-1.5 rounded-lg transition flex items-center space-x-1 ${
-                  currentRoute === 'home' ? 'bg-dp-blue text-white' : 'text-slate-300 hover:text-white'
+                className={`px-3 py-2 rounded-lg transition flex items-center space-x-1.5 ${
+                  currentRoute === 'home' ? 'bg-dp-lightGray text-dp-navy font-bold' : 'text-dp-mutedText hover:text-dp-navy'
                 }`}
               >
-                <HomeIcon className="w-3.5 h-3.5" />
+                <HomeIcon className="w-4 h-4" />
                 <span className="hidden sm:inline">Home</span>
               </button>
 
               <button
                 onClick={() => setCurrentRoute('choose')}
-                className={`px-2.5 py-1.5 rounded-lg transition ${
-                  currentRoute === 'choose' || currentRoute === 'play' ? 'bg-dp-blue text-white' : 'text-slate-300 hover:text-white'
+                className={`px-3 py-2 rounded-lg transition ${
+                  currentRoute === 'choose' || currentRoute === 'play' ? 'bg-dp-lightGray text-dp-navy font-bold' : 'text-dp-mutedText hover:text-dp-navy'
                 }`}
               >
                 Interactive
@@ -718,26 +521,36 @@
 
               <button
                 onClick={() => setCurrentRoute('exhibition')}
-                className={`px-2.5 py-1.5 rounded-lg transition flex items-center space-x-1 ${
-                  currentRoute === 'exhibition' ? 'bg-dp-blue text-white' : 'text-slate-300 hover:text-white'
+                className={`px-3 py-2 rounded-lg transition flex items-center space-x-1.5 ${
+                  currentRoute === 'exhibition' ? 'bg-dp-lightGray text-dp-navy font-bold' : 'text-dp-mutedText hover:text-dp-navy'
                 }`}
               >
-                <Image className="w-3.5 h-3.5" />
+                <Image className="w-4 h-4" />
                 <span>Exhibition</span>
               </button>
 
-              {/* Disclaimer Popup Trigger Button */}
+              <button
+                onClick={() => setCurrentRoute('data-story')}
+                className={`px-3 py-2 rounded-lg transition flex items-center space-x-1.5 ${
+                  currentRoute === 'data-story' ? 'bg-dp-lightGray text-dp-navy font-bold' : 'text-dp-mutedText hover:text-dp-navy'
+                }`}
+              >
+                <BarChart className="w-4 h-4" />
+                <span className="hidden md:inline">Data Brief</span>
+              </button>
+
+              {/* Disclaimer Popup Button */}
               <button
                 onClick={() => setDisclaimerOpen(true)}
-                className="px-2.5 py-1.5 rounded-lg bg-dp-amber/20 border border-dp-amber/40 text-dp-amber hover:bg-dp-amber hover:text-dp-dark font-bold transition flex items-center space-x-1"
+                className="px-3 py-2 rounded-lg border border-dp-border text-dp-navy hover:bg-dp-lightGray font-medium transition flex items-center space-x-1.5"
               >
-                <ShieldAlert className="w-3.5 h-3.5" />
-                <span className="hidden md:inline">Disclaimer</span>
+                <AlertTriangle className="w-4 h-4 text-dp-crimson" />
+                <span className="hidden sm:inline">Disclaimer</span>
               </button>
 
               <button
                 onClick={() => setSupportModalOpen(true)}
-                className="px-3 py-1.5 rounded-lg bg-dp-crimson hover:bg-rose-700 text-white font-bold transition flex items-center space-x-1 shadow-md"
+                className="px-3.5 py-2 rounded-lg bg-dp-navy hover:bg-dp-blue text-white font-bold transition flex items-center space-x-1.5 shadow-sm"
               >
                 <PhoneCall className="w-3.5 h-3.5" />
                 <span className="hidden sm:inline">Helplines</span>
@@ -745,107 +558,122 @@
             </nav>
           </header>
 
-          {/* Main Content Area */}
-          <main className="flex-1 flex flex-col items-center justify-center relative w-full max-w-6xl mx-auto p-4 sm:p-6">
+          {/* MAIN STAGE */}
+          <main className="flex-1 max-w-6xl w-full mx-auto p-4 sm:p-8">
             
-            {/* ==================== PAGE 1: HOME PAGE ==================== */}
+            {/* ==================== HOME PAGE ==================== */}
             {currentRoute === 'home' && (
-              <div className="w-full space-y-10 py-6">
+              <div className="space-y-12 py-4">
                 
-                {/* Hero Banner */}
-                <div className="relative rounded-3xl bg-gradient-to-r from-dp-navy via-dp-card to-dp-dark border border-dp-border p-8 sm:p-12 overflow-hidden shadow-2xl">
-                  <div className="absolute top-0 right-0 -mt-10 -mr-10 w-96 h-96 bg-dp-blue/20 rounded-full blur-3xl pointer-events-none"></div>
+                {/* Hero Section: Text + Photo of Women */}
+                <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center bg-dp-lightGray border border-dp-border rounded-3xl p-6 sm:p-10">
                   
-                  <div className="relative z-10 max-w-2xl space-y-6">
-                    <div className="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-dp-amber/10 border border-dp-amber/30 text-dp-amber text-xs font-bold uppercase tracking-widest">
-                      <Shield className="w-3.5 h-3.5" />
+                  {/* Hero Left Content */}
+                  <div className="lg:col-span-7 space-y-6">
+                    <div className="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-white border border-dp-border text-dp-navy text-xs font-semibold">
+                      <Shield className="w-3.5 h-3.5 text-dp-blue" />
                       <span>Dataphyte Special Investigation</span>
                     </div>
 
-                    <h1 className="text-3xl sm:text-5xl font-heading font-black text-white leading-tight">
-                      Counting the Uncounted: <span className="text-dp-amber">Femicide in Nigeria</span>
+                    <h1 className="text-3xl sm:text-4xl lg:text-5xl font-heading font-extrabold text-dp-navy leading-tight">
+                      Femicide in Nigeria: Institutional Silence & Fatal Gaps
                     </h1>
 
-                    <p className="text-sm sm:text-base text-slate-300 leading-relaxed font-normal">
-                      Gender-based violence claims thousands of lives yearly, yet institutional gaps, unrecorded police reports, and social stigma leave victims without protection. Explore our interactive simulation, data findings, and visual memorial exhibition.
+                    <p className="text-sm sm:text-base text-dp-mutedText leading-relaxed">
+                      Gender-based violence claims lives every year across Nigeria. Behind every statistic is a real woman facing unrecorded police reports, social dismissal, and systemic non-response.
                     </p>
 
-                    <div className="flex flex-wrap gap-4 pt-2">
+                    <div className="flex flex-wrap gap-3 pt-2">
                       <button
                         onClick={() => setCurrentRoute('choose')}
-                        className="px-6 py-3.5 rounded-xl bg-dp-amber hover:bg-dp-amberDark text-dp-dark font-heading font-bold text-sm tracking-wide shadow-lg transition-all transform active:scale-95 flex items-center space-x-2"
+                        className="px-6 py-3.5 rounded-xl bg-dp-navy hover:bg-dp-blue text-white font-heading font-bold text-sm transition shadow-md flex items-center space-x-2"
                       >
-                        <span>Launch Interactive Experience</span>
+                        <span>Start Interactive Scenarios</span>
                         <ChevronRight className="w-4 h-4" />
                       </button>
 
                       <button
                         onClick={() => setCurrentRoute('exhibition')}
-                        className="px-6 py-3.5 rounded-xl bg-dp-card border border-dp-border hover:border-dp-amber text-slate-200 font-heading font-semibold text-sm transition-all flex items-center space-x-2"
+                        className="px-6 py-3.5 rounded-xl bg-white border border-dp-border hover:border-dp-navy text-dp-navy font-heading font-semibold text-sm transition flex items-center space-x-2"
                       >
-                        <Image className="w-4 h-4 text-dp-amber" />
+                        <Image className="w-4 h-4 text-dp-blue" />
                         <span>View Photo Exhibition</span>
                       </button>
                     </div>
                   </div>
+
+                  {/* Hero Right: Women Photo Placeholder */}
+                  <div className="lg:col-span-5">
+                    <div className="relative rounded-2xl overflow-hidden border border-dp-border shadow-lg bg-slate-200 aspect-4/3 sm:aspect-4/3">
+                      <img 
+                        src={HERO_WOMEN_IMAGE_PATH} 
+                        alt="Nigerian Women Portrait" 
+                        className="w-full h-full object-cover"
+                      />
+                      <div className="absolute bottom-0 inset-x-0 bg-gradient-to-t from-dp-navy/80 to-transparent p-4 text-white">
+                        <p className="text-xs font-medium">Honoring the voices and experiences of women across Nigeria.</p>
+                      </div>
+                    </div>
+                  </div>
+
                 </div>
 
-                {/* Feature Cards Grid */}
+                {/* Core Pillars Grid */}
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                   
                   <div 
                     onClick={() => setCurrentRoute('choose')}
-                    className="bg-dp-card border border-dp-border rounded-2xl p-6 space-y-4 hover:border-dp-amber cursor-pointer transition group shadow-lg"
+                    className="bg-white border border-dp-border rounded-2xl p-6 space-y-3 hover:shadow-md hover:border-dp-navy cursor-pointer transition group"
                   >
-                    <div className="w-12 h-12 rounded-xl bg-dp-blue/30 border border-dp-blue flex items-center justify-center text-dp-amber group-hover:scale-110 transition-transform">
-                      <BookOpen className="w-6 h-6" />
+                    <div className="w-10 h-10 rounded-xl bg-dp-lightGray border border-dp-border flex items-center justify-center text-dp-navy group-hover:bg-dp-navy group-hover:text-white transition">
+                      <BookOpen className="w-5 h-5" />
                     </div>
-                    <h3 className="text-lg font-heading font-bold text-white group-hover:text-dp-amber transition-colors">
+                    <h3 className="text-lg font-heading font-bold text-dp-navy">
                       Interactive Narratives
                     </h3>
-                    <p className="text-xs text-slate-300 leading-relaxed">
-                      Follow four realistic scenarios illustrating how systemic doors close on women before crisis occurs.
+                    <p className="text-xs text-dp-mutedText leading-relaxed">
+                      Experience four realistic case paths demonstrating how societal non-response limits options for women in urban Nigeria.
                     </p>
-                    <span className="text-xs font-bold text-dp-amber flex items-center space-x-1 pt-2">
-                      <span>Start Stories</span>
+                    <span className="text-xs font-bold text-dp-blue flex items-center space-x-1 pt-2">
+                      <span>Begin Story</span>
                       <ChevronRight className="w-3.5 h-3.5" />
                     </span>
                   </div>
 
                   <div 
                     onClick={() => setCurrentRoute('exhibition')}
-                    className="bg-dp-card border border-dp-border rounded-2xl p-6 space-y-4 hover:border-dp-amber cursor-pointer transition group shadow-lg"
+                    className="bg-white border border-dp-border rounded-2xl p-6 space-y-3 hover:shadow-md hover:border-dp-navy cursor-pointer transition group"
                   >
-                    <div className="w-12 h-12 rounded-xl bg-dp-blue/30 border border-dp-blue flex items-center justify-center text-dp-amber group-hover:scale-110 transition-transform">
-                      <Image className="w-6 h-6" />
+                    <div className="w-10 h-10 rounded-xl bg-dp-lightGray border border-dp-border flex items-center justify-center text-dp-navy group-hover:bg-dp-navy group-hover:text-white transition">
+                      <Image className="w-5 h-5" />
                     </div>
-                    <h3 className="text-lg font-heading font-bold text-white group-hover:text-dp-amber transition-colors">
-                      Exhibition & Media Gallery
+                    <h3 className="text-lg font-heading font-bold text-dp-navy">
+                      Visual Exhibition
                     </h3>
-                    <p className="text-xs text-slate-300 leading-relaxed">
-                      Curated visual memorial featuring installations, police logs, transcripts, and data timelines.
+                    <p className="text-xs text-dp-mutedText leading-relaxed">
+                      A curated photo archive documenting real systemic logs, emergency transcripts, and public installation visuals.
                     </p>
-                    <span className="text-xs font-bold text-dp-amber flex items-center space-x-1 pt-2">
-                      <span>Explore Gallery</span>
+                    <span className="text-xs font-bold text-dp-blue flex items-center space-x-1 pt-2">
+                      <span>View Exhibition</span>
                       <ChevronRight className="w-3.5 h-3.5" />
                     </span>
                   </div>
 
                   <div 
                     onClick={() => setCurrentRoute('data-story')}
-                    className="bg-dp-card border border-dp-border rounded-2xl p-6 space-y-4 hover:border-dp-amber cursor-pointer transition group shadow-lg"
+                    className="bg-white border border-dp-border rounded-2xl p-6 space-y-3 hover:shadow-md hover:border-dp-navy cursor-pointer transition group"
                   >
-                    <div className="w-12 h-12 rounded-xl bg-dp-blue/30 border border-dp-blue flex items-center justify-center text-dp-amber group-hover:scale-110 transition-transform">
-                      <Scale className="w-6 h-6" />
+                    <div className="w-10 h-10 rounded-xl bg-dp-lightGray border border-dp-border flex items-center justify-center text-dp-navy group-hover:bg-dp-navy group-hover:text-white transition">
+                      <BarChart className="w-5 h-5" />
                     </div>
-                    <h3 className="text-lg font-heading font-bold text-white group-hover:text-dp-amber transition-colors">
-                      Data & Policy Analysis
+                    <h3 className="text-lg font-heading font-bold text-dp-navy">
+                      Data & Policy Brief
                     </h3>
-                    <p className="text-xs text-slate-300 leading-relaxed">
-                      Dataphyte's empirical metrics on the VAPP Act, state adoption gaps, and law enforcement prosecution rates.
+                    <p className="text-xs text-dp-mutedText leading-relaxed">
+                      Empirical evidence on the VAPP Act, law enforcement prosecution gaps, and reporting statistics across Nigeria.
                     </p>
-                    <span className="text-xs font-bold text-dp-amber flex items-center space-x-1 pt-2">
-                      <span>Read Findings</span>
+                    <span className="text-xs font-bold text-dp-blue flex items-center space-x-1 pt-2">
+                      <span>Read Data</span>
                       <ChevronRight className="w-3.5 h-3.5" />
                     </span>
                   </div>
@@ -855,45 +683,45 @@
               </div>
             )}
 
-            {/* ==================== PAGE 2: EXHIBITION & PICTURES ==================== */}
+            {/* ==================== EXHIBITION PAGE ==================== */}
             {currentRoute === 'exhibition' && (
-              <div className="w-full space-y-8 py-4">
+              <div className="space-y-8 py-4">
                 
-                <div className="text-center space-y-3 border-b border-dp-border pb-6">
-                  <span className="text-xs font-mono text-dp-amber uppercase tracking-widest font-bold">
-                    Dataphyte Memorial Gallery
+                <div className="text-center space-y-2 border-b border-dp-border pb-6">
+                  <span className="text-xs font-mono text-dp-blue uppercase tracking-widest font-bold">
+                    Dataphyte Gallery & Archives
                   </span>
-                  <h2 className="text-3xl sm:text-4xl font-heading font-black text-white">
-                    Femicide Awareness Exhibition
+                  <h2 className="text-3xl font-heading font-extrabold text-dp-navy">
+                    Femicide Awareness Photo Exhibition
                   </h2>
-                  <p className="text-xs sm:text-sm text-slate-300 max-w-xl mx-auto">
-                    A visual narrative documenting the human impact, structural silence, and research evidence behind gender-based violence in Nigeria.
+                  <p className="text-xs sm:text-sm text-dp-mutedText max-w-xl mx-auto">
+                    A visual archive documenting systemic barriers, official logs, public installations, and research evidence.
                   </p>
                 </div>
 
-                {/* Gallery Grid */}
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                {/* 2x2 Photo Grid */}
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                   {EXHIBITION_ITEMS.map((item) => (
                     <div 
                       key={item.id}
-                      className="bg-dp-card border border-dp-border rounded-2xl overflow-hidden shadow-xl hover:border-dp-amber transition group"
+                      className="bg-white border border-dp-border rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition group"
                     >
-                      <div className="relative h-64 overflow-hidden bg-dp-dark">
+                      <div className="relative h-64 overflow-hidden bg-slate-100">
                         <img 
                           src={item.image} 
                           alt={item.title} 
-                          className="w-full h-full object-cover group-hover:scale-105 transition duration-500 opacity-90 group-hover:opacity-100"
+                          className="w-full h-full object-cover group-hover:scale-105 transition duration-300"
                         />
-                        <div className="absolute top-3 left-3 bg-dp-navy/90 border border-dp-border px-3 py-1 rounded-full text-[10px] font-bold text-dp-amber uppercase tracking-wider">
+                        <span className="absolute top-3 left-3 bg-dp-navy text-white text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded">
                           {item.category}
-                        </div>
+                        </span>
                       </div>
                       
                       <div className="p-5 space-y-2">
-                        <h3 className="text-lg font-heading font-bold text-white group-hover:text-dp-amber transition-colors">
+                        <h3 className="text-lg font-heading font-bold text-dp-navy">
                           {item.title}
                         </h3>
-                        <p className="text-xs text-slate-300 leading-relaxed">
+                        <p className="text-xs text-dp-mutedText leading-relaxed">
                           {item.caption}
                         </p>
                       </div>
@@ -901,10 +729,10 @@
                   ))}
                 </div>
 
-                <div className="text-center pt-6">
+                <div className="text-center pt-4">
                   <button
                     onClick={() => setCurrentRoute('choose')}
-                    className="px-6 py-3 rounded-xl bg-dp-amber text-dp-dark font-heading font-bold text-xs sm:text-sm shadow-lg hover:bg-dp-amberDark transition inline-flex items-center space-x-2"
+                    className="px-6 py-3 rounded-xl bg-dp-navy hover:bg-dp-blue text-white font-heading font-bold text-xs sm:text-sm transition inline-flex items-center space-x-2"
                   >
                     <span>Proceed to Interactive Scenarios</span>
                     <ChevronRight className="w-4 h-4" />
@@ -914,59 +742,62 @@
               </div>
             )}
 
-            {/* ==================== PAGE 3: CHARACTER SELECTION ==================== */}
+            {/* ==================== CHARACTER SELECTION ==================== */}
             {currentRoute === 'choose' && (
-              <div className="w-full space-y-6 py-4">
+              <div className="space-y-6 py-4">
                 <div className="text-center space-y-2">
-                  <h2 className="text-2xl sm:text-3xl font-heading font-bold tracking-tight text-white">
+                  <h2 className="text-2xl sm:text-3xl font-heading font-extrabold text-dp-navy">
                     Select a Case Narrative
                   </h2>
-                  <p className="text-xs sm:text-sm text-slate-300 max-w-md mx-auto">
-                    Choose a story to observe how systemic barriers and non-responsive institutions limit choices for women across different social demographics.
+                  <p className="text-xs sm:text-sm text-dp-mutedText max-w-md mx-auto">
+                    Select a narrative to observe how institutional doors close on women across different social demographics.
                   </p>
                 </div>
 
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                   {CHARACTERS.map(char => {
                     const isDone = completedCharacters.includes(char.id);
                     return (
                       <div
                         key={char.id}
                         onClick={() => startCharacterStory(char)}
-                        className={`group relative rounded-2xl border p-5 cursor-pointer transition-all duration-300 hover:scale-[1.02] flex flex-col justify-between ${char.avatarBg} ${isDone ? 'border-emerald-500/50 bg-emerald-950/20' : 'hover:border-dp-amber'}`}
+                        className={`group rounded-2xl border p-6 cursor-pointer transition-all hover:border-dp-navy hover:shadow-md bg-white flex flex-col justify-between ${
+                          isDone ? 'border-emerald-500/50 bg-emerald-50/30' : 'border-dp-border'
+                        }`}
                       >
-                        {isDone && (
-                          <span className="absolute top-3 right-3 bg-emerald-500/20 text-emerald-400 border border-emerald-500/40 text-[10px] font-bold px-2 py-0.5 rounded-full flex items-center space-x-1">
-                            <CheckCheck className="w-3 h-3" />
-                            <span>Completed</span>
-                          </span>
-                        )}
-
-                        <div className="space-y-3">
-                          <div className="flex items-center space-x-3">
-                            <div className={`w-12 h-12 rounded-full bg-gradient-to-br ${char.avatarColor} flex items-center justify-center text-white font-bold text-lg shadow-md font-heading`}>
-                              {char.name[0]}
+                        <div className="space-y-4">
+                          <div className="flex items-center justify-between">
+                            <div className="flex items-center space-x-3">
+                              <div className={`w-11 h-11 rounded-full ${char.avatarColor} flex items-center justify-center font-heading font-bold text-base shadow-sm`}>
+                                {char.name[0]}
+                              </div>
+                              <div>
+                                <h3 className="text-lg font-heading font-bold text-dp-navy group-hover:text-dp-blue transition-colors">
+                                  {char.name}, {char.age}
+                                </h3>
+                                <p className="text-xs text-dp-mutedText font-medium">{char.occupation}</p>
+                              </div>
                             </div>
-                            <div>
-                              <h3 className="text-lg font-heading font-bold text-white group-hover:text-dp-amber transition-colors">
-                                {char.name}, {char.age}
-                              </h3>
-                              <p className="text-xs text-slate-400 font-medium">{char.occupation}</p>
-                            </div>
+                            {isDone && (
+                              <span className="bg-emerald-100 text-emerald-800 text-[10px] font-bold px-2.5 py-1 rounded-full flex items-center space-x-1">
+                                <CheckCheck className="w-3 h-3" />
+                                <span>Read</span>
+                              </span>
+                            )}
                           </div>
 
-                          <div className="flex items-center space-x-1 text-[11px] text-dp-amber font-medium">
-                            <MapPin className="w-3 h-3" />
+                          <div className="flex items-center space-x-1 text-xs text-dp-blue font-semibold">
+                            <MapPin className="w-3.5 h-3.5" />
                             <span>{char.location}</span>
                           </div>
 
-                          <p className="text-xs text-slate-300 leading-relaxed">
+                          <p className="text-xs text-dp-darkText leading-relaxed">
                             {char.blurb}
                           </p>
                         </div>
 
-                        <div className="mt-4 pt-3 border-t border-dp-border flex items-center justify-between text-xs font-semibold text-slate-400 group-hover:text-white">
-                          <span>Begin Storyline</span>
+                        <div className="mt-6 pt-3 border-t border-dp-border flex items-center justify-between text-xs font-bold text-dp-navy group-hover:text-dp-blue">
+                          <span>Begin Case Story</span>
                           <ChevronRight className="w-4 h-4 transform group-hover:translate-x-1 transition-transform" />
                         </div>
                       </div>
@@ -976,68 +807,58 @@
               </div>
             )}
 
-            {/* ==================== PAGE 4: STORY PLAYER ==================== */}
+            {/* ==================== INTERACTIVE STORY PLAYER ==================== */}
             {currentRoute === 'play' && (
-              <div className="w-full flex flex-col items-center space-y-4 py-2">
+              <div className="flex flex-col items-center space-y-6 py-2">
                 
-                {/* Pressure HUD */}
-                <div className="w-full max-w-sm sm:max-w-md bg-dp-card border border-dp-border rounded-2xl p-3 shadow-lg flex items-center justify-between">
+                {/* Pressure Metric Indicator */}
+                <div className="w-full max-w-lg bg-dp-lightGray border border-dp-border rounded-xl p-3.5 flex items-center justify-between">
                   <div className="flex items-center space-x-2">
-                    <AlertCircle className="w-4 h-4 text-dp-crimson" />
-                    <span className="text-xs font-semibold text-slate-200">Systemic Isolation Level</span>
+                    <Shield className="w-4 h-4 text-dp-navy" />
+                    <span className="text-xs font-semibold text-dp-navy">Systemic Isolation Index</span>
                   </div>
                   <div className="flex items-center space-x-3">
-                    <div className="w-32 sm:w-44 bg-dp-dark h-2.5 rounded-full overflow-hidden border border-dp-border">
+                    <div className="w-36 sm:w-48 bg-slate-200 h-2 rounded-full overflow-hidden">
                       <div 
-                        className="bg-gradient-to-r from-dp-amber via-dp-crimson to-rose-700 h-full transition-all duration-500" 
+                        className="bg-dp-navy h-full transition-all duration-300" 
                         style={{ width: `${Math.min(100, (calculateTotalPressure() / 80) * 100)}%` }}
                       />
                     </div>
-                    <span className="text-xs font-mono font-bold text-dp-crimson">
+                    <span className="text-xs font-mono font-bold text-dp-navy">
                       {calculateTotalPressure()} pt
                     </span>
                   </div>
                 </div>
 
-                {/* Device Frame */}
-                <div className="w-full max-w-sm sm:max-w-md bg-dp-dark border border-dp-border rounded-[2.5rem] p-3 shadow-2xl relative overflow-hidden flex flex-col min-h-[580px] sm:min-h-[640px]">
+                {/* Device Interface Simulation Container */}
+                <div className="w-full max-w-lg bg-white border border-dp-border rounded-2xl shadow-xl p-4 sm:p-6 flex flex-col min-h-[500px]">
                   
-                  {/* Top Status */}
-                  <div className="w-full px-4 pt-1 pb-2 flex items-center justify-between text-[11px] font-mono text-slate-400 border-b border-dp-border mb-2">
-                    <span>09:41</span>
-                    <div className="w-16 h-3 bg-dp-card rounded-full mx-auto border border-dp-border"></div>
-                    <div className="flex items-center space-x-1.5">
-                      <span>5G</span>
-                      <div className="w-4 h-2 bg-slate-400 rounded-sm"></div>
-                    </div>
-                  </div>
-
-                  {/* Scene Header */}
-                  <div className="bg-dp-navy/90 rounded-xl p-2.5 mb-3 flex items-center justify-between border border-dp-border">
-                    <div className="flex items-center space-x-2">
-                      <div className={`w-8 h-8 rounded-full bg-gradient-to-br ${selectedCharacter.avatarColor} flex items-center justify-center text-white font-bold text-xs font-heading`}>
+                  {/* Header */}
+                  <div className="bg-dp-lightGray rounded-xl p-3 mb-4 flex items-center justify-between border border-dp-border">
+                    <div className="flex items-center space-x-3">
+                      <div className={`w-8 h-8 rounded-full ${selectedCharacter.avatarColor} flex items-center justify-center font-heading font-bold text-xs`}>
                         {selectedCharacter.name[0]}
                       </div>
                       <div>
-                        <h4 className="text-xs font-bold text-slate-100">{currentScene.headerTitle || selectedCharacter.name}</h4>
-                        <p className="text-[10px] text-dp-amber font-medium">{currentScene.beatTitle}</p>
+                        <h4 className="text-xs font-bold text-dp-navy">{currentScene.headerTitle || selectedCharacter.name}</h4>
+                        <p className="text-[11px] text-dp-mutedText">{currentScene.beatTitle}</p>
                       </div>
                     </div>
-                    <span className="text-[10px] bg-dp-card text-slate-300 px-2 py-0.5 rounded-full font-mono border border-dp-border">
-                      Beat {currentBeatIdx + 1}/6
+                    <span className="text-[10px] bg-white text-dp-navy border border-dp-border px-2.5 py-1 rounded-md font-mono font-bold">
+                      Beat {currentBeatIdx + 1}/5
                     </span>
                   </div>
 
-                  {/* Interfaces */}
-                  <div className="flex-1 overflow-y-auto space-y-3 px-1 custom-scrollbar">
+                  {/* Dynamic Nodes */}
+                  <div className="flex-1 space-y-4 overflow-y-auto px-1 custom-scrollbar">
                     
                     {currentScene.interface === 'phone' && (
                       <div className="space-y-3">
                         {currentScene.nodes.slice(0, currentNodeIdx + 1).map((node, idx) => {
                           if (node.type === 'narration') {
                             return (
-                              <div key={idx} className="bg-dp-card/60 border border-dp-border rounded-xl p-3 text-center my-2">
-                                <p className="text-xs text-slate-300 italic leading-relaxed">{node.text}</p>
+                              <div key={idx} className="bg-dp-lightGray border border-dp-border rounded-xl p-3 text-center my-2">
+                                <p className="text-xs text-dp-mutedText italic leading-relaxed">{node.text}</p>
                               </div>
                             );
                           }
@@ -1045,49 +866,36 @@
                             const isHer = node.from === 'her';
                             return (
                               <div key={idx} className={`flex flex-col ${isHer ? 'items-end' : 'items-start'} space-y-1`}>
-                                {!isHer && <span className="text-[10px] text-slate-400 px-1 font-semibold">{node.from}</span>}
-                                <div className={`max-w-[82%] rounded-2xl px-3.5 py-2.5 text-xs shadow-md ${
+                                {!isHer && <span className="text-[10px] text-dp-mutedText px-1 font-semibold">{node.from}</span>}
+                                <div className={`max-w-[85%] rounded-xl px-4 py-2.5 text-xs ${
                                   isHer 
-                                    ? 'bg-dp-blue border border-blue-600/40 text-white rounded-br-none' 
-                                    : 'bg-dp-card border border-dp-border text-slate-200 rounded-bl-none'
+                                    ? 'bg-dp-navy text-white rounded-br-none shadow-sm' 
+                                    : 'bg-dp-lightGray border border-dp-border text-dp-darkText rounded-bl-none'
                                 }`}>
                                   <p className="leading-relaxed">{node.text}</p>
-                                  <div className="flex items-center justify-end space-x-1 text-[9px] text-slate-300 mt-1">
-                                    <span>09:42</span>
-                                    {isHer && <CheckCheck className="w-3 h-3 text-dp-amber" />}
-                                  </div>
                                 </div>
                               </div>
                             );
                           }
                           if (node.type === 'choice') {
                             return (
-                              <div key={idx} className="bg-dp-card border border-dp-amber/40 rounded-2xl p-3 my-3 space-y-2">
-                                <span className="text-[10px] font-bold text-dp-amber tracking-wider uppercase block">
-                                  Select Response
+                              <div key={idx} className="bg-white border border-dp-navy/30 rounded-xl p-3.5 my-3 space-y-2">
+                                <span className="text-[10px] font-bold text-dp-navy tracking-wider uppercase block">
+                                  Select Response Choice
                                 </span>
                                 <div className="space-y-2">
-                                  {node.options.map((opt, oIdx) => {
-                                    const isGreyedOut = opt.disabledAbove && calculateTotalPressure() >= opt.disabledAbove;
-                                    return (
-                                      <button
-                                        key={oIdx}
-                                        disabled={isGreyedOut}
-                                        onClick={() => {
-                                          addPressure(opt.pressure);
-                                          handleNextNode();
-                                        }}
-                                        className={`w-full text-left p-2.5 rounded-xl text-xs transition-all ${
-                                          isGreyedOut 
-                                            ? 'bg-dp-dark text-slate-600 border border-slate-800 cursor-not-allowed line-through' 
-                                            : 'bg-dp-amber/10 border border-dp-amber/30 text-amber-200 hover:bg-dp-amber/20 active:scale-98'
-                                        }`}
-                                      >
-                                        {opt.label}
-                                        {isGreyedOut && <span className="block text-[9px] text-dp-crimson font-semibold no-underline">Choice blocked due to systemic isolation</span>}
-                                      </button>
-                                    );
-                                  })}
+                                  {node.options.map((opt, oIdx) => (
+                                    <button
+                                      key={oIdx}
+                                      onClick={() => {
+                                        addPressure(opt.pressure);
+                                        handleNextNode();
+                                      }}
+                                      className="w-full text-left p-3 rounded-lg text-xs bg-dp-lightGray hover:bg-dp-navy hover:text-white border border-dp-border font-medium transition-all"
+                                    >
+                                      {opt.label}
+                                    </button>
+                                  ))}
                                 </div>
                               </div>
                             );
@@ -1099,34 +907,34 @@
 
                     {currentScene.interface === 'doors' && (
                       <div className="space-y-3">
-                        <div className="bg-dp-card border border-dp-border rounded-xl p-3 text-xs text-slate-300">
-                          <p className="font-semibold text-dp-amber mb-1">Systemic Refusal Map</p>
-                          <p>Select doors to reach out to. Observe how support networks consistently shift responsibility back onto the woman.</p>
+                        <div className="bg-dp-lightGray border border-dp-border rounded-xl p-3 text-xs text-dp-darkText">
+                          <p className="font-bold text-dp-navy mb-1">Institutional Support Map</p>
+                          <p>Select doors to reach out to. Observe how societal support networks redirect responsibility back onto the victim.</p>
                         </div>
 
-                        <div className="grid grid-cols-1 gap-2.5">
+                        <div className="grid grid-cols-1 gap-3">
                           {currentScene.nodes.filter(n => n.type === 'door').map((door) => {
                             const isLogged = doorsLog.some(d => d.id === door.id);
                             return (
                               <div
                                 key={door.id}
                                 onClick={() => handleDoorClick(door)}
-                                className={`p-3 rounded-xl border transition-all cursor-pointer ${
+                                className={`p-4 rounded-xl border transition-all cursor-pointer ${
                                   isLogged 
-                                    ? 'bg-dp-card/40 border-dp-crimson/40 opacity-75' 
-                                    : 'bg-dp-card border-dp-border hover:border-dp-amber'
+                                    ? 'bg-slate-50 border-slate-300' 
+                                    : 'bg-white border-dp-border hover:border-dp-navy'
                                 }`}
                               >
                                 <div className="flex items-center justify-between mb-1">
-                                  <span className="text-xs font-bold text-slate-200">{door.label}</span>
-                                  <span className={`text-[10px] uppercase font-bold px-2 py-0.5 rounded ${
-                                    isLogged ? 'bg-dp-crimson/20 text-dp-crimson border border-dp-crimson/40' : 'bg-dp-dark text-slate-400'
+                                  <span className="text-xs font-bold text-dp-navy">{door.label}</span>
+                                  <span className={`text-[10px] font-bold px-2 py-0.5 rounded ${
+                                    isLogged ? 'bg-slate-200 text-slate-700' : 'bg-dp-lightGray text-dp-blue'
                                   }`}>
-                                    {isLogged ? door.response : 'Unopened'}
+                                    {isLogged ? door.response : 'Click to Open'}
                                   </span>
                                 </div>
                                 {isLogged && (
-                                  <p className="text-xs text-slate-300 italic mt-2 border-t border-dp-border pt-2">
+                                  <p className="text-xs text-dp-mutedText italic mt-2 border-t border-dp-border pt-2">
                                     "{door.text}"
                                   </p>
                                 )}
@@ -1141,14 +949,14 @@
                       <div className="space-y-3">
                         {currentScene.nodes.slice(0, currentNodeIdx + 1).map((node, idx) => {
                           if (node.type === 'dialogue') {
-                            const isOfficer = node.speaker === 'Desk Officer' || node.speaker === 'Officer';
+                            const isOfficer = node.speaker === 'Desk Officer';
                             return (
-                              <div key={idx} className={`p-3 rounded-xl border text-xs leading-relaxed ${
+                              <div key={idx} className={`p-3.5 rounded-xl border text-xs leading-relaxed ${
                                 isOfficer 
-                                  ? 'bg-dp-card border-dp-border text-slate-200' 
-                                  : 'bg-dp-navy border border-dp-blue text-slate-100'
+                                  ? 'bg-dp-lightGray border-dp-border text-dp-darkText' 
+                                  : 'bg-white border-dp-navy/30 text-dp-navy font-medium'
                               }`}>
-                                <span className="font-bold block text-[10px] text-dp-amber uppercase tracking-wider mb-1">
+                                <span className="font-bold block text-[10px] text-dp-blue uppercase tracking-wider mb-1">
                                   {node.speaker}
                                 </span>
                                 <p>"{node.text}"</p>
@@ -1157,89 +965,33 @@
                           }
                           if (node.type === 'cutaway') {
                             return (
-                              <div key={idx} className="bg-black border border-dp-border rounded-2xl p-6 text-center my-4 space-y-3">
-                                <span className="text-xs font-mono text-dp-crimson tracking-widest uppercase block">[ CUT AWAY ]</span>
-                                <p className="text-sm text-slate-200 font-serif italic leading-relaxed">
+                              <div key={idx} className="bg-dp-navy text-white rounded-xl p-6 text-center my-4 space-y-2">
+                                <span className="text-xs font-mono text-slate-300 tracking-widest uppercase block">[ CUT AWAY ]</span>
+                                <p className="text-sm font-serif italic leading-relaxed">
                                   "{node.text}"
                                 </p>
                               </div>
                             );
                           }
-                          if (node.type === 'narration') {
-                            return (
-                              <div key={idx} className="text-center p-2 text-xs text-slate-400 italic">
-                                {node.text}
-                              </div>
-                            );
-                          }
                           return null;
                         })}
                       </div>
                     )}
 
-                    {currentScene.interface === 'feed' && (
-                      <div className="space-y-3">
-                        <div className="flex items-center justify-between bg-dp-card p-2 rounded-lg border border-dp-border text-[11px]">
-                          <span className="text-slate-400 font-medium">Public Reactions</span>
-                          <button
-                            onClick={() => setReduceBlameComments(!reduceBlameComments)}
-                            className="text-dp-amber font-semibold hover:underline flex items-center space-x-1"
-                          >
-                            {reduceBlameComments ? <EyeOff className="w-3.5 h-3.5" /> : <Eye className="w-3.5 h-3.5" />}
-                            <span>{reduceBlameComments ? 'Show All' : 'Filter Victim Blaming'}</span>
-                          </button>
-                        </div>
-
-                        {currentScene.nodes.map((node, idx) => {
-                          if (node.type === 'post') {
-                            return (
-                              <div key={idx} className="bg-dp-card border border-dp-border rounded-xl p-3.5 space-y-2">
-                                <div className="flex items-center space-x-2">
-                                  <div className="w-7 h-7 rounded-full bg-dp-amber text-dp-dark flex items-center justify-center font-bold text-xs font-heading">
-                                    D
-                                  </div>
-                                  <div>
-                                    <h5 className="text-xs font-bold text-slate-100">{node.author}</h5>
-                                    <span className="text-[9px] text-slate-400">Verified Channel • 1h ago</span>
-                                  </div>
-                                </div>
-                                <p className="text-xs text-slate-200 leading-relaxed">{node.text}</p>
-                              </div>
-                            );
-                          }
-
-                          if (node.type === 'comment') {
-                            if (reduceBlameComments && node.stance === 'blame') return null;
-                            return (
-                              <div key={idx} className={`p-2.5 rounded-lg border text-xs space-y-1 ${
-                                node.stance === 'blame' 
-                                  ? 'bg-dp-crimson/10 border-dp-crimson/30 text-rose-200' 
-                                  : 'bg-dp-card border-dp-border text-slate-300'
-                              }`}>
-                                <p className="leading-snug">{node.text}</p>
-                              </div>
-                            );
-                          }
-                          return null;
-                        })}
-                      </div>
-                    )}
-
-                    <div ref={chatBottomRef} />
                   </div>
 
-                  {/* Next Step Control */}
-                  <div className="pt-3 border-t border-dp-border mt-2">
+                  {/* Control Button */}
+                  <div className="pt-4 border-t border-dp-border mt-4">
                     <button
                       onClick={handleNextNode}
-                      className="w-full py-3 rounded-xl bg-dp-amber hover:bg-dp-amberDark text-dp-dark text-xs font-heading font-bold tracking-wide shadow-md transition-all flex items-center justify-center space-x-1.5"
+                      className="w-full py-3 rounded-xl bg-dp-navy hover:bg-dp-blue text-white text-xs font-heading font-bold shadow transition flex items-center justify-center space-x-1.5"
                     >
                       <span>
                         {currentNodeIdx < currentScene.nodes.length - 1 
-                          ? 'Continue Reading' 
+                          ? 'Continue' 
                           : currentBeatIdx < activeScenes.length - 1 
-                          ? 'Proceed to Next Beat' 
-                          : 'View Case Finale'}
+                          ? 'Next Beat' 
+                          : 'View Case Summary'}
                       </span>
                       <ChevronRight className="w-4 h-4" />
                     </button>
@@ -1249,110 +1001,112 @@
               </div>
             )}
 
-            {/* ==================== PAGE 5: FINALE ==================== */}
+            {/* ==================== CASE FINALE ==================== */}
             {currentRoute === 'finale' && (
-              <div className="w-full max-w-lg bg-dp-card border border-dp-border rounded-3xl p-6 sm:p-8 shadow-2xl text-center space-y-6 my-auto">
-                <div className="inline-flex p-3 rounded-2xl bg-dp-amber/10 border border-dp-amber/30 text-dp-amber">
-                  <Scale className="w-10 h-10" />
+              <div className="max-w-lg mx-auto bg-white border border-dp-border rounded-3xl p-6 sm:p-8 shadow-xl text-center space-y-6 my-4">
+                <div className="inline-flex p-3 rounded-2xl bg-dp-lightGray border border-dp-border text-dp-navy">
+                  <Shield className="w-8 h-8" />
                 </div>
 
-                <div className="space-y-3">
-                  <h2 className="text-2xl font-heading font-bold text-white">
-                    {selectedCharacter.name}'s Story is Not an Isolated Case.
+                <div className="space-y-2">
+                  <h2 className="text-2xl font-heading font-extrabold text-dp-navy">
+                    {selectedCharacter.name}'s Experience
                   </h2>
-                  <p className="text-xs sm:text-sm text-slate-300 leading-relaxed max-w-md mx-auto">
-                    She was killed not due to a single failure, but because institutional doors closed on her at every turn. Gender violence is sustained when systemic systems refuse early intervention.
+                  <p className="text-xs sm:text-sm text-dp-mutedText leading-relaxed">
+                    This narrative highlights how systemic barriers and non-intervention limit safe options for women facing threats.
                   </p>
                 </div>
 
-                <div className="bg-dp-dark border border-dp-border rounded-2xl p-4 text-left space-y-2 text-xs">
-                  <span className="text-dp-amber font-bold uppercase tracking-wider block text-[10px]">
-                    Systemic Summary for {selectedCharacter.name}
+                <div className="bg-dp-lightGray border border-dp-border rounded-2xl p-4 text-left space-y-2 text-xs">
+                  <span className="text-dp-navy font-bold uppercase tracking-wider block text-[10px]">
+                    Case Summary: {selectedCharacter.name}
                   </span>
-                  <div className="flex justify-between text-slate-300">
-                    <span>Total Systemic Pressure:</span>
-                    <strong className="text-dp-crimson font-mono">{calculateTotalPressure()} points</strong>
+                  <div className="flex justify-between text-dp-darkText">
+                    <span>Systemic Pressure Score:</span>
+                    <strong className="text-dp-navy font-mono">{calculateTotalPressure()} points</strong>
                   </div>
-                  <div className="flex justify-between text-slate-300">
-                    <span>Support Entities Attempted:</span>
-                    <strong className="text-dp-amber">{doorsLog.length} doors</strong>
+                  <div className="flex justify-between text-dp-darkText">
+                    <span>Institutional Channels Contacted:</span>
+                    <strong className="text-dp-navy">{doorsLog.length} doors</strong>
                   </div>
                 </div>
 
                 <div className="space-y-3 pt-2">
                   <button
                     onClick={() => setCurrentRoute('data-story')}
-                    className="w-full py-3.5 rounded-xl bg-dp-amber hover:bg-dp-amberDark text-dp-dark font-heading font-bold text-xs sm:text-sm tracking-wide shadow-lg transition-all flex items-center justify-center space-x-2"
+                    className="w-full py-3.5 rounded-xl bg-dp-navy hover:bg-dp-blue text-white font-heading font-bold text-xs sm:text-sm shadow transition flex items-center justify-center space-x-2"
                   >
-                    <BookOpen className="w-4 h-4" />
-                    <span>View Dataphyte Research & Data</span>
+                    <BarChart className="w-4 h-4" />
+                    <span>View Dataphyte Research Findings</span>
                   </button>
 
                   <button
                     onClick={() => setCurrentRoute('choose')}
-                    className="w-full py-3 rounded-xl bg-dp-navy hover:bg-dp-blue text-white font-semibold text-xs transition-all flex items-center justify-center space-x-2"
+                    className="w-full py-3 rounded-xl bg-dp-lightGray border border-dp-border text-dp-navy font-semibold text-xs hover:bg-slate-200 transition"
                   >
-                    <RotateCcw className="w-4 h-4" />
-                    <span>Select Another Case Narrative</span>
+                    Select Another Narrative
                   </button>
                 </div>
               </div>
             )}
 
-            {/* ==================== PAGE 6: DATA & POLICY ==================== */}
+            {/* ==================== DATA & POLICY STORY ==================== */}
             {currentRoute === 'data-story' && (
-              <div className="w-full space-y-8 py-6">
-                <div className="text-center space-y-3 border-b border-dp-border pb-6">
-                  <span className="text-xs font-mono text-dp-amber tracking-widest uppercase font-bold">
-                    Dataphyte Research Brief
+              <div className="space-y-8 py-4">
+                <div className="text-center space-y-2 border-b border-dp-border pb-6">
+                  <span className="text-xs font-mono text-dp-blue tracking-widest uppercase font-bold">
+                    Dataphyte Empirical Data
                   </span>
-                  <h2 className="text-3xl font-heading font-black text-white">
-                    Femicide in Nigeria: Data Findings
+                  <h2 className="text-3xl font-heading font-extrabold text-dp-navy">
+                    Femicide in Nigeria: The Numbers
                   </h2>
-                  <p className="text-xs sm:text-sm text-slate-300 max-w-xl mx-auto">
-                    Data analysis on state adoption of the VAPP Act, reporting barriers, and law enforcement prosecution trends.
+                  <p className="text-xs sm:text-sm text-dp-mutedText max-w-xl mx-auto">
+                    A data-driven breakdown examining VAPP Act implementation, police reporting rates, and key findings.
                   </p>
                 </div>
 
-                <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-                  <div className="bg-dp-card border border-dp-border rounded-2xl p-5 text-center space-y-1">
-                    <span className="text-3xl font-extrabold text-dp-crimson font-mono">72%+</span>
-                    <p className="text-xs text-slate-200 font-semibold">Perpetrators Known to Victim</p>
-                    <span className="text-[10px] text-slate-400 block pt-1">Intimate partners or family members</span>
+                {/* 3 Metric Cards */}
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
+                  <div className="bg-white border border-dp-border rounded-2xl p-6 text-center space-y-1 shadow-sm">
+                    <span className="text-4xl font-extrabold text-dp-navy font-mono">72%+</span>
+                    <p className="text-xs font-bold text-dp-darkText pt-2">Perpetrators Known to Victim</p>
+                    <span className="text-[11px] text-dp-mutedText block">Intimate partners or acquaintances</span>
                   </div>
-                  <div className="bg-dp-card border border-dp-border rounded-2xl p-5 text-center space-y-1">
-                    <span className="text-3xl font-extrabold text-dp-amber font-mono">35 / 36</span>
-                    <p className="text-xs text-slate-200 font-semibold">States Adopted VAPP Act</p>
-                    <span className="text-[10px] text-slate-400 block pt-1">Implementation desks remain severely unfunded</span>
+
+                  <div className="bg-white border border-dp-border rounded-2xl p-6 text-center space-y-1 shadow-sm">
+                    <span className="text-4xl font-extrabold text-dp-blue font-mono">35 / 36</span>
+                    <p className="text-xs font-bold text-dp-darkText pt-2">States Passed VAPP Act</p>
+                    <span className="text-[11px] text-dp-mutedText block">Implementation desks remain underfunded</span>
                   </div>
-                  <div className="bg-dp-card border border-dp-border rounded-2xl p-5 text-center space-y-1">
-                    <span className="text-3xl font-extrabold text-dp-lightBlue font-mono">&lt; 8%</span>
-                    <p className="text-xs text-slate-200 font-semibold">Police Prosecution Rate</p>
-                    <span className="text-[10px] text-slate-400 block pt-1">Most domestic reports turned away at desk level</span>
+
+                  <div className="bg-white border border-dp-border rounded-2xl p-6 text-center space-y-1 shadow-sm">
+                    <span className="text-4xl font-extrabold text-slate-700 font-mono">&lt; 8%</span>
+                    <p className="text-xs font-bold text-dp-darkText pt-2">Formal Police Prosecutions</p>
+                    <span className="text-[11px] text-dp-mutedText block">Most reports turned away at desk level</span>
                   </div>
                 </div>
 
-                <div className="bg-dp-card border border-dp-border rounded-2xl p-6 space-y-4">
-                  <h3 className="text-lg font-heading font-bold text-white flex items-center space-x-2">
-                    <Shield className="w-5 h-5 text-dp-amber" />
-                    <span>Key Policy Takeaways</span>
+                <div className="bg-dp-lightGray border border-dp-border rounded-2xl p-6 space-y-4">
+                  <h3 className="text-lg font-heading font-bold text-dp-navy flex items-center space-x-2">
+                    <Shield className="w-5 h-5 text-dp-blue" />
+                    <span>Policy & Research Key Takeaways</span>
                   </h3>
-                  <ul className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs text-slate-300">
-                    <li className="bg-dp-dark p-4 rounded-xl border border-dp-border">
-                      <strong className="text-dp-amber block mb-1">Police Desk Training Gap</strong>
-                      Desk officers routinely treat non-physical threats and stalking as private domestic matters, leaving high-risk cases unchecked.
+                  <ul className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs text-dp-darkText">
+                    <li className="bg-white p-4 rounded-xl border border-dp-border">
+                      <strong className="text-dp-navy block mb-1 font-heading">Desk-Level Training Gap</strong>
+                      Local police stations require specialized gender desks trained to identify non-physical threats and digital stalking early.
                     </li>
-                    <li className="bg-dp-dark p-4 rounded-xl border border-dp-border">
-                      <strong className="text-dp-amber block mb-1">Digital Cyberstalking Enforcement</strong>
-                      Cybercrime law enforcement lacks active inter-agency protocols to handle WhatsApp and social media stalking prior to physical harm.
+                    <li className="bg-white p-4 rounded-xl border border-dp-border">
+                      <strong className="text-dp-navy block mb-1 font-heading">Digital Stalking Enforcement</strong>
+                      Cybercrime protocols must prioritize intimate partner surveillance and digital harassment before physical harm occurs.
                     </li>
                   </ul>
                 </div>
 
-                <div className="text-center pt-4 border-t border-dp-border">
+                <div className="text-center pt-4">
                   <button
                     onClick={() => setSupportModalOpen(true)}
-                    className="px-6 py-3.5 rounded-xl bg-dp-amber text-dp-dark font-heading font-bold text-xs sm:text-sm shadow-xl hover:bg-dp-amberDark transition"
+                    className="px-6 py-3.5 rounded-xl bg-dp-navy hover:bg-dp-blue text-white font-heading font-bold text-xs sm:text-sm shadow transition"
                   >
                     Access Emergency Helpline Directory
                   </button>
@@ -1362,81 +1116,81 @@
 
           </main>
 
-          {/* ==================== DISCLAIMER POPUP MODAL ==================== */}
+          {/* ==================== DISCLAIMER MODAL ==================== */}
           {disclaimerOpen && (
-            <div className="fixed inset-0 z-50 bg-black/80 backdrop-blur-md flex items-center justify-center p-4">
-              <div className="w-full max-w-lg bg-dp-card border border-dp-border rounded-3xl p-6 sm:p-8 space-y-5 shadow-2xl relative">
+            <div className="fixed inset-0 z-50 bg-dp-navy/60 backdrop-blur-sm flex items-center justify-center p-4">
+              <div className="w-full max-w-lg bg-white border border-dp-border rounded-3xl p-6 sm:p-8 space-y-5 shadow-2xl relative">
                 <button
                   onClick={() => setDisclaimerOpen(false)}
-                  className="absolute top-4 right-4 p-2 rounded-full bg-dp-dark text-slate-400 hover:text-white"
+                  className="absolute top-4 right-4 p-2 rounded-full hover:bg-dp-lightGray text-dp-mutedText hover:text-dp-navy"
                 >
                   <X className="w-5 h-5" />
                 </button>
 
-                <div className="flex items-center space-x-3 text-dp-amber">
-                  <AlertTriangle className="w-8 h-8" />
+                <div className="flex items-center space-x-3 text-dp-navy">
+                  <AlertTriangle className="w-7 h-7 text-dp-crimson" />
                   <div>
-                    <h3 className="text-xl font-heading font-bold text-white">Project Disclaimer</h3>
-                    <p className="text-xs text-slate-400">Dataphyte Femicide Awareness Series</p>
+                    <h3 className="text-xl font-heading font-bold text-dp-navy">Project Disclaimer</h3>
+                    <p className="text-xs text-dp-mutedText">Dataphyte Femicide Reporting Series</p>
                   </div>
                 </div>
 
-                <div className="bg-dp-dark border border-dp-border rounded-2xl p-4 text-xs sm:text-sm text-slate-300 space-y-3 leading-relaxed">
+                <div className="bg-dp-lightGray border border-dp-border rounded-2xl p-4 text-xs sm:text-sm text-dp-darkText space-y-3 leading-relaxed">
                   <p>
-                    <strong>Sensitive Content Notice:</strong> This interactive journalistic tool models real patterns of intimate partner control, stalking, and institutional failure in urban Nigeria.
+                    <strong>Content Notice:</strong> This interactive journalistic tool models real patterns of intimate partner control, stalking, and institutional non-response in Nigeria.
                   </p>
-                  <ul className="list-disc list-inside space-y-1 text-slate-400 text-xs">
-                    <li><strong>No physical violence or graphic injury is depicted.</strong> Stories cut away prior to violence.</li>
-                    <li>All story personas are fictionalized composite characters created from verified legal records and human rights documentation.</li>
-                    <li>This experience is intended for research, advocacy, and educational policy awareness.</li>
+                  <ul className="list-disc list-inside space-y-1 text-dp-mutedText text-xs">
+                    <li><strong>No physical violence or graphic injury is depicted.</strong> Scenarios cut away prior to any harm.</li>
+                    <li>Personas are composite profiles built from legal research, public records, and advocacy data.</li>
+                    <li>Designed strictly for advocacy, policy awareness, and empirical research.</li>
                   </ul>
                 </div>
 
                 <button
                   onClick={() => setDisclaimerOpen(false)}
-                  className="w-full py-3.5 rounded-xl bg-dp-amber hover:bg-dp-amberDark text-dp-dark font-heading font-bold text-xs sm:text-sm transition shadow-lg"
+                  className="w-full py-3.5 rounded-xl bg-dp-navy hover:bg-dp-blue text-white font-heading font-bold text-xs sm:text-sm transition shadow"
                 >
-                  Acknowledge & Close Disclaimer
+                  Close & Continue
                 </button>
               </div>
             </div>
           )}
 
-          {/* ==================== SUPPORT & HELPLINES MODAL ==================== */}
+          {/* ==================== HELPLINES MODAL ==================== */}
           {supportModalOpen && (
-            <div className="fixed inset-0 z-50 bg-black/80 backdrop-blur-md flex items-center justify-center p-4">
-              <div className="w-full max-w-lg bg-dp-card border border-dp-border rounded-3xl p-6 space-y-5 max-h-[85vh] overflow-y-auto shadow-2xl relative">
+            <div className="fixed inset-0 z-50 bg-dp-navy/60 backdrop-blur-sm flex items-center justify-center p-4">
+              <div className="w-full max-w-lg bg-white border border-dp-border rounded-3xl p-6 space-y-5 max-h-[85vh] overflow-y-auto shadow-2xl relative">
                 <button
                   onClick={() => setSupportModalOpen(false)}
-                  className="absolute top-4 right-4 p-2 rounded-full bg-dp-dark text-slate-400 hover:text-white"
+                  className="absolute top-4 right-4 p-2 rounded-full hover:bg-dp-lightGray text-dp-mutedText hover:text-dp-navy"
                 >
                   <X className="w-5 h-5" />
                 </button>
 
                 <div className="space-y-1">
-                  <div className="flex items-center space-x-2 text-dp-crimson font-heading font-bold text-lg">
-                    <Shield className="w-5 h-5" />
-                    <span>Verified Crisis Directories (Nigeria)</span>
+                  <div className="flex items-center space-x-2 text-dp-navy font-heading font-bold text-lg">
+                    <Shield className="w-5 h-5 text-dp-blue" />
+                    <span>Verified Crisis Support (Nigeria)</span>
                   </div>
-                  <p className="text-xs text-slate-400">
-                    If you or someone you know requires legal, medical, or psychological support:
+                  <p className="text-xs text-dp-mutedText">
+                    If you or someone you know requires emergency assistance or legal counsel:
                   </p>
                 </div>
 
                 <div className="space-y-3">
                   {VERIFIED_RESOURCES.map((res, i) => (
-                    <div key={i} className="bg-dp-dark border border-dp-border rounded-2xl p-4 space-y-2 text-xs">
+                    <div key={i} className="bg-dp-lightGray border border-dp-border rounded-2xl p-4 space-y-2 text-xs">
                       <div className="flex items-center justify-between">
-                        <h5 className="font-bold text-dp-amber">{res.name}</h5>
-                        <span className="text-[10px] text-slate-400 font-mono">{res.location}</span>
+                        <h5 className="font-bold text-dp-navy">{res.name}</h5>
+                        <span className="text-[10px] text-dp-mutedText font-mono">{res.location}</span>
                       </div>
-                      <p className="text-slate-300">{res.services}</p>
+                      <p className="text-dp-darkText">{res.services}</p>
                       <div className="flex items-center justify-between pt-2 border-t border-dp-border text-[11px]">
-                        <a href={`tel:${res.phone}`} className="text-emerald-400 font-mono font-bold flex items-center space-x-1">
+                        <a href={`tel:${res.phone}`} className="text-dp-blue font-mono font-bold flex items-center space-x-1">
                           <PhoneCall className="w-3.5 h-3.5" />
                           <span>{res.phone}</span>
                         </a>
-                        <span className="text-slate-400">{res.web}</span>
+                        <span className="text-dp-mutedText">{res.web}</span>
                       </div>
                     </div>
                   ))}
@@ -1445,10 +1199,10 @@
             </div>
           )}
 
-          {/* Footer */}
-          <footer className="w-full border-t border-dp-border py-4 text-center text-[11px] text-slate-400 space-y-1">
-            <p className="font-heading font-bold text-slate-300">Dataphyte Media & Research Initiative</p>
-            <p>Data-driven reporting for governance, accountability, and safety.</p>
+          {/* FOOTER */}
+          <footer className="w-full border-t border-dp-border py-6 text-center text-xs text-dp-mutedText bg-white mt-8 space-y-1">
+            <p className="font-heading font-bold text-dp-navy">Dataphyte Media & Research Initiative</p>
+            <p>Data-driven reporting for governance, accountability, and public safety.</p>
           </footer>
 
         </div>
