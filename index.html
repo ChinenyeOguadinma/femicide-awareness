@@ -65,7 +65,6 @@
   <script type="text/babel">
     const { useState, useEffect, useRef } = React;
 
-    // UPDATED LOGO FILE PATH
     const LOGO_IMAGE_PATH = "dataphyte.png"; 
     const HERO_WOMEN_IMAGE_PATH = "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=1200&q=80";
 
@@ -162,6 +161,7 @@
       </svg>
     );
 
+    // --- EXHIBITION DATA ---
     const EXHIBITION_ITEMS = [
       {
         id: 1,
@@ -193,6 +193,7 @@
       }
     ];
 
+    // --- PODCAST EPISODES DATA ---
     const PODCAST_EPISODES = [
       {
         id: 'ep1',
@@ -223,6 +224,7 @@
       }
     ];
 
+    // --- CHARACTERS ---
     const CHARACTERS = [
       {
         id: 'chioma',
@@ -231,27 +233,27 @@
         occupation: 'University Student',
         location: 'Unilag Hostel, Lagos',
         blurb: 'An ambitious economics student whose partner gradually isolates her under the guise of affection.',
-        avatarColor: 'bg-dp-navy text-white',
+        avatarBg: 'bg-dp-blue text-white',
         initialPressure: { school: 15, friends: 10 }
       },
       {
-        id: 'ife',
-        name: 'Ife',
+        id: 'ngozi',
+        name: 'Ngozi',
         age: 31,
         occupation: 'Corporate Financial Analyst',
         location: 'Maitama, Abuja',
         blurb: 'A corporate executive managing a highly controlling spouse who threatens her career standing.',
-        avatarColor: 'bg-dp-blue text-white',
+        avatarBg: 'bg-dp-blue text-white',
         initialPressure: { work: 20, family: 10 }
       },
       {
-        id: 'lisa',
-        name: 'Lisa',
+        id: 'amaka',
+        name: 'Amaka',
         age: 38,
         occupation: 'Small Business Owner & Mother',
         location: 'Surulere, Lagos',
         blurb: 'A mother of two running a provision shop while navigating severe domestic financial control.',
-        avatarColor: 'bg-slate-700 text-white',
+        avatarBg: 'bg-dp-blue text-white',
         initialPressure: { family: 25, church: 15 }
       },
       {
@@ -261,7 +263,7 @@
         occupation: 'Digital Content Creator',
         location: 'Ikeja, Lagos',
         blurb: 'A young freelancer targeted by an obsessive online stalker after declining romantic interest.',
-        avatarColor: 'bg-slate-900 text-white',
+        avatarBg: 'bg-dp-blue text-white',
         initialPressure: { online: 20, police: 10 }
       }
     ];
@@ -271,7 +273,7 @@
         {
           id: 'c1',
           beat: 1,
-          beatTitle: 'Chapter 1: The Illusion of Care',
+          beatTitle: 'Beat 1: Ordinary Life',
           interface: 'phone',
           headerTitle: 'WhatsApp · Dayo ❤️',
           nodes: [
@@ -284,7 +286,7 @@
         {
           id: 'c2',
           beat: 2,
-          beatTitle: 'Chapter 2: Micro-Control',
+          beatTitle: 'Beat 2: Micro-Control',
           interface: 'phone',
           headerTitle: 'WhatsApp · Dayo ❤️',
           nodes: [
@@ -297,7 +299,7 @@
         {
           id: 'c3',
           beat: 3,
-          beatTitle: 'Chapter 3: Escalation',
+          beatTitle: 'Beat 3: Escalation',
           interface: 'phone',
           headerTitle: 'WhatsApp · Dayo ❤️',
           nodes: [
@@ -309,7 +311,7 @@
         {
           id: 'c4',
           beat: 4,
-          beatTitle: 'Chapter 4: Closed Doors',
+          beatTitle: 'Beat 4: Closed Doors',
           interface: 'doors',
           headerTitle: 'Support Audit',
           nodes: [
@@ -321,7 +323,7 @@
         {
           id: 'c5',
           beat: 5,
-          beatTitle: 'Chapter 5: Cut-Away',
+          beatTitle: 'Beat 5: Cut-Away',
           interface: 'police',
           headerTitle: 'Sabon-Gari Police Division',
           nodes: [
@@ -332,11 +334,11 @@
           ]
         }
       ],
-      ife: [
+      ngozi: [
         {
           id: 'n1',
           beat: 1,
-          beatTitle: 'Chapter 1: Corporate Pressure',
+          beatTitle: 'Beat 1: Ordinary Life',
           interface: 'phone',
           headerTitle: 'WhatsApp · Amara (Sister)',
           nodes: [
@@ -348,7 +350,7 @@
         {
           id: 'n4',
           beat: 4,
-          beatTitle: 'Chapter 4: Closed Doors',
+          beatTitle: 'Beat 4: Closed Doors',
           interface: 'doors',
           headerTitle: 'Support Audit',
           nodes: [
@@ -359,7 +361,7 @@
         {
           id: 'n5',
           beat: 5,
-          beatTitle: 'Chapter 5: Cut-Away',
+          beatTitle: 'Beat 5: Cut-Away',
           interface: 'police',
           headerTitle: 'Abuja Command',
           nodes: [
@@ -368,11 +370,11 @@
           ]
         }
       ],
-      lisa: [
+      amaka: [
         {
           id: 'a1',
           beat: 1,
-          beatTitle: 'Chapter 1: Surulere Store',
+          beatTitle: 'Beat 1: Surulere Store',
           interface: 'phone',
           headerTitle: 'WhatsApp · Mama Nkechi',
           nodes: [
@@ -384,7 +386,7 @@
         {
           id: 'a4',
           beat: 4,
-          beatTitle: 'Chapter 4: Closed Doors',
+          beatTitle: 'Beat 4: Closed Doors',
           interface: 'doors',
           headerTitle: 'Support Audit',
           nodes: [
@@ -395,7 +397,7 @@
         {
           id: 'a5',
           beat: 5,
-          beatTitle: 'Chapter 5: Cut-Away',
+          beatTitle: 'Beat 5: Cut-Away',
           interface: 'police',
           headerTitle: 'Surulere Station',
           nodes: [
@@ -407,7 +409,7 @@
         {
           id: 't1',
           beat: 1,
-          beatTitle: 'Chapter 1: Digital Stalking',
+          beatTitle: 'Beat 1: Digital Stalking',
           interface: 'phone',
           headerTitle: 'WhatsApp · Unknown',
           nodes: [
@@ -419,7 +421,7 @@
         {
           id: 't4',
           beat: 4,
-          beatTitle: 'Chapter 4: Closed Doors',
+          beatTitle: 'Beat 4: Closed Doors',
           interface: 'doors',
           headerTitle: 'Support Audit',
           nodes: [
@@ -430,7 +432,7 @@
         {
           id: 't5',
           beat: 5,
-          beatTitle: 'Chapter 5: Cut-Away',
+          beatTitle: 'Beat 5: Cut-Away',
           interface: 'police',
           headerTitle: 'Ikeja Command',
           nodes: [
@@ -571,7 +573,6 @@
                   alt="Dataphyte Logo" 
                   className="h-8 w-auto object-contain"
                   onError={(e) => {
-                    // Fallback text if dataphyte.png is missing or hasn't loaded
                     e.target.style.display = 'none';
                     e.target.nextSibling.style.display = 'flex';
                   }}
@@ -650,7 +651,7 @@
             {currentRoute === 'home' && (
               <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center min-h-[75vh]">
                 
-                {/* Left Sticky Editorial Column */}
+                {/* Left Editorial Column */}
                 <div className="lg:col-span-6 space-y-6">
                   <div className="inline-flex items-center space-x-2 px-3.5 py-1.5 rounded-full bg-dp-lightBlue text-dp-blue text-xs font-bold border border-dp-border">
                     <Shield className="w-3.5 h-3.5" />
@@ -916,7 +917,8 @@
                         <div className="space-y-4">
                           <div className="flex items-center justify-between">
                             <div className="flex items-center space-x-3">
-                              <div className={`w-12 h-12 rounded-full ${char.avatarColor} flex items-center justify-center font-heading font-bold text-base shadow-sm`}>
+                              {/* BLUE BACKGROUND BLOCK FOR CHARACTER AVATAR */}
+                              <div className={`w-12 h-12 rounded-full ${char.avatarBg} flex items-center justify-center font-heading font-bold text-base shadow-sm`}>
                                 {char.name[0]}
                               </div>
                               <div>
@@ -1151,7 +1153,7 @@
               </div>
             )}
 
-            {/* ==================== CASE FINALE ==================== */}
+            {/* ==================== CASE FINALE (UPDATED LINKS) ==================== */}
             {currentRoute === 'finale' && (
               <div className="max-w-xl mx-auto bg-white border border-dp-border rounded-3xl p-6 sm:p-10 shadow-xl text-center space-y-6 my-4">
                 <div className="inline-flex p-4 rounded-2xl bg-dp-lightBlue text-dp-blue">
@@ -1191,10 +1193,18 @@
                   </button>
 
                   <button
-                    onClick={() => setCurrentRoute('choose')}
-                    className="w-full py-3.5 rounded-xl bg-white border border-dp-border text-dp-navy font-semibold text-xs sm:text-sm hover:bg-slate-50 transition"
+                    onClick={() => setCurrentRoute('exhibition')}
+                    className="w-full py-3.5 rounded-xl bg-white border border-dp-border text-dp-navy font-heading font-semibold text-xs sm:text-sm hover:bg-slate-50 transition flex items-center justify-center space-x-2"
                   >
-                    Select Another Narrative
+                    <Image className="w-4 h-4 text-dp-blue" />
+                    <span>View Photo Exhibition Gallery</span>
+                  </button>
+
+                  <button
+                    onClick={() => setCurrentRoute('choose')}
+                    className="w-full py-3.5 rounded-xl bg-dp-lightBlue text-dp-blue font-semibold text-xs sm:text-sm hover:bg-blue-100 transition"
+                  >
+                    Change Character & Play Another Story
                   </button>
                 </div>
               </div>
