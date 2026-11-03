@@ -170,8 +170,8 @@
         initialPressure: { school: 15, friends: 10 }
       },
       {
-        id: 'ngozi',
-        name: 'Ngozi',
+        id: 'ife',
+        name: 'Ife',
         age: 31,
         occupation: 'Corporate Analyst',
         location: 'Maitama, Abuja',
@@ -181,8 +181,8 @@
         initialPressure: { work: 20, family: 10 }
       },
       {
-        id: 'amaka',
-        name: 'Amaka',
+        id: 'lisa',
+        name: 'Lisa',
         age: 38,
         occupation: 'Shop Owner & Mother of 2',
         location: 'Surulere, Lagos',
@@ -343,7 +343,7 @@
           ]
         }
       ],
-      ngozi: [
+      ife: [
         {
           id: 'n1',
           beat: 1,
@@ -351,9 +351,9 @@
           interface: 'phone',
           headerTitle: 'Sister (Amara)',
           nodes: [
-            { type: 'narration', text: 'Ngozi is a high-performing senior analyst in Abuja. She is commuting to work early in the morning.' },
-            { type: 'message', from: 'Amara (Sister)', text: 'Ngo, good morning! Hope Emeka is fine? Did he approve your travel for the Lagos conference?', delayms: 700 },
-            { type: 'message', from: 'her', text: 'Morning Amara. He is still complaining about it. Says corporate wives shouldn’t travel alone.', delayms: 1000 },
+            { type: 'narration', text: 'Ife is a high-performing senior analyst in Abuja. She is commuting to work early in the morning.' },
+            { type: 'message', from: 'Ola (Sister)', text: 'Ife, good morning! Hope Tope is fine? Did he approve your travel for the Lagos conference?', delayms: 700 },
+            { type: 'message', from: 'her', text: 'Morning Ola. He is still complaining about it. Says corporate wives shouldn’t travel alone.', delayms: 1000 },
             { type: 'choice', options: [{ label: 'Change the topic to work', next_idx: 3 }, { label: 'Confide her worries', next_idx: 3 }] },
             { type: 'narration', text: 'Her career success is constantly eclipsed by domestic monitoring.' }
           ]
@@ -365,10 +365,10 @@
           interface: 'doors',
           headerTitle: 'Seeking Safe Haven',
           nodes: [
-            { type: 'narration', text: 'Emeka installs a hidden tracker on her phone and threatens her career. Ngozi seeks professional and personal help.' },
-            { type: 'door', id: 'hr', label: 'Company HR Manager', response: 'redirected', text: 'Ngozi, you are a valuable employee, but domestic matters between husband and wife cannot enter corporate files.', pressure: 'work' },
+            { type: 'narration', text: 'Tope installs a hidden tracker on her phone and threatens her career. Ife seeks professional and personal help.' },
+            { type: 'door', id: 'hr', label: 'Company HR Manager', response: 'redirected', text: 'Ife, you are a valuable employee, but domestic matters between husband and wife cannot enter corporate files.', pressure: 'work' },
             { type: 'door', id: 'pastor', label: 'Senior Church Pastor', response: 'blamed', text: 'A wise woman builds her home with patience. Submit more to Emeka and fast for 7 days.', pressure: 'church' },
-            { type: 'door', id: 'friend', label: 'Close Colleague', response: 'helpless', text: 'Ah Ngozi, men in Abuja are like that. At least he is taking care of you and doesn’t drink outdoor.', pressure: 'friends' },
+            { type: 'door', id: 'friend', label: 'Close Colleague', response: 'helpless', text: 'Ah Ife, men in Abuja are like that. At least he is taking care of you and doesn’t drink outdoor.', pressure: 'friends' },
             { type: 'door', id: 'sister', label: 'Her Sister (Amara)', response: 'promised-no-action', text: 'I wish you could come stay with me in Enugu, but our father will kill us if you leave your matrimonial house.', pressure: 'family' }
           ]
         },
@@ -380,7 +380,7 @@
           headerTitle: 'Abuja Central Command',
           nodes: [
             { type: 'dialogue', speaker: 'Officer', text: 'Madam, Emeka is a respected senior man. Settle this domestic dispute at home.' },
-            { type: 'cutaway', text: 'The next time anyone sees Ngozi is in an official corporate condolence email.' }
+            { type: 'cutaway', text: 'The next time anyone sees Ife is in an official corporate condolence email.' }
           ]
         },
         {
@@ -390,13 +390,13 @@
           interface: 'feed',
           headerTitle: 'Corporate & Media Feed',
           nodes: [
-            { type: 'post', author: 'Abuja Daily News', text: 'TRAGEDY: Top corporate financial executive Ngozi found deceased in Maitama residence.', likes: 8900 },
+            { type: 'post', author: 'Abuja Daily News', text: 'TRAGEDY: Top corporate financial executive Ife found deceased in Maitama residence.', likes: 8900 },
             { type: 'comment', text: 'She reported to HR three times! Why are workplace harassment policies silent on domestic threats?', stance: 'support' },
             { type: 'comment', text: 'Abuja women like flexing big career, then they disrespect their husbands at home. Sad end.', stance: 'blame' }
           ]
         }
       ],
-      amaka: [
+      lisa: [
         {
           id: 'a1',
           beat: 1,
@@ -404,8 +404,8 @@
           interface: 'phone',
           headerTitle: 'Mama Nkechi (Neighbour)',
           nodes: [
-            { type: 'narration', text: 'Amaka runs a busy provisions store in Surulere while getting her two young children ready for school.' },
-            { type: 'message', from: 'Mama Nkechi', text: 'Amaka my sister, good morning. Please don’t forget to bring the rice sacks to church today.', delayms: 600 },
+            { type: 'narration', text: 'Lisa runs a busy provisions store in Surulere while getting her two young children ready for school.' },
+            { type: 'message', from: 'Mama Nkechi', text: 'Lisa my sister, good morning. Please don’t forget to bring the rice sacks to church today.', delayms: 600 },
             { type: 'message', from: 'her', text: 'Good morning! I will bring them as soon as Obinna leaves for his shop.', delayms: 1000 },
             { type: 'narration', text: 'Behind her warm, resilient smile, her husband Obinna seizes every naira she earns.' }
           ]
@@ -417,11 +417,11 @@
           interface: 'doors',
           headerTitle: 'Reaching Out',
           nodes: [
-            { type: 'narration', text: 'Obinna’s financial and physical abuse escalates. Amaka tries to secure safety for herself and her children.' },
+            { type: 'narration', text: 'Obinna’s financial and physical abuse escalates. Lisa tries to secure safety for herself and her children.' },
             { type: 'door', id: 'inlaws', label: 'Mother-in-law', response: 'blamed', text: 'Every marriage has storm! My son is stressed because of economy. Learn how to talk to him softly.', pressure: 'family' },
             { type: 'door', id: 'elder', label: 'Community Elder', response: 'promised-no-action', text: 'We will call Obinna and talk to him like a brother. Don’t destroy your children’s home by calling police.', pressure: 'church' },
             { type: 'door', id: 'neighbour', label: 'Building Manager', response: 'dismissed', text: 'Madam Amaka, what happens inside your flat is private family business. Just keep the noise down at night.', pressure: 'friends' },
-            { type: 'door', id: 'sister', label: 'Her Sister', response: 'helpless', text: 'Amaka I want to take you in, but my husband’s 1-bedroom flat cannot fit four extra people. I am so sorry.', pressure: 'family' }
+            { type: 'door', id: 'sister', label: 'Her Sister', response: 'helpless', text: 'Lisa I want to take you in, but my husband’s 1-bedroom flat cannot fit four extra people. I am so sorry.', pressure: 'family' }
           ]
         },
         {
