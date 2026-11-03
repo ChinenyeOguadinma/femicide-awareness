@@ -66,8 +66,7 @@
     const { useState, useEffect, useRef } = React;
 
     const LOGO_IMAGE_PATH = "dataphyte.png"; 
-    // Updated to represent Nigerian women on Unsplash
-    const HERO_WOMEN_IMAGE_PATH = "https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?auto=format&fit=crop&w=1200&q=80";
+    const HERO_WOMEN_IMAGE_PATH = "hero.jpg";
 
     // --- Inline Icons ---
     const Shield = ({ className = "w-4 h-4" }) => (
@@ -707,7 +706,7 @@
                 <div className="lg:col-span-6 space-y-6">
                   <div className="inline-flex items-center space-x-2 px-3.5 py-1.5 rounded-full bg-dp-lightBlue text-dp-blue text-xs font-bold border border-dp-border">
                     <Shield className="w-3.5 h-3.5" />
-                    <span>Dataphyte Special Investigation</span>
+                    <span>Jabali by Dataphyte</span>
                   </div>
 
                   <h1 className="text-4xl sm:text-5xl lg:text-6xl font-heading font-black text-dp-navy tracking-tight leading-none">
@@ -759,6 +758,9 @@
                         src={HERO_WOMEN_IMAGE_PATH} 
                         alt="Nigerian Women Portrait" 
                         className="w-full h-full object-cover"
+                        onError={(e) => {
+                          e.target.src = "https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?auto=format&fit=crop&w=1200&q=80";
+                        }}
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-dp-navy/70 via-transparent to-transparent flex items-end p-5">
                         <p className="text-xs font-serif text-white italic">
