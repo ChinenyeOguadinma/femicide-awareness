@@ -66,7 +66,7 @@
     const { useState, useEffect, useRef } = React;
 
     const LOGO_IMAGE_PATH = "dataphyte.png"; 
-    const HERO_WOMEN_IMAGE_PATH = "hero.jpg";
+    const HERO_IMAGE_PATH = "hero.jpg";
 
     // --- Inline Icons ---
     const Shield = ({ className = "w-4 h-4" }) => (
@@ -706,7 +706,7 @@
                 <div className="lg:col-span-6 space-y-6">
                   <div className="inline-flex items-center space-x-2 px-3.5 py-1.5 rounded-full bg-dp-lightBlue text-dp-blue text-xs font-bold border border-dp-border">
                     <Shield className="w-3.5 h-3.5" />
-                    <span>Jabali by Dataphyte</span>
+                    <span>Dataphyte Special Investigation</span>
                   </div>
 
                   <h1 className="text-4xl sm:text-5xl lg:text-6xl font-heading font-black text-dp-navy tracking-tight leading-none">
@@ -755,12 +755,9 @@
                   <div className="bg-white border border-dp-border rounded-3xl p-6 sm:p-8 shadow-sm space-y-6">
                     <div className="relative rounded-2xl overflow-hidden border border-dp-border aspect-4/3 bg-slate-100">
                       <img 
-                        src={hero.jpg} 
-                        alt="Nigerian Women Portrait" 
+                        src={HERO_IMAGE_PATH} 
+                        alt="Hero Portrait" 
                         className="w-full h-full object-cover"
-                        onError={(e) => {
-                          e.target.src = "hero.jpg";
-                        }}
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-dp-navy/70 via-transparent to-transparent flex items-end p-5">
                         <p className="text-xs font-serif text-white italic">
