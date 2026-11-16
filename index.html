@@ -641,7 +641,6 @@
                 </div>
               </button>
               <span className="hidden md:inline text-dp-border">|</span>
-              <span className="hidden md:inline text-xs text-dp-mutedText font-medium">Reporting & Immersive </span>
             </div>
 
             <nav className="flex items-center space-x-1 sm:space-x-2 text-xs font-semibold">
@@ -672,16 +671,6 @@
               >
                 <FileText className="w-4 h-4" />
                 <span>Data Story</span>
-              </button>
-
-              <button
-                onClick={() => setCurrentRoute('podcast')}
-                className={`px-3 py-2 rounded-lg transition flex items-center space-x-1.5 ${
-                  currentRoute === 'podcast' ? 'bg-dp-lightBlue text-dp-blue font-bold' : 'text-dp-mutedText hover:text-dp-navy'
-                }`}
-              >
-                <Mic className="w-4 h-4" />
-                <span className="hidden md:inline">Podcast</span>
               </button>
 
               {/* NEW NAVIGATION BUTTON FOR DOCUMENTARY / EXHIBITION */}
@@ -893,7 +882,7 @@
                     Femicide in Nigeria: Beyond the Numbers & Institutional Gaps
                   </h2>
                   <p className="text-xs sm:text-sm text-dp-mutedText max-w-xl mx-auto">
-                    A comprehensive empirical look into gender-based violence, statutory implementation hurdles, and police response metrics across Nigerian states.
+                    A comprehensive look into gender-based violence, statutory implementation hurdles, and police response metrics across Nigerian states.
                   </p>
                 </div>
 
